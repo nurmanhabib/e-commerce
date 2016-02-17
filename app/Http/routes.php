@@ -19,8 +19,8 @@ $api = app('Dingo\Api\Routing\Router');
 
 function resource($path, $controller, &$api)
 {
-    $api->get($path, $controller . '@index');
-    $api->get($path . '/{id}', $controller . '@show');
+    $api->post($path, $controller . '@index');
+    $api->post($path . '/{id}', $controller . '@show');
     $api->put($path . '/{id}', $controller . '@update');
     $api->delete($path . '/{id}', $controller . '@destroy');
 }
@@ -30,18 +30,12 @@ $api->version('v1', function ($api) {
         $api->group(['prefix' => 'auth'], function () use ($api) {
             $api->post('register', 'AuthController@register');
             $api->post('login', 'AuthController@login');
-            $api->get('cek', function () {
-                return \Illuminate\Support\Facades\Auth::user();
-            });
         });
 
         $api->group(['middleware' => 'auth'], function () use ($api) {
             $api->group(['prefix' => 'auth'], function () use ($api) {
                 $api->get('change-password', 'AuthController@changePassword');
                 $api->get('logout', 'AuthController@logout');
-            });
-            $api->get('tes', function () {
-                return 'tes';
             });
 
             resource('tenants', 'TenantController', $api);
