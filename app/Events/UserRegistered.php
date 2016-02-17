@@ -8,7 +8,7 @@
 
 namespace App\Events;
 
-use App\User;
+use App\Models\User;
 
 class UserRegistered extends Event
 {

@@ -10,7 +10,6 @@ namespace App\Http\Controllers\V1;
 
 
 use App\Http\Controllers\Controller;
-use App\User;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -19,7 +18,7 @@ class UserController extends Controller
     {
         return [
             'status'    => 'success',
-            'data'      => User::all(),
+            'user'      => Auth::user(),
         ];
     }
 

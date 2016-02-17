@@ -10,9 +10,9 @@ namespace App\Http\Controllers\V1;
 
 use App\Events\UserRegistered;
 use App\Http\Controllers\Controller;
-use App\User;
+use App\Models\User;
+use App\Models\Role;
 use Illuminate\Http\Request;
-use Tymon\JWTAuth\Exceptions\JWTException;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
 class AuthController extends Controller
@@ -25,27 +25,26 @@ class AuthController extends Controller
             'password'  => 'required|min:6',
         ]);
 
-        $credentials = $request->only('username', 'email');
+        $credentials = $request->only('username', 'email', 'password');
 
         $user = User::create($credentials);
-        $user->setPassword($request->get('password'));
+        $role = Role::where('slug', 'member')->first();
+        $user->roles()->attach($role);
 
         event(new UserRegistered($user));
 
         return [
             'status'    => 'success',
-            'data'      => $user,
+            'user'      => $user,
         ];
     }
 
     public function login(Request $request)
     {
         $this->validate($request, [
-            'email'     => 'required|email|exists:users',
+            'email'     => 'required|email',
             'password'  => 'required',
         ]);
-
-        $credentials = $request->only('email', 'password');
 
         $user = User::where('email', $request->get('email'))->first();
 
@@ -53,24 +52,20 @@ class AuthController extends Controller
             $hash_check = app('hash')->check($request->get('password'), $user->password);
 
             if ($hash_check)
-                return JWTAuth::fromUser($user);
+                return [
+                    'status'    => 'success',
+                    'token'     => JWTAuth::fromUser($user),
+                ];
             else
-                return [];
+                return [
+                    'status'    => 'failed',
+                    'message'   => 'Credentials is not valid.',
+                ];
         } else {
-            return ['tidak ditemukan'];
+            return [
+                'status'    => 'failed',
+                'message'   => 'User not found.',
+            ];
         }
-
-        try {
-            // attempt to verify the credentials and create a token for the user
-            if (! $token = app('auth')->attempt($credentials)) {
-                return response()->json(['error' => 'invalid_credentials'], 401);
-            }
-        } catch (JWTException $e) {
-            // something went wrong whilst attempting to encode the token
-            return response()->json(['error' => 'could_not_create_token'], 500);
-        }
-
-        // all good so return the token
-        return response()->json(compact('token'));
     }
 }
