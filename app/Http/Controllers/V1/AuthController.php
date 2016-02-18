@@ -31,10 +31,6 @@ class AuthController extends Controller
         $role = Role::where('slug', 'member')->first();
         $user->roles()->attach($role);
 
-        $token                  = JWTAuth::fromUser($user);
-        $user->remember_token   = $token;
-        $user->save();
-
         event(new UserRegistered($user));
 
         return [
@@ -63,7 +59,7 @@ class AuthController extends Controller
             else
                 return [
                     'status'    => 'failed',
-                    'message'   => 'Your Password is not valid.',
+                    'message'   => 'Credentials is not valid.',
                 ];
         } else {
             return [
