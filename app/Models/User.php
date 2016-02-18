@@ -29,7 +29,8 @@ class User extends Model implements
      * @var array
      */
     protected $hidden = [
-        'password',
+        'password', 
+        'remember_token'
     ];
 
     public static function boot()
