@@ -12,7 +12,7 @@ class CreateUserTenantTable extends Migration
      */
     public function up()
     {
-        Schema::create('users_tenants', function(Blueprint $table) {
+        Schema::create('users_tenants', function (Blueprint $table) {
             $table->integer('user_id');
             $table->integer('tenant_id');
         });
