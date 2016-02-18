@@ -23,6 +23,7 @@ class CreateTenantsTable extends Migration
             $table->string('email');
             $table->string('website');
             $table->text('tags');
+            $table->timestamps();
         });
     }
 
