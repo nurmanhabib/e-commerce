@@ -17,6 +17,10 @@ class CreateBalancesTable extends Migration
             $table->string('name', 100);
             $table->bigInteger('value');
             $table->integer('user_id');
+
+            $table->foreign('user_id')
+                ->references('id')->on('users')
+                ->onDelete('cascade');
         });
     }
 
