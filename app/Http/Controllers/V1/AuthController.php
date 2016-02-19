@@ -8,30 +8,35 @@
 
 namespace App\Http\Controllers\V1;
 
-use App\Events\UserRegistered;
 use App\Http\Controllers\Controller;
-use App\Models\User;
-use App\Models\Role;
+use App\Repositories\UserRepository;
 use Illuminate\Http\Request;
-use Tymon\JWTAuth\Facades\JWTAuth;
 
 class AuthController extends Controller
 {
+    protected $userRepository;
+
+    public function __construct(UserRepository $userRepository)
+    {
+        $this->userRepository = $userRepository;
+    }
+
     public function register(Request $request)
     {
         $this->validate($request, [
-            'username'  => 'required|min:3|unique:users',
-            'email'     => 'required|email|unique:users',
-            'password'  => 'required|min:6',
+            'username'              => 'required|min:3|unique:users',
+            'email'                 => 'required|email|unique:users',
+            'password'              => 'required|min:6',
+
+            'profile.first_name'    => 'required',
+            'profile.last_name'     => 'required',
+            'profile.gender'        => 'required',
+            'profile.avatar'        => 'required',
         ]);
 
-        $credentials = $request->only('username', 'email', 'password');
-
-        $user = User::create($credentials);
-        $role = Role::where('slug', 'member')->first();
-        $user->roles()->attach($role);
-
-        event(new UserRegistered($user));
+        $credentials    = $request->only('username', 'email', 'password');
+        $profile        = $request->get('profile');
+        $user           = $this->userRepository->register($credentials, $profile);
 
         return [
             'status'    => 'success',
@@ -42,30 +47,12 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $this->validate($request, [
-            'email'     => 'required|email',
             'password'  => 'required',
         ]);
 
-        $user = User::where('email', $request->get('email'))->first();
+        $credentials    = $request->all();
+        $authenticate   = $this->userRepository->authenticate($credentials);
 
-        if ($user) {
-            $hash_check = app('hash')->check($request->get('password'), $user->password);
-
-            if ($hash_check)
-                return [
-                    'status'    => 'success',
-                    'token'     => JWTAuth::fromUser($user),
-                ];
-            else
-                return [
-                    'status'    => 'failed',
-                    'message'   => 'Credentials is not valid.',
-                ];
-        } else {
-            return [
-                'status'    => 'failed',
-                'message'   => 'User not found.',
-            ];
-        }
+        return $authenticate;
     }
 }

@@ -20,7 +20,7 @@ class User extends Model implements
      * @var array
      */
     protected $fillable = [
-        'username', 'email',
+        'username', 'email', 'password',
     ];
 
     /**
@@ -36,8 +36,8 @@ class User extends Model implements
     {
         parent::boot();
 
-        User::creating(function (User $user) {
-            $user->setPassword($user->password, false);
+        User::saving(function (User $user) {
+            $user->password = $user->createPassword($user->password);
         });
     }
 
@@ -55,16 +55,6 @@ class User extends Model implements
 
         return $this;
     }
-
-    public function roles()
-    {
-        return $this->belongsToMany(Role::class, 'user_role');
-    }
-
-//    public function tenants()
-//    {
-//        return $this->belongsToMany(Tenant::class, 'user_tenant');
-//    }
 
     public function hasRole($slug)
     {
@@ -87,4 +77,24 @@ class User extends Model implements
             return false;
         }
     }
+
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class, 'user_role');
+    }
+
+    public function hasProfile()
+    {
+        return !empty($this->profile);
+    }
+
+    public function profile()
+    {
+        return $this->hasOne(Profile::class);
+    }
+
+//    public function tenants()
+//    {
+//        return $this->belongsToMany(Tenant::class, 'user_tenant');
+//    }
 }
