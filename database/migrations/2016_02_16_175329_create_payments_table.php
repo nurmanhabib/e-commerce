@@ -19,6 +19,10 @@ class CreatePaymentsTable extends Migration
             $table->bigInteger('value');
             $table->integer('balance_id');
             $table->timestamps();
+
+            $table->foreign('balance_id')
+                ->references('id')->on('balances')
+                ->onDelete('cascade');
         });
     }
 
