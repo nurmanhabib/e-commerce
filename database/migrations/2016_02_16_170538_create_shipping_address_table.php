@@ -22,6 +22,10 @@ class CreateShippingAddressTable extends Migration
             $table->string('phone', 14);
             $table->integer('user_id');
             $table->timestamps();
+
+            $table->foreign('user_id')
+                ->references('id')->on('users')
+                ->onDelete('cascade');
         });
     }
 
