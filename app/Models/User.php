@@ -93,6 +93,16 @@ class User extends Model implements
         return $this->hasOne(Profile::class);
     }
 
+    public function hasActivationCode()
+    {
+        return !empty($this->activation_code);
+    }
+
+    public function isActive()
+    {
+        return !$this->hasActivationCode();
+    }
+
 //    public function tenants()
 //    {
 //        return $this->belongsToMany(Tenant::class, 'user_tenant');
