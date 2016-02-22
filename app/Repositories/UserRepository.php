@@ -33,11 +33,22 @@ class UserRepository extends Repository
         return User::class;
     }
 
-    public function register(array $credentials, array $profile = [], $role = 'member')
+    public function registerAndActivate(array $credentials, array $profile = [], $role = 'member')
     {
+        $this->register($credentials, $profile, $role, true);
+    }
+
+    public function register(array $credentials, array $profile = [], $role = 'member', $activated = false)
+    {
+        if (array_key_exists('password', $credentials)) {
+            $credentials['password'] = $this->createPassword($credentials['password']);
+        }
+
         $user = $this->create($credentials);
 
-        $this->generateActivationCode($user);
+        if (!$activated) {
+            $this->generateActivationCode($user);
+        }
 
         if (!empty($profile) && !$user->hasProfile()) {
             $user->profile()->create($profile);
@@ -49,9 +60,7 @@ class UserRepository extends Repository
             $user->roles()->attach($role);
         }
 
-        event(new UserRegistered($user));
-
-        return $user->load('profile');
+        return $user;
     }
 
     public function authenticate(array $credentials)
@@ -72,7 +81,7 @@ class UserRepository extends Repository
 
         return [
             'status'    => 'failed',
-            'message'   => 'Credentials is not valid.',
+            'message'   => 'Credentials is not valid.'
         ];
     }
 
@@ -92,6 +101,47 @@ class UserRepository extends Repository
         $activation_code = str_random(6);
 
         $user->forceFill(compact('activation_code'));
+        $user->save();
+
+        return $user->makeVisible('activation_code');
+    }
+
+    public function resetPassword($email, $remember_token, $password)
+    {
+        $user = $this->findWhere(compact('email', 'remember_token'))->first();
+
+        if ($user) {
+            $this->setPassword($user, $password);
+
+            $user->forceFill(['remember_token' => null]);
+            $user->save();
+
+            return $user;
+        } else {
+            return false;
+        }
+    }
+
+    public function createPassword($plain)
+    {
+        return $this->makeModel()->createPassword($plain);
+    }
+
+    public function setPassword(User $user, $plain)
+    {
+        $user->forceFill([
+            'password' => $this->createPassword($plain)
+        ]);
+        $user->save();
+
+        return $user;
+    }
+
+    public function generateRememberToken(User $user)
+    {
+        $remember_token = str_random(100);
+
+        $user->forceFill(compact('remember_token'));
         $user->save();
 
         return $user;

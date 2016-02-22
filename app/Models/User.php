@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Auth\Authenticatable;
+use Illuminate\Auth\Passwords\CanResetPassword;
+use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 use Laravel\Lumen\Auth\Authorizable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
@@ -10,9 +12,10 @@ use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 
 class User extends Model implements
     AuthenticatableContract,
-    AuthorizableContract
+    AuthorizableContract,
+    CanResetPasswordContract
 {
-    use Authenticatable, Authorizable;
+    use Authenticatable, Authorizable, CanResetPassword;
 
     /**
      * The attributes that are mass assignable.
@@ -29,17 +32,16 @@ class User extends Model implements
      * @var array
      */
     protected $hidden = [
-        'password'
+        'password', 'activation_code', 'remember_token'
     ];
 
-    public static function boot()
-    {
-        parent::boot();
+    protected $appends = [
+        'active'
+    ];
 
-        User::saving(function (User $user) {
-            $user->password = $user->createPassword($user->password);
-        });
-    }
+    protected $with = [
+        'profile'
+    ];
 
     public function createPassword($plain)
     {
@@ -101,6 +103,16 @@ class User extends Model implements
     public function isActive()
     {
         return !$this->hasActivationCode();
+    }
+
+    public function getActiveAttribute()
+    {
+        return $this->isActive() ? 1 : 0;
+    }
+
+    public function hasPassword()
+    {
+        return !empty($this->password);
     }
 
 //    public function tenants()

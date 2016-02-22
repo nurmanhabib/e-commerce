@@ -8,7 +8,6 @@
 
 namespace App\Http\Controllers\V1;
 
-
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -18,12 +17,17 @@ class UserController extends Controller
     {
         return [
             'status'    => 'success',
-            'user'      => Auth::user(),
+            'user'      => app('auth')->user(),
         ];
     }
 
-    public function store(Request $request)
+    public function changePassword(Request $request)
     {
+        $this->validate($request, [
+            'new_password'  => 'required|min:6',
+            'old_password'  => 'required|old_password',
+        ]);
 
+        return $request->all();
     }
 }
