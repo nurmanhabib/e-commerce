@@ -2,23 +2,30 @@
 /**
  * Created by PhpStorm.
  * User: bihama
- * Date: 14/02/2016
- * Time: 19.20
+ * Date: 21/02/2016
+ * Time: 20.47
  */
 
-namespace App\Http\Controllers\V1;
+namespace App\Http\Controllers\V1\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Repositories\UserRepository;
 use Illuminate\Http\Request;
 
-class AuthController extends Controller
+class RegisterController extends Controller
 {
     protected $userRepository;
 
     public function __construct(UserRepository $userRepository)
     {
         $this->userRepository = $userRepository;
+    }
+
+    public function emailOnly(Request $request)
+    {
+        $this->validate($request, [
+            'email' => 'required|email|unique:users'
+        ]);
     }
 
     public function register(Request $request)
@@ -36,23 +43,12 @@ class AuthController extends Controller
 
         $credentials    = $request->only('username', 'email', 'password');
         $profile        = $request->get('profile');
-        $user           = $this->userRepository->register($credentials, $profile);
+        $user           = $this->userRepository->register($credentials, $profile, $request->has('activated'));
 
         return [
-            'status'    => 'success',
-            'user'      => $user,
+            'status'            => 'success',
+            'user'              => $user,
+            'activation_code'   => $user->activation_code
         ];
-    }
-
-    public function login(Request $request)
-    {
-        $this->validate($request, [
-            'password'  => 'required',
-        ]);
-
-        $credentials    = $request->all();
-        $authenticate   = $this->userRepository->authenticate($credentials);
-
-        return $authenticate;
     }
 }

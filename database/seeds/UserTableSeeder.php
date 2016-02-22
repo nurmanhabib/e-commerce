@@ -20,9 +20,9 @@ class UserTableSeeder extends Seeder
      */
     public function run()
     {
-        app('db')->table('user_role')->truncate();
-        app('db')->table('users')->truncate();
-        app('db')->table('roles')->truncate();
+        app('db')->table('users')->delete();
+        app('db')->table('roles')->delete();
+        app('db')->table('user_role')->delete();
 
         $roles = collect([
             'admin'     => 'Administrator',
@@ -53,12 +53,17 @@ class UserTableSeeder extends Seeder
             $credentials    = $user->except('roles');
             $roles          = $user->only('roles');
 
+            $credentials['password'] = app(User::class)->createPassword($credentials['password']);
+
             $roles->transform(function ($role) {
                 return Role::where('slug', $role)->first()->id;
             });
 
             $user           = User::create($credentials->toArray());
             $user->roles()->attach($roles->toArray());
+            $user->profile()->create([]);
+
+            return $user;
         });
     }
 }

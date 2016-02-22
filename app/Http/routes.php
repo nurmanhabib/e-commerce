@@ -15,6 +15,8 @@ $app->get('/', function () use ($app) {
     return 'Amtek Ecommerce v1.0.0';
 });
 
+$app->post('register', 'V1\AuthController@register');
+
 $api = app('Dingo\Api\Routing\Router');
 
 function resource($path, $controller, &$api)
@@ -27,17 +29,36 @@ function resource($path, $controller, &$api)
 
 $api->version('v1', function ($api) {
     $api->group(['namespace' => 'App\Http\Controllers\V1', 'prefix' => 'v1'], function () use ($api) {
-        $api->group(['prefix' => 'auth'], function () use ($api) {
-            $api->post('register', 'AuthController@register');
-            $api->post('login', 'AuthController@login');
+
+        /* AUTHENTICATION */
+        $api->group(['namespace' => 'Auth', 'prefix' => 'auth'], function () use ($api) {
+            // Register
+            $api->post('register-email', 'RegisterController@emailOnly');
+            $api->post('register', 'RegisterController@register');
+
+            // Login (or get JWToken)
+            $api->post('login', 'LoginController@login');
+
+            // Reminder Password (or reset password)
+            $api->post('create-reset-password', 'Auth\ResetPasswordController@create');
+            $api->post('reset-password', 'Auth\ResetPasswordController@reset');
         });
 
+        /* ROLE: ADMIN */
+        $api->group(['namespace' => 'Admin', 'middleware' => ['auth', 'role:admin'], 'prefix' => 'admin'], function () use ($api) {
+            resource('users', 'UserController', $api);
+            resource('suppliers', 'SupplierController', $api);
+            resource('products', 'ProductController', $api);
+        });
+
+        /* ROLE: SUPPLIER */
         $api->group(['middleware' => 'auth'], function () use ($api) {
-            $api->group(['prefix' => 'auth'], function () use ($api) {
-                $api->get('change-password', 'AuthController@changePassword');
-                $api->get('logout', 'AuthController@logout');
+            $api->group(['prefix' => 'user'], function () use ($api) {
+                $api->post('change-password', 'AuthController@changePassword');
+                $api->post('logout', 'AuthController@logout');
             });
 
+            $api->post('profile', 'UserController@index');
             resource('tenants', 'TenantController', $api);
         });
     });
