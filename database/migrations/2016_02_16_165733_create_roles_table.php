@@ -22,6 +22,7 @@ class CreateRolesTable extends Migration
         });
 
         Schema::create('user_role', function (Blueprint $table) {
+            $table->increments('id');
             $table->integer('user_id');
             $table->integer('role_id');
 
@@ -42,7 +43,7 @@ class CreateRolesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('roles');
         Schema::drop('user_role');
+        Schema::drop('roles');
     }
 }
