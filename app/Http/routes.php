@@ -53,9 +53,10 @@ $api->version('v1', function ($api) {
 
         /* ROLE: SUPPLIER */
         $api->group(['middleware' => 'auth'], function () use ($api) {
-            $api->group(['prefix' => 'user'], function () use ($api) {
-                $api->post('change-password', 'AuthController@changePassword');
-                $api->post('logout', 'AuthController@logout');
+            $api->group(['namespace' => 'User', 'prefix' => 'user'], function () use ($api) {
+                $api->get('profile', 'ProfileController@show');
+                $api->put('profile', 'ProfileController@update');
+                $api->put('change-password', 'ProfileController@changePassword');
             });
 
             $api->post('profile', 'UserController@index');

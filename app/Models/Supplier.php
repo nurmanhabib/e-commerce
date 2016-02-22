@@ -2,17 +2,12 @@
 
 namespace App\Models;
 
-use Illuminate\Auth\Authenticatable;
-use Laravel\Lumen\Auth\Authorizable;
+use App\Models\Traits\SluggableTrait;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
-use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 
-class Supplier extends Model implements
-    AuthenticatableContract,
-    AuthorizableContract
+class Supplier extends Model implements SluggableInterface
 {
-    use Authenticatable, Authorizable;
+    use SluggableTrait;
 
     /**
      * The attributes that are mass assignable.
@@ -20,7 +15,6 @@ class Supplier extends Model implements
      * @var array
      */
     protected $fillable = [
-        'slug', 
         'name', 
         'address_line_1', 
         'address_line_2',
@@ -38,6 +32,11 @@ class Supplier extends Model implements
      */
     protected $hidden = [
         
+    ];
+
+    protected $sluggable = [
+        'build_from'    => 'name',
+        'save_to'       => 'slug'
     ];
 
     public function users()
