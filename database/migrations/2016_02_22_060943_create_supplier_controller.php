@@ -28,7 +28,7 @@ class CreateSupplierController extends Migration
 
         Schema::create('user_supplier', function (Blueprint $table) {
             $table->integer('user_id');
-            $table->integer('suplier_id');
+            $table->integer('supplier_id');
         });
     }
 
