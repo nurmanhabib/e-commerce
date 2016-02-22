@@ -59,7 +59,7 @@ $api->version('v1', function ($api) {
             });
 
             $api->post('profile', 'UserController@index');
-            resource('tenants', 'TenantController', $api);
+            resource('suppliers', 'SupplierController', $api);
         });
     });
 });
