@@ -19,7 +19,7 @@ class ValidatorServiceProvider extends ServiceProvider
             $uid    = array_get($parameters, 1);
             $field  = array_get($parameters, 2, $attribute);
 
-            $found  = app('db')->from($table)->where('id', $uid)->first();
+            $found  = app('db')->table($table)->where('id', $uid)->first();
 
             if ($found) {
                 if (app('hash')->check($value, $found->{$field})) {

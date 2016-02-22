@@ -2,12 +2,12 @@
 
 namespace App\Models;
 
+use App\Models\Traits\SluggableTrait;
 use Illuminate\Database\Eloquent\Model;
-use Cviebrock\EloquentSluggable\SluggableInterface;
-use Cviebrock\EloquentSluggable\SluggableTrait;
 
-class Supplier extends Model
+class Supplier extends Model implements SluggableInterface
 {
+    use SluggableTrait;
 
     /**
      * The attributes that are mass assignable.
@@ -15,7 +15,6 @@ class Supplier extends Model
      * @var array
      */
     protected $fillable = [
-        'slug', 
         'name', 
         'address_line_1', 
         'address_line_2',
@@ -33,6 +32,11 @@ class Supplier extends Model
      */
     protected $hidden = [
         
+    ];
+
+    protected $sluggable = [
+        'build_from'    => 'name',
+        'save_to'       => 'slug'
     ];
 
     public function users()
