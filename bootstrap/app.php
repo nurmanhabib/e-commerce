@@ -31,6 +31,7 @@ $app->configure('jwt');
 
 class_alias(Tymon\JWTAuth\Facades\JWTAuth::class, 'JWTAuth');
 class_alias(Illuminate\Support\Facades\Mail::class, 'Mail');
+class_alias(Pingpong\Menus\MenuFacade::class, 'Menu');
 
 /*
 |--------------------------------------------------------------------------
@@ -90,7 +91,7 @@ $app->register(App\Providers\ValidatorServiceProvider::class);
 $app->register(Dingo\Api\Provider\LumenServiceProvider::class);
 $app->register(Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class);
 $app->register(Prettus\Repository\Providers\LumenRepositoryServiceProvider::class);
-$app->register(\Illuminate\Mail\MailServiceProvider::class);
+$app->register(Illuminate\Mail\MailServiceProvider::class);
 
 /*
 |--------------------------------------------------------------------------
