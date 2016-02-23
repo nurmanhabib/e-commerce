@@ -13,9 +13,13 @@
 
 $app->get('/', 'HomeController@index');
 
-$app->group(['namespace' => 'Auth'], function () {
+$app->group(['namespace' => 'App\Http\Controllers\Frontend\Auth'], function () use ($app) {
     $app->get('login', 'LoginController@form');
     $app->get('register', 'RegisterController@form');
     $app->get('reminder', 'ReminderController@create');
     $app->get('reminder/{token}', 'ReminderController@reset');
+});
+
+$app->group(['namespace' => 'App\Http\Controllers\Frontend\Admin', 'prefix' => 'admin'], function () use ($app) {
+    $app->get('/', 'DashboardController@index');
 });

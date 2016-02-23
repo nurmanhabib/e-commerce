@@ -8,6 +8,6 @@ class HomeController extends Controller
 {
     public function index()
     {
-        return 'Amtek Ecommerce v1.0.0';
+        return view('front.homepage');
     }
 }
