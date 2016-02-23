@@ -60,7 +60,19 @@ $api->version('v1', function ($api) {
             });
 
             $api->post('profile', 'UserController@index');
+            
             resource('suppliers', 'SupplierController', $api);
+            resource('products', 'ProductController', $api);
         });
+        
     });
 });
+
+/**
+ * Routes for resource task
+ */
+$app->get('task', 'TasksController@all');
+$app->get('task/{id}', 'TasksController@get');
+$app->post('task', 'TasksController@add');
+$app->put('task/{id}', 'TasksController@put');
+$app->delete('task/{id}', 'TasksController@remove');
