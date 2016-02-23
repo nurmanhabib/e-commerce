@@ -20,6 +20,7 @@ class CreateProductTable extends Migration
             $table->integer('price');
             $table->integer('category_id');
             $table->integer('supplier_id');
+            $table->timestamps();
 
             $table->foreign('supplier_id')
                 ->references('id')->on('suppliers')
