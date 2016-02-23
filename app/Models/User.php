@@ -40,7 +40,8 @@ class User extends Model implements
     ];
 
     protected $with = [
-        'profile'
+        'profile',
+        'roles'
     ];
 
     public function createPassword($plain)
