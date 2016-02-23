@@ -23,7 +23,6 @@ class SupplierController extends Controller
         ]);
 
         $credentials 	= $request->only(
-            'slug',
         	'name', 
         	'address_line_1', 
         	'address_line_2',
@@ -35,6 +34,7 @@ class SupplierController extends Controller
         );
 
         $supplier   = Supplier::create($credentials);
+        $supplier->createSlug($request->input('name'));
         // $user       = app('auth')->user();
         // $supplier->users()->attach($user);
 
