@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "47aee0c9d9fc7bced24f983f698d86c6",
-    "content-hash": "654db936fdd4ea121e688edbc4508bc2",
+    "hash": "5ea194696169d7006b2354c534e077d3",
+    "content-hash": "09f00b07e13c901a2dd034358cf21260",
     "packages": [
         {
             "name": "basicit/lumen-vendor-publish",
@@ -371,6 +371,58 @@
                 "parser"
             ],
             "time": "2014-09-09 13:34:57"
+        },
+        {
+            "name": "fzaninotto/faker",
+            "version": "v1.5.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/fzaninotto/Faker.git",
+                "reference": "d0190b156bcca848d401fb80f31f504f37141c8d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/d0190b156bcca848d401fb80f31f504f37141c8d",
+                "reference": "d0190b156bcca848d401fb80f31f504f37141c8d",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.0",
+                "squizlabs/php_codesniffer": "~1.5"
+            },
+            "suggest": {
+                "ext-intl": "*"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.5.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Faker\\": "src/Faker/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "François Zaninotto"
+                }
+            ],
+            "description": "Faker is a PHP library that generates fake data for you.",
+            "keywords": [
+                "data",
+                "faker",
+                "fixtures"
+            ],
+            "time": "2015-05-29 06:29:14"
         },
         {
             "name": "illuminate/auth",
@@ -1766,6 +1818,44 @@
                 "rest"
             ],
             "time": "2015-10-07 14:48:58"
+        },
+        {
+            "name": "mlntn/lumen-artisan-serve",
+            "version": "1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mlntn/lumen-artisan-serve.git",
+                "reference": "fb6fa1d21c166cc294bcd935baf01f6cfe55f85d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mlntn/lumen-artisan-serve/zipball/fb6fa1d21c166cc294bcd935baf01f6cfe55f85d",
+                "reference": "fb6fa1d21c166cc294bcd935baf01f6cfe55f85d",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "src/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jared Mellentine",
+                    "email": "jared@mellentine.com"
+                }
+            ],
+            "description": "artisan serve for Lumen projects",
+            "homepage": "http://github.com/mlntn/lumen-artisan-serve",
+            "keywords": [
+                "artisan",
+                "lumen"
+            ],
+            "time": "2016-02-11 15:31:31"
         },
         {
             "name": "monolog/monolog",
@@ -3201,6 +3291,52 @@
                 "environment"
             ],
             "time": "2015-12-29 15:10:30"
+        },
+        {
+            "name": "wn/lumen-generators",
+            "version": "1.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/webNeat/lumen-generators.git",
+                "reference": "a52c0590503bdc1e2e9a34cf0566df7c3e96eb98"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/webNeat/lumen-generators/zipball/a52c0590503bdc1e2e9a34cf0566df7c3e96eb98",
+                "reference": "a52c0590503bdc1e2e9a34cf0566df7c3e96eb98",
+                "shasum": ""
+            },
+            "require": {
+                "fzaninotto/faker": "^1.5",
+                "illuminate/console": "^5.1",
+                "illuminate/filesystem": "^5.1",
+                "php": ">=5.5.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Wn\\Generators\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Amine Ben hammou",
+                    "email": "webneat@gmail.com"
+                }
+            ],
+            "description": "A collection of generators for Lumen and Laravel 5.",
+            "keywords": [
+                "api",
+                "generators",
+                "laravel",
+                "lumen",
+                "rest"
+            ],
+            "time": "2015-12-05 20:42:19"
         }
     ],
     "packages-dev": [
@@ -3257,58 +3393,6 @@
                 "instantiate"
             ],
             "time": "2015-06-14 21:17:01"
-        },
-        {
-            "name": "fzaninotto/faker",
-            "version": "v1.5.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/fzaninotto/Faker.git",
-                "reference": "d0190b156bcca848d401fb80f31f504f37141c8d"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/d0190b156bcca848d401fb80f31f504f37141c8d",
-                "reference": "d0190b156bcca848d401fb80f31f504f37141c8d",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.3"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "~4.0",
-                "squizlabs/php_codesniffer": "~1.5"
-            },
-            "suggest": {
-                "ext-intl": "*"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.5.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Faker\\": "src/Faker/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "François Zaninotto"
-                }
-            ],
-            "description": "Faker is a PHP library that generates fake data for you.",
-            "keywords": [
-                "data",
-                "faker",
-                "fixtures"
-            ],
-            "time": "2015-05-29 06:29:14"
         },
         {
             "name": "phpspec/prophecy",
