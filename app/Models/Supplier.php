@@ -2,13 +2,10 @@
 
 namespace App\Models;
 
-use App\Models\Traits\SluggableTrait;
 use Illuminate\Database\Eloquent\Model;
 
-class Supplier extends Model implements SluggableInterface
+class Supplier extends Model
 {
-    use SluggableTrait;
-
     /**
      * The attributes that are mass assignable.
      *
@@ -31,16 +28,42 @@ class Supplier extends Model implements SluggableInterface
      * @var array
      */
     protected $hidden = [
-        
+
     ];
 
-    protected $sluggable = [
-        'build_from'    => 'name',
-        'save_to'       => 'slug'
-    ];
+    public static function boot()
+    {
+        parent::boot();
+
+        Supplier::creating(function (Supplier $supplier) {
+            $supplier->generateSlug();
+        });
+    }
 
     public function users()
     {
         return $this->belongsToMany(User::class, 'user_supplier');
+    }
+
+    public function scopeFindBySlug($query, $slug)
+    {
+        return $query->where('slug', $slug)->first();
+    }
+
+    public function generateSlug()
+    {
+        $this->slug = $this->createSlug($this->name);
+
+        return $this;
+    }
+
+    public function createSlug($title, $numb = 0)
+    {
+        $slug       = str_slug($title, '-') . ($numb ? '-' . $numb : '');
+        $already    = Supplier::findBySlug($slug);
+
+        if ($already->count())
+            return $this->createSlug($title, $numb+1);
+            return $slug;
     }
 }
