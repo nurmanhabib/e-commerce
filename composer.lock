@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "5ea194696169d7006b2354c534e077d3",
-    "content-hash": "09f00b07e13c901a2dd034358cf21260",
+    "hash": "1687c84858b2d10fb36657b4a9468629",
+    "content-hash": "f0b9861830a2c5c1653cb34c0cc601b5",
     "packages": [
         {
             "name": "basicit/lumen-vendor-publish",
@@ -371,58 +371,6 @@
                 "parser"
             ],
             "time": "2014-09-09 13:34:57"
-        },
-        {
-            "name": "fzaninotto/faker",
-            "version": "v1.5.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/fzaninotto/Faker.git",
-                "reference": "d0190b156bcca848d401fb80f31f504f37141c8d"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/d0190b156bcca848d401fb80f31f504f37141c8d",
-                "reference": "d0190b156bcca848d401fb80f31f504f37141c8d",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.3"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "~4.0",
-                "squizlabs/php_codesniffer": "~1.5"
-            },
-            "suggest": {
-                "ext-intl": "*"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.5.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Faker\\": "src/Faker/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "François Zaninotto"
-                }
-            ],
-            "description": "Faker is a PHP library that generates fake data for you.",
-            "keywords": [
-                "data",
-                "faker",
-                "fixtures"
-            ],
-            "time": "2015-05-29 06:29:14"
         },
         {
             "name": "illuminate/auth",
@@ -1674,6 +1622,60 @@
             "time": "2016-02-12 15:02:34"
         },
         {
+            "name": "laravelcollective/html",
+            "version": "v5.2.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/LaravelCollective/html.git",
+                "reference": "3a312d39ffe37da0f57b602618b61fd07c1fcec5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/LaravelCollective/html/zipball/3a312d39ffe37da0f57b602618b61fd07c1fcec5",
+                "reference": "3a312d39ffe37da0f57b602618b61fd07c1fcec5",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/http": "5.2.*",
+                "illuminate/routing": "5.2.*",
+                "illuminate/session": "5.2.*",
+                "illuminate/support": "5.2.*",
+                "illuminate/view": "5.2.*",
+                "php": ">=5.5.9"
+            },
+            "require-dev": {
+                "illuminate/database": "5.2.*",
+                "mockery/mockery": "~0.9",
+                "phpunit/phpunit": "~4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Collective\\Html\\": "src/"
+                },
+                "files": [
+                    "src/helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Taylor Otwell",
+                    "email": "taylorotwell@gmail.com"
+                },
+                {
+                    "name": "Adam Engebretson",
+                    "email": "adam@laravelcollective.com"
+                }
+            ],
+            "description": "HTML and Form Builders for the Laravel Framework",
+            "homepage": "http://laravelcollective.com",
+            "time": "2016-01-27 22:29:54"
+        },
+        {
             "name": "league/flysystem",
             "version": "1.0.17",
             "source": {
@@ -1818,44 +1820,6 @@
                 "rest"
             ],
             "time": "2015-10-07 14:48:58"
-        },
-        {
-            "name": "mlntn/lumen-artisan-serve",
-            "version": "1.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/mlntn/lumen-artisan-serve.git",
-                "reference": "fb6fa1d21c166cc294bcd935baf01f6cfe55f85d"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/mlntn/lumen-artisan-serve/zipball/fb6fa1d21c166cc294bcd935baf01f6cfe55f85d",
-                "reference": "fb6fa1d21c166cc294bcd935baf01f6cfe55f85d",
-                "shasum": ""
-            },
-            "type": "library",
-            "autoload": {
-                "classmap": [
-                    "src/"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Jared Mellentine",
-                    "email": "jared@mellentine.com"
-                }
-            ],
-            "description": "artisan serve for Lumen projects",
-            "homepage": "http://github.com/mlntn/lumen-artisan-serve",
-            "keywords": [
-                "artisan",
-                "lumen"
-            ],
-            "time": "2016-02-11 15:31:31"
         },
         {
             "name": "monolog/monolog",
@@ -2312,6 +2276,58 @@
                 "x509"
             ],
             "time": "2015-01-28 21:50:33"
+        },
+        {
+            "name": "pingpong/menus",
+            "version": "2.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/pingpong-labs/menus.git",
+                "reference": "ecb400916b6189e66c2ed1f91a8cffa58fd7f83a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/pingpong-labs/menus/zipball/ecb400916b6189e66c2ed1f91a8cffa58fd7f83a",
+                "reference": "ecb400916b6189e66c2ed1f91a8cffa58fd7f83a",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/config": "5.2.*",
+                "illuminate/support": "5.2.*",
+                "illuminate/view": "5.2.*",
+                "laravelcollective/html": "~5.0",
+                "php": ">=5.5.9"
+            },
+            "require-dev": {
+                "mockery/mockery": "~0.9",
+                "phpunit/phpunit": "~4"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Pingpong\\Menus\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Pingpong Labs",
+                    "email": "pingpong.labs@gmail.com"
+                }
+            ],
+            "description": "Laravel Menus",
+            "keywords": [
+                "bootstrap",
+                "laravel",
+                "menus",
+                "nav",
+                "navigation",
+                "pingpong"
+            ],
+            "time": "2016-01-12 03:54:35"
         },
         {
             "name": "prettus/l5-repository",
@@ -3291,52 +3307,6 @@
                 "environment"
             ],
             "time": "2015-12-29 15:10:30"
-        },
-        {
-            "name": "wn/lumen-generators",
-            "version": "1.1.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/webNeat/lumen-generators.git",
-                "reference": "a52c0590503bdc1e2e9a34cf0566df7c3e96eb98"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/webNeat/lumen-generators/zipball/a52c0590503bdc1e2e9a34cf0566df7c3e96eb98",
-                "reference": "a52c0590503bdc1e2e9a34cf0566df7c3e96eb98",
-                "shasum": ""
-            },
-            "require": {
-                "fzaninotto/faker": "^1.5",
-                "illuminate/console": "^5.1",
-                "illuminate/filesystem": "^5.1",
-                "php": ">=5.5.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Wn\\Generators\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Amine Ben hammou",
-                    "email": "webneat@gmail.com"
-                }
-            ],
-            "description": "A collection of generators for Lumen and Laravel 5.",
-            "keywords": [
-                "api",
-                "generators",
-                "laravel",
-                "lumen",
-                "rest"
-            ],
-            "time": "2015-12-05 20:42:19"
         }
     ],
     "packages-dev": [
@@ -3393,6 +3363,96 @@
                 "instantiate"
             ],
             "time": "2015-06-14 21:17:01"
+        },
+        {
+            "name": "fzaninotto/faker",
+            "version": "v1.5.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/fzaninotto/Faker.git",
+                "reference": "d0190b156bcca848d401fb80f31f504f37141c8d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/d0190b156bcca848d401fb80f31f504f37141c8d",
+                "reference": "d0190b156bcca848d401fb80f31f504f37141c8d",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.0",
+                "squizlabs/php_codesniffer": "~1.5"
+            },
+            "suggest": {
+                "ext-intl": "*"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.5.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Faker\\": "src/Faker/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "François Zaninotto"
+                }
+            ],
+            "description": "Faker is a PHP library that generates fake data for you.",
+            "keywords": [
+                "data",
+                "faker",
+                "fixtures"
+            ],
+            "time": "2015-05-29 06:29:14"
+        },
+        {
+            "name": "mlntn/lumen-artisan-serve",
+            "version": "1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mlntn/lumen-artisan-serve.git",
+                "reference": "fb6fa1d21c166cc294bcd935baf01f6cfe55f85d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mlntn/lumen-artisan-serve/zipball/fb6fa1d21c166cc294bcd935baf01f6cfe55f85d",
+                "reference": "fb6fa1d21c166cc294bcd935baf01f6cfe55f85d",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "src/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jared Mellentine",
+                    "email": "jared@mellentine.com"
+                }
+            ],
+            "description": "artisan serve for Lumen projects",
+            "homepage": "http://github.com/mlntn/lumen-artisan-serve",
+            "keywords": [
+                "artisan",
+                "lumen"
+            ],
+            "time": "2016-02-11 15:31:31"
         },
         {
             "name": "phpspec/prophecy",

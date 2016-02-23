@@ -29,7 +29,9 @@ $app->withEloquent();
 
 $app->configure('jwt');
 
-class_alias('Tymon\JWTAuth\Facades\JWTAuth', 'JWTAuth');
+class_alias(Tymon\JWTAuth\Facades\JWTAuth::class, 'JWTAuth');
+class_alias(Illuminate\Support\Facades\Mail::class, 'Mail');
+class_alias(Pingpong\Menus\MenuFacade::class, 'Menu');
 
 /*
 |--------------------------------------------------------------------------
@@ -89,6 +91,7 @@ $app->register(App\Providers\ValidatorServiceProvider::class);
 $app->register(Dingo\Api\Provider\LumenServiceProvider::class);
 $app->register(Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class);
 $app->register(Prettus\Repository\Providers\LumenRepositoryServiceProvider::class);
+$app->register(Illuminate\Mail\MailServiceProvider::class);
 
 /*
 |--------------------------------------------------------------------------
@@ -101,8 +104,12 @@ $app->register(Prettus\Repository\Providers\LumenRepositoryServiceProvider::clas
 |
 */
 
-$app->group(['namespace' => 'App\Http\Controllers'], function ($app) {
+$app->group(['namespace' => 'App\Http\Controllers\Frontend'], function ($app) {
     require __DIR__.'/../app/Http/routes.php';
+
+    $api = app('Dingo\Api\Routing\Router');
+
+    require __DIR__.'/../app/Http/api.php';
 });
 
 return $app;
