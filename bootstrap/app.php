@@ -103,7 +103,7 @@ $app->register(\Illuminate\Mail\MailServiceProvider::class);
 |
 */
 
-$app->group(['namespace' => 'App\Http\Controllers'], function ($app) {
+$app->group(['namespace' => 'App\Http\Controllers\Frontend'], function ($app) {
     require __DIR__.'/../app/Http/routes.php';
 
     $api = app('Dingo\Api\Routing\Router');

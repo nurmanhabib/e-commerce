@@ -1,0 +1,10 @@
+<?php
+
+namespace App\Http\Controllers\Frontend\Admin;
+
+use App\Http\Controllers\Controller;
+
+class DashboardController extends Controller
+{
+
+}

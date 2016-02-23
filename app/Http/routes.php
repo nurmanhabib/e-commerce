@@ -11,6 +11,11 @@
 |
 */
 
-$app->get('/', function () use ($app) {
-    return 'Amtek Ecommerce v1.0.0';
+$app->get('/', 'HomeController@index');
+
+$app->group(['namespace' => 'Auth'], function () {
+    $app->get('login', 'LoginController@form');
+    $app->get('register', 'RegisterController@form');
+    $app->get('reminder', 'ReminderController@create');
+    $app->get('reminder/{token}', 'ReminderController@reset');
 });
