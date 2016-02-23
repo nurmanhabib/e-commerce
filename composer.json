@@ -13,12 +13,12 @@
         "basicit/lumen-vendor-publish": "^1.0",
         "prettus/l5-repository": "^2.1",
         "illuminate/mail": "^5.2",
-        "mlntn/lumen-artisan-serve": "^1.1",
-        "wn/lumen-generators": "^1.1"
+        "pingpong/menus": "^2.2"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
-        "phpunit/phpunit": "~4.0"
+        "phpunit/phpunit": "~4.0",
+        "mlntn/lumen-artisan-serve": "^1.1"
     },
     "autoload": {
         "psr-4": {
