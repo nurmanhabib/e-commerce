@@ -35,8 +35,8 @@ class SupplierController extends Controller
 
         $supplier   = Supplier::create($credentials);
         $supplier->createSlug($request->input('name'));
-        // $user       = app('auth')->user();
-        // $supplier->users()->attach($user);
+        $user       = app('auth')->user();
+        $supplier->users()->attach($user);
 
         if($supplier){
             return [
