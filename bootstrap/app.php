@@ -66,10 +66,11 @@ $app->singleton(
 */
 
 $app->middleware([
-   App\Http\Middleware\CorsMiddleware::class
+   //
 ]);
 
 $app->routeMiddleware([
+    'cors' => App\Http\Middleware\CorsMiddleware::class,
     'auth' => App\Http\Middleware\Authenticate::class,
 ]);
 
@@ -113,14 +114,15 @@ $app->group(['namespace' => 'App\Http\Controllers\Frontend'], function ($app) {
     require __DIR__.'/../app/Http/routes.php';
 });
 
-$app->group(['namespace' => 'App\Http\Controllers\V1', 'prefix' => 'api/v1'], function ($app) {
+$app->group(['namespace' => 'App\Http\Controllers\V1', 'middleware' => ['cors'], 'prefix' => 'api/v1'], function ($app) {
     $namespace  = 'App\Http\Controllers\V1';
+    $middleware = ['cors'];
     $prefix     = 'api/v1';
-    $group      = compact('namespace', 'prefix');
+    $group      = compact('namespace', 'middleware', 'prefix');
     $api        = app(Dingo\Api\Routing\Router::class);
 
-    $api->version('v1', function ($api) use ($namespace, $prefix, $group) {
-        $api->group(['namespace' => $namespace, 'prefix' => 'v1'], function ($api) use ($namespace, $prefix, $group) {
+    $api->version('v1', function ($api) use ($namespace, $middleware, $prefix, $group) {
+        $api->group(['namespace' => $namespace, 'middleware' => $middleware, 'prefix' => 'v1'], function ($api) use ($namespace, $middleware, $prefix, $group) {
             require __DIR__.'/../app/Http/api.php';
         });
     });
