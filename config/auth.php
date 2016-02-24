@@ -56,7 +56,7 @@ return [
     */
 
     'providers' => [
-        'api' => ['driver' => 'eloquent', 'model' => 'App\Models\User']
+        //
     ],
 
     /*

@@ -28,10 +28,10 @@ $app->withFacades();
 $app->withEloquent();
 
 $app->configure('jwt');
+$app->configure('services');
 
 class_alias(Tymon\JWTAuth\Facades\JWTAuth::class, 'JWTAuth');
 class_alias(Illuminate\Support\Facades\Mail::class, 'Mail');
-class_alias(Pingpong\Menus\MenuFacade::class, 'Menu');
 
 /*
 |--------------------------------------------------------------------------
@@ -66,12 +66,13 @@ $app->singleton(
 */
 
 $app->middleware([
-   App\Http\Middleware\CorsMiddleware::class
+   //
 ]);
 
- $app->routeMiddleware([
-     'auth' => App\Http\Middleware\Authenticate::class,
- ]);
+$app->routeMiddleware([
+    'cors' => App\Http\Middleware\CorsMiddleware::class,
+    'auth' => App\Http\Middleware\Authenticate::class,
+]);
 
 /*
 |--------------------------------------------------------------------------
@@ -86,13 +87,13 @@ $app->middleware([
 
 $app->register(App\Providers\AppServiceProvider::class);
 $app->register(App\Providers\AuthServiceProvider::class);
+$app->register(App\Providers\CatchAllOptionsRequestsProvider::class);
 $app->register(App\Providers\EventServiceProvider::class);
 $app->register(App\Providers\ValidatorServiceProvider::class);
 $app->register(Dingo\Api\Provider\LumenServiceProvider::class);
-$app->register(Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class);
-$app->register(Prettus\Repository\Providers\LumenRepositoryServiceProvider::class);
 $app->register(Illuminate\Mail\MailServiceProvider::class);
-$app->register(App\Providers\CatchAllOptionsRequestsProvider::class);
+$app->register(Prettus\Repository\Providers\LumenRepositoryServiceProvider::class);
+$app->register(Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class);
 
 /*
 |--------------------------------------------------------------------------
@@ -106,11 +107,25 @@ $app->register(App\Providers\CatchAllOptionsRequestsProvider::class);
 */
 
 $app->group(['namespace' => 'App\Http\Controllers\Frontend'], function ($app) {
+    $namespace  = 'App\Http\Controllers\Frontend';
+    $prefix     = '';
+    $group      = compact('namespace', 'prefix');
+
     require __DIR__.'/../app/Http/routes.php';
+});
 
-    $api = app('Dingo\Api\Routing\Router');
+$app->group(['namespace' => 'App\Http\Controllers\V1', 'middleware' => ['cors'], 'prefix' => 'api/v1'], function ($app) {
+    $namespace  = 'App\Http\Controllers\V1';
+    $middleware = ['cors'];
+    $prefix     = 'api/v1';
+    $group      = compact('namespace', 'middleware', 'prefix');
+    $api        = app(Dingo\Api\Routing\Router::class);
 
-    require __DIR__.'/../app/Http/api.php';
+    $api->version('v1', function ($api) use ($namespace, $middleware, $prefix, $group) {
+        $api->group(['namespace' => $namespace, 'middleware' => $middleware, 'prefix' => 'v1'], function ($api) use ($namespace, $middleware, $prefix, $group) {
+            require __DIR__.'/../app/Http/api.php';
+        });
+    });
 });
 
 return $app;
