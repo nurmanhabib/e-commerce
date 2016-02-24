@@ -1,49 +1,61 @@
 <?php
 
+// Helper resource controller
 function resource($path, $controller, &$api)
 {
-    $api->post($path, $controller . '@index');
+    $api->get($path, $controller . '@index');
     $api->post($path . '/{id}', $controller . '@show');
     $api->put($path . '/{id}', $controller . '@update');
     $api->delete($path . '/{id}', $controller . '@destroy');
 }
 
-$api->version('v1', function ($api) {
-    $api->group(['namespace' => 'App\Http\Controllers\V1', 'prefix' => 'v1'], function () use ($api) {
+// Register
+$api->post('auth/register-email',   'Auth\RegisterController@emailOnly');
+$api->post('auth/register',         'Auth\RegisterController@register');
 
-        /* AUTHENTICATION */
-        $api->group(['namespace' => 'Auth', 'prefix' => 'auth'], function () use ($api) {
-            // Register
-            $api->post('register-email', 'RegisterController@emailOnly');
-            $api->post('register', 'RegisterController@register');
+// Autentikasi
+$api->post('auth/credentials',      'Auth\LoginController@credentials');
+$api->post('auth/id',               'Auth\LoginController@id');
+// $api->post('auth/hashids',          'Auth\LoginController@hashids');
 
-            // Login (or get JWToken)
-            $api->post('login', 'LoginController@login');
+// Reset Password
+$api->post('auth/forgot-password',  'Auth\ResetPasswordController@forgotPassword');
+$api->post('auth/reset-password',   'Auth\ResetPasswordController@resetPassword');
 
-            // Reminder Password (or reset password)
-            $api->post('create-reset-password', 'Auth\ResetPasswordController@create');
-            $api->post('reset-password', 'Auth\ResetPasswordController@reset');
-        });
+/*******************************
+ **  User Profile (Logged In) **
+ *******************************/
+$api->group(['middleware' => 'auth'], function ($api) {
+    // $api->get('user',                   'User\UserController@show');
+    // $api->put('user',                   'User\UserController@update');
+    $api->get('user/profile',           'User\ProfileController@show');
+    $api->put('user/profile',           'User\ProfileController@update');
+    $api->put('user/change-password',   'User\ProfileController@changePassword');
 
-        /* ROLE: ADMIN */
-        $api->group(['namespace' => 'Admin', 'middleware' => ['auth', 'role:admin'], 'prefix' => 'admin'], function () use ($api) {
-            resource('users', 'UserController', $api);
-            resource('suppliers', 'SupplierController', $api);
-            resource('products', 'ProductController', $api);
-        });
+    /* Balance */
+    // $api->get('user/balances',          'User\BalanceController@index');
+    // $api->get('user/balances/{id}',     'User\BalanceController@show');
+    // $api->post('user/add-funds',        'User\BalanceController@addFund');
 
-        /* ROLE: SUPPLIER */
-        $api->group(['middleware' => 'auth'], function () use ($api) {
-            $api->group(['namespace' => 'User', 'prefix' => 'user'], function () use ($api) {
-                $api->get('profile', 'ProfileController@show');
-                $api->put('profile', 'ProfileController@update');
-                $api->put('change-password', 'ProfileController@changePassword');
-            });
+    /* History */
+    // $api->post('user/history/transactions',     'User\HistoryController@transactions');
+    // $api->post('user/history/payments',         'User\HistoryController@payments');
+    // $api->post('user/history/activities',       'User\HistoryController@activities');
 
-            $api->post('profile', 'UserController@index');
-
-            resource('suppliers', 'SupplierController', $api);
-            resource('products', 'ProductController', $api);
-        });
-    });
+    /* User Shipping Address */
+    // resource('user/shippings',          'User\ShippingAddressController', $api);
 });
+
+/*******************************
+ **  Resource Route (or CRUD) **
+ *******************************/
+// resource('users',       'UserController', $api);
+resource('suppliers',   'SupplierController', $api);
+resource('products',    'ProductController', $api);
+// resource('categories',  'CategoryController', $api);
+// resource('discounts',   'DiscountController', $api);
+
+/*******************************
+ **         Sendmail          **
+ *******************************/
+$api->post('sendmail',      'Sendmail\SendmailController@send');
