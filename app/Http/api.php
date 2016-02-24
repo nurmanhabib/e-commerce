@@ -17,6 +17,7 @@ $api->post('auth/register',         'Auth\RegisterController@register');
 $api->post('auth/credentials',      'Auth\LoginController@credentials');
 $api->post('auth/id',               'Auth\LoginController@id');
 // $api->post('auth/hashids',          'Auth\LoginController@hashids');
+$api->post('auth/refresh-token',    'Auth\LoginController@refreshToken');
 
 // Reset Password
 $api->post('auth/forgot-password',  'Auth\ResetPasswordController@forgotPassword');

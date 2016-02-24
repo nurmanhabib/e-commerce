@@ -11,6 +11,7 @@ namespace App\Http\Controllers\V1\Auth;
 use App\Http\Controllers\Controller;
 use App\Repositories\UserRepository;
 use Illuminate\Http\Request;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class LoginController extends Controller
 {
@@ -79,5 +80,25 @@ class LoginController extends Controller
             'hashids'   => 'required'
         ]);
 
+    }
+
+    /**
+     * Permintaan refresh token
+     *
+     * @param Request $request
+     * @return array
+     */
+    public function refreshToken(Request $request)
+    {
+        $this->middleware('auth');
+
+        $user       = app('auth')->user();
+        $newToken   = JWTAuth::parseToken()->refresh();
+
+        return [
+            'status'    => 'success',
+            'user'      => $user,
+            'token'     => $newToken,
+        ];
     }
 }
