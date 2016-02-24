@@ -21,7 +21,13 @@ class LoginController extends Controller
         $this->userRepository = $userRepository;
     }
 
-    public function login(Request $request)
+    /**
+     * Autentikasi dengan kombinasi username/email dan password
+     *
+     * @param Request $request
+     * @return array
+     */
+    public function credentials(Request $request)
     {
         $this->validate($request, [
             'password'  => 'required',
@@ -31,5 +37,47 @@ class LoginController extends Controller
         $authenticate   = $this->userRepository->authenticate($credentials);
 
         return $authenticate;
+    }
+
+    /**
+     * Autentikasi dengan user id
+     *
+     * @param Request $request
+     * @return array
+     */
+    public function id(Request $request)
+    {
+        $this->validate($request, [
+            'id'  => 'required|numeric',
+        ]);
+
+        $authenticate = $this->userRepository->authenticateById($request->get('id'));
+
+        if ($authenticate) {
+            return [
+                'status'    => 'success',
+                'user'      => $authenticate['user'],
+                'token'     => $authenticate['token'],
+            ];
+        } else {
+            return [
+                'status'    => 'failed',
+                'message'   => 'User not found.',
+            ];
+        }
+    }
+
+    /**
+     * Autentikasi dengan hashids
+     * Digunakan untuk fitur remember me
+     *
+     * @param Request $request
+     */
+    public function hashids(Request $request)
+    {
+        $this->validate($request, [
+            'hashids'   => 'required'
+        ]);
+
     }
 }

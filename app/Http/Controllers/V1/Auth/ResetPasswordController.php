@@ -21,7 +21,7 @@ class ResetPasswordController extends Controller
         $this->userRepository = $userRepository;
     }
 
-    public function create(Request $request)
+    public function forgotPassword(Request $request)
     {
         if ($request->has('email')) {
             $column     = 'email';
@@ -54,7 +54,7 @@ class ResetPasswordController extends Controller
         }
     }
 
-    public function reset(Request $request)
+    public function resetPassword(Request $request)
     {
         $this->validate($request, [
             'email'             => 'required|email',
