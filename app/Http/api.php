@@ -4,7 +4,8 @@
 function resource($path, $controller, &$api)
 {
     $api->get($path, $controller . '@index');
-    $api->post($path . '/{id}', $controller . '@show');
+    $api->post($path, $controller . '@store');
+    $api->get($path . '/{id}', $controller . '@show');
     $api->put($path . '/{id}', $controller . '@update');
     $api->delete($path . '/{id}', $controller . '@destroy');
 }

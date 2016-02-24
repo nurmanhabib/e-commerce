@@ -10,7 +10,15 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-	public function index(Request $request)
+	public function index()
+    {
+        return [
+            'status'    => 'success',
+            'products'  => Product::all(),
+        ];
+    }
+
+	public function store(Request $request)
 	{
 		$this->validate($request, [
 			'code'			=> 'required',	
