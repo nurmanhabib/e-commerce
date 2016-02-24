@@ -35,7 +35,7 @@ return [
     */
 
     'guards' => [
-        'api' => ['driver' => 'token', 'provider' => 'api'],
+        'api' => ['driver' => 'api'],
     ],
 
     /*
