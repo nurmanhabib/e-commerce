@@ -28,7 +28,7 @@ $app->withFacades();
 $app->withEloquent();
 
 $app->configure('jwt');
-$app->configure('services');
+$app->configure('mail');
 
 class_alias(Tymon\JWTAuth\Facades\JWTAuth::class, 'JWTAuth');
 class_alias(Illuminate\Support\Facades\Mail::class, 'Mail');
