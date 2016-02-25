@@ -6,6 +6,7 @@ use App\Events\UserRegistered;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\Supplier;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
@@ -124,6 +125,9 @@ class SupplierController extends Controller
         $supplier   = Supplier::find($id);
 
         if ($supplier) {
+            
+            $deleteProduct  = Product::where('supplier_id', '=', $id)->delete();
+
             if ($supplier->delete()) {
                 return [
                     'status'    => 'success',
