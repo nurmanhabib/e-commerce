@@ -54,7 +54,7 @@ $api->group(['middleware' => 'auth'], function ($api) {
 // resource('users',       'UserController', $api);
 resource('suppliers',   'SupplierController', $api);
 resource('products',    'ProductController', $api);
-// resource('categories',  'CategoryController', $api);
+resource('categories',  'CategoryController', $api);
 // resource('discounts',   'DiscountController', $api);
 
 /*******************************
