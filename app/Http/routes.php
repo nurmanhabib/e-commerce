@@ -23,4 +23,5 @@ $app->group(['namespace' => 'App\Http\Controllers\Frontend\Auth'], function () u
 $app->group(['namespace' => 'App\Http\Controllers\Frontend\Admin', 'prefix' => 'admin'], function () use ($app) {
     $app->get('/', 'DashboardController@login');
     $app->get('dashboard', 'DashboardController@index');
+    $app->get('category', 'CategoryController@index');
 });
