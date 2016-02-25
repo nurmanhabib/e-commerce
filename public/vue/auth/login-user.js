@@ -4,8 +4,7 @@ new Vue({
 	data(){
 		return {
 			credentials: {
-				email: '',
-				password: ''
+				email: ''
 			},
 			error: ''
 		}
@@ -16,8 +15,7 @@ new Vue({
 	methods: {
 		loginUser(){
 			var credentials = {
-				email: this.credentials.email,
-				password: this.credentials.password
+				email: this.credentials.email
 			}
 
 			this.$http.post(LOGIN_URL, credentials, (data) => {
