@@ -110,6 +110,9 @@ class CategoryController extends Controller
     	$category 	= Categories::find($id);
 
     	if( $category ){ 	// if category is found in database
+
+            $childCategory  = Categories::where('parent_id', '=', $id)->delete();
+            
     		if( $category->delete() ){ 	// if category has been successfully deleted
     			return [
     				'status' 	=> 'success',
