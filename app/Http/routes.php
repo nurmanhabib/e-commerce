@@ -14,12 +14,13 @@
 $app->get('/', 'HomeController@index');
 
 $app->group(['namespace' => 'App\Http\Controllers\Frontend\Auth'], function () use ($app) {
-    $app->get('login', 'LoginController@form');
+    $app->get('login', 'LoginController@user');
     $app->get('register', 'RegisterController@form');
-    $app->get('reminder', 'ReminderController@create');
-    $app->get('reminder/{token}', 'ReminderController@reset');
+    $app->get('reset-password/{token}', 'ReminderController@reset');
+    $app->get('forgot-password', 'ReminderController@forgotPassword');
 });
 
 $app->group(['namespace' => 'App\Http\Controllers\Frontend\Admin', 'prefix' => 'admin'], function () use ($app) {
-    $app->get('/', 'DashboardController@index');
+    $app->get('/', 'DashboardController@login');
+    $app->get('dashboard', 'DashboardController@index');
 });
