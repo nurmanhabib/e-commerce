@@ -6,8 +6,14 @@ use App\Http\Controllers\Controller;
 
 class LoginController extends Controller
 {
-    public function form()
+    public function user()
     {
-        // return view('auth.login');
+        return view('auth.user.login');
     }
+
+    public function vendor()
+    {
+    	return view('auth.vendor.login');
+    }
+
 }
