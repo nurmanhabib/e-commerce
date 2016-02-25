@@ -13,9 +13,10 @@ class CategoryController extends Controller
      */
     public function index()
     {
+        $categories     = Categories::all();
     	return [
-            'status'    => 'success',
-            'suppliers' => Categories::all(),
+            'status'        => 'success',
+            'categories'    => $categories
         ];
     }
 
@@ -112,7 +113,7 @@ class CategoryController extends Controller
     	if( $category ){ 	// if category is found in database
 
             $childCategory  = Categories::where('parent_id', '=', $id)->delete();
-            
+
     		if( $category->delete() ){ 	// if category has been successfully deleted
     			return [
     				'status' 	=> 'success',
