@@ -7,19 +7,13 @@
 				<div class="icon-object border-slate-300 text-slate-300"><i class="icon-reading"></i></div>
 				<h5 class="content-group">Login to your account <small class="display-block">Your credentials</small></h5>
 			</div>
+			
 			@{{error}}
 
 			<div class="form-group has-feedback has-feedback-left">
 				<input v-model="credentials.email" type="email" class="form-control" placeholder="Email">
 				<div class="form-control-feedback">
 					<i class="icon-user text-muted"></i>
-				</div>
-			</div>
-
-			<div class="form-group has-feedback has-feedback-left">
-				<input v-model="credentials.password" type="text" class="form-control" placeholder="Password">
-				<div class="form-control-feedback">
-					<i class="icon-lock2 text-muted"></i>
 				</div>
 			</div>
 

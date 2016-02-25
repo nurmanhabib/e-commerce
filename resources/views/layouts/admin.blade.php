@@ -333,23 +333,8 @@
         <div class="content-wrapper">
 
             <!-- Page header -->
-            <div class="page-header">
-                <div class="page-header-content">
-                    <div class="page-title">
-                        <h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">Home</span> - Dashboard</h4>
-                    </div>
-                </div>
-
-                <div class="breadcrumb-line">
-                    <ul class="breadcrumb">
-                        <li><a href="index.html"><i class="icon-home2 position-left"></i> Home</a></li>
-                        <li><a href="index.html">Home</a></li>
-                        <li class="active">Dashboard</li>
-                    </ul>
-                </div>
-            </div>
+            @yield('header')
             <!-- /page header -->
-
 
             <!-- Content area -->
             <div class="content">
@@ -383,7 +368,7 @@
     <script src="{{ asset('node_modules/vue-resource/dist/vue-resource.min.js') }}"></script>
     <script src="{{ asset('vue/http.js') }}"></script>
     <script src="{{ asset('vue/auth/logout.js') }}"></script>
-    <script src="{{ asset('vue/auth/checkauth.js') }}"></script>
+    <!-- <script src="{{ asset('vue/auth/checkauth.js') }}"></script> -->
 <!-- /core JS files -->
 
 <!-- Theme JS files -->
