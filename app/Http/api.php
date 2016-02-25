@@ -61,3 +61,8 @@ resource('products',    'ProductController', $api);
  **         Sendmail          **
  *******************************/
 $api->post('sendmail',      'Sendmail\SendmailController@send');
+
+/*******************************
+ **       Configuration       **
+ *******************************/
+resource('configs',         'ConfigController', $api);
