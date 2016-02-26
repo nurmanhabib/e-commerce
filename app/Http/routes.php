@@ -15,6 +15,7 @@ $app->get('/', 'HomeController@index');
 
 $app->group(['namespace' => 'App\Http\Controllers\Frontend\Auth'], function () use ($app) {
     $app->get('login', 'LoginController@form');
+    $app->get('login/social', 'Social\SocialController@login');
     $app->get('register', 'RegisterController@form');
     $app->get('reminder', 'ReminderController@create');
     $app->get('reminder/{token}', 'ReminderController@reset');
