@@ -4,49 +4,83 @@ new Vue({
 		return {
 			status: '',
 			categories: '',
-			newcategory: {
+			newCategory: {
 				name: '',
-				parent: ''
+				parent_id: 0
 			},
-			newCategory: ''
+			edit: {
+				name: '',
+				parent_id: ''
+			}
 		}
 	},
+
 	ready: function(){
-		this.checkNewCategory()
+		this.showCategories()
 	},
+
 	methods: {
+		// Menampilkan category
 		showCategories(){
+			// Mengambil API untuk category dari http.js
 			this.$http.get(API_URL + '/categories').then(function(response){
-				// this.$set('categories', response.categories)
+
 				this.status = response.data.status
 				this.categories = response.data.categories
-				console.log(this.categories)
+
 			}, function (response){
 				console.log(response);
 			})
 		},
 
+		// Untuk tambah category
 		createCategory(){
 			var newcategory = {
-				name: this.newcategory.name,
-				parent_id: this.newcategory.parent
+				name: this.newCategory.name,
+				parent_id: this.newCategory.parent_id
 			}
 			console.log(newcategory)
 			this.$http.post(API_URL + '/categories', newcategory, (data) => {
-				this.newCategory = 'true'
+
 				console.log(data)
-				return this.checkNewCategory()
+
+				this.newCategory.name = ''
+				this.newCategory.parent_id = '0'
+
+				return this.showCategories()
 			})
 		},
 
-		checkNewCategory(){
-			var newCategory = this.newcategory
-			if( newCategory!=='' ){
-				this.newCategory = ''
-				return this.showCategories()
-			} else {
-				return this.showCategories()
+		// Untuk delete category
+		deleteCategory(id){
+			this.$http.delete(API_URL + '/categories/' + id).then(function(response){
+				this.showCategories()
+
+				console.log(response.data.message)
+			})
+		},
+
+		// Untuk edit category
+		editCategory(category){
+			this.edit = category;
+			console.log(this.edit)
+		},
+
+		// Untuk update category
+		updateCategory(id){
+			var category = {
+				name: this.edit.name,
+				parent_id: this.edit.parent_id
 			}
+			this.$http.put(API_URL + '/categories/' + id, category, (data) => {
+
+				console.log(data)
+
+				this.edit.name = ''
+				this.edit.parent_id = '0'
+
+				return this.showCategories()
+			})
 		}
 	}
 })
