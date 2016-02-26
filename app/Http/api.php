@@ -61,3 +61,4 @@ resource('categories',  'CategoryController', $api);
  **         Sendmail          **
  *******************************/
 $api->post('sendmail',      'Sendmail\SendmailController@send');
+$api->post('welcome-mail',  'Sendmail\SendmailController@welcome');
