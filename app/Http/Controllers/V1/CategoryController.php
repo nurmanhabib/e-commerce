@@ -13,7 +13,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories     = Categories::all();
+        $categories     = Categories::orderBy('id', 'desc')->get();
     	return [
             'status'        => 'success',
             'categories'    => $categories
