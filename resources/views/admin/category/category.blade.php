@@ -27,14 +27,14 @@
 				<legend class="text-bold panel-title">Category</legend>
 			</div>
 			<div class="panel-body">
-				<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal_default"><i class="icon-plus22 position-right"></i> Add Category</button>
+				<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal_add"><i class="icon-plus22 position-right"></i> Add Category</button>
 				<table class="table datatable-basic">
 					<thead>
 						<tr>
-							<th>Id</th>
-							<th>Category</th>
-							<th>Slug</th>
-							<th class="text-center">Actions</th>
+							<th><strong>Id</strong></th>
+							<th><strong>Category</strong></th>
+							<th><strong>Slug</strong></th>
+							<th class="text-center"><strong>Actions</strong></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -43,7 +43,8 @@
 							<td>@{{ category.name }}</td>
 							<td>@{{ category.slug }}</td>
 							<td class="text-center">
-								<a href="#" data-popup="tooltip" title="" data-original-title="Edit" title="edit"><i class="icon-pencil7"></i></a>
+								<a v-on:click="editCategory(category)" class="btn border-slate text-slate-800 btn-flat btn-xs" data-toggle="modal" data-target="#modal_edit" data-popup="tooltip" title="" data-original-title="Edit"><i class="fa fa-pencil"></i></a>
+								<a v-on:click="deleteCategory(category.id)" class="btn border-slate text-slate-800 btn-flat btn-xs" data-popup="tooltip" title="" data-original-title="Delete"><i class="fa fa-trash"></i></a>
 							</td>
 						</tr>
 					</tbody>
@@ -51,8 +52,8 @@
 			</div>
 		</div>
 
-		<!-- Basic modal -->
-		<div id="modal_default" class="modal fade">
+		<!-- Modal Add Category -->
+		<div id="modal_add" class="modal fade">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
@@ -69,9 +70,9 @@
 
 			                    	<div class="col-lg-8">
 
-			                            <select v-model="newcategory.parent" name="select" class="form-control">
+			                            <select v-model="newCategory.parent_id" name="select" class="form-control">
 			                                <option value="0" selected>-- None --</option>
-			                                <option v-for="parent in categories" value="@{{ parent.id }}">@{{ parent.name }}</option>
+			                                <option v-for="category in categories" value="@{{ category.id }}">@{{ category.name }}</option>
 			                            </select>
 			                        </div>
 			                    </div>
@@ -79,7 +80,7 @@
 								<div class="form-group">
 									<label class="control-label col-lg-4">Category</label>
 									<div class="col-lg-8">
-										<input v-model="newcategory.name" type="text" class="form-control">
+										<input v-model="newCategory.name" type="text" class="form-control">
 									</div>
 								</div>
 							</fieldset>
@@ -88,12 +89,58 @@
 
 					<div class="modal-footer">
 						<button type="reset" class="btn btn-default" data-dismiss="modal">Close</button>
-						<button v-on:click="createCategory" type="button" class="btn btn-primary">Add Category</button>
+						<button v-on:click="createCategory" type="button" class="btn btn-primary" data-dismiss="modal">Add Category</button>
 					</div>
 				</div>
 			</div>
 		</div>
-		<!-- /basic modal -->
+		<!-- /Modal Add Category -->
+
+		<!-- Modal Edit Category -->
+		<div id="modal_edit" class="modal fade">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h3 class="modal-title">Edit Category</h3>
+					</div>
+
+					<div class="modal-body">
+						<form class="form-horizontal" action="#">
+							<fieldset class="content-group">
+								
+								<div class="form-group">
+			                    	<label class="control-label col-lg-4">Parent Category</label>
+
+			                    	<div class="col-lg-8">
+
+			                            <select v-model="edit.parent_id" name="select" class="form-control">
+			                                <option @{{#if edit.parent_id == 0}} selected @{{/if}} value="0">
+			                                	-- None --
+			                                </option>
+			                                <option v-for="category in categories" @{{#if edit.parent_id == category.id }} selected @{{/if}} value="@{{ category.id }}" >@{{ category.name }}</option>
+			                            </select>
+			                        </div>
+			                    </div>
+
+								<div class="form-group">
+									<label class="control-label col-lg-4">Category</label>
+									<div class="col-lg-8">
+										<input v-model="edit.name" value="@{{ edit.name }}" type="text" class="form-control"> 
+									</div>
+								</div>
+							</fieldset>
+						</form>
+					</div>
+
+					<div class="modal-footer">
+						<button type="reset" class="btn btn-default" data-dismiss="modal">Close</button>
+						<button v-on:click="updateCategory(edit.id)" type="button" class="btn btn-primary" data-dismiss="modal">Update Category</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- /Modal Add Category -->
 
 	</div>
 @stop
