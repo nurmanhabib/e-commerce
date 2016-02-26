@@ -10,6 +10,11 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
+	/**
+	 * Untuk menampilkan semua data product
+	 * 
+	 * @return [type] [description]
+	 */
 	public function index()
     {
         return [
@@ -18,6 +23,12 @@ class ProductController extends Controller
         ];
     }
 
+    /**
+     * Untuk menyimpan data product
+     * 
+     * @param  Request $request [description]
+     * @return [type]           [description]
+     */
 	public function store(Request $request)
 	{
 		$this->validate($request, [
@@ -53,6 +64,12 @@ class ProductController extends Controller
         }
 	}
 
+	/**
+	 * Untuk menampilkan product berdasarkan id
+	 * 
+	 * @param  [type] $id [description]
+	 * @return [type]     [description]
+	 */
 	public function show($id)
 	{
 		$product 	= Product::find($id);
@@ -70,6 +87,13 @@ class ProductController extends Controller
 		}
 	}
 
+	/**
+	 * Untuk update data product
+	 * 
+	 * @param  Request $request [description]
+	 * @param  [type]  $id      [description]
+	 * @return [type]           [description]
+	 */
 	public function update(Request $request, $id)
 	{
 		$this->validate($request, [
@@ -110,6 +134,12 @@ class ProductController extends Controller
 		}
 	}
 
+	/**
+	 * Untuk menghapus data product
+	 * 
+	 * @param  [type] $id [description]
+	 * @return [type]     [description]
+	 */
 	public function destroy($id)
 	{
 		$product 	= Product::find($id);
