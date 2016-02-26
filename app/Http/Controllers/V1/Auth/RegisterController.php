@@ -21,6 +21,12 @@ class RegisterController extends Controller
         $this->userRepository = $userRepository;
     }
 
+    /**
+     * Untuk login hanya berdasarkan email
+     * 
+     * @param  Request $request [description]
+     * @return [type]           [description]
+     */
     public function emailOnly(Request $request)
     {
         $this->validate($request, [
@@ -49,6 +55,12 @@ class RegisterController extends Controller
 
     }
 
+    /**
+     * Untuk register berdasarkan data lengkap
+     * 
+     * @param  Request $request [description]
+     * @return [type]           [description]
+     */
     public function register(Request $request)
     {
         $this->validate($request, [
