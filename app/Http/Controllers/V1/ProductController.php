@@ -14,7 +14,7 @@ class ProductController extends Controller
     {
         return [
             'status'    => 'success',
-            'products'  => Product::all(),
+            'products'  => Product::orderBy('id', 'desc')->get(),
         ];
     }
 
