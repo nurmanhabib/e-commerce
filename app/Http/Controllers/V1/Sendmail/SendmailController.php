@@ -28,9 +28,40 @@ class SendmailController extends Controller
             'text'  => $request->get('text')
         ];
 
-        Mail::send('emails.default', $data, function ($message) use ($email) {
+        Mail::send('emails.example-template', $data, function ($message) use ($email) {
             $message->to($email['to']['email'], $email['to']['name']);
             $message->subject($email['subject']);
         });
+
+        return [
+            'status'    => 'success',
+            'message'   => 'Mail has been send.'
+        ];
+    }
+
+    public function welcome(Request $request)
+    {
+        $this->validate($request, [
+            'to.email'  => 'required',
+            'to.name'   => 'required|string',
+            'subject'   => 'required',
+            'link'      => 'required'
+        ]);
+
+        $email  = $request->all();
+        $data   = [
+            'email' => $email['to']['email'],  
+            'link'  => $request->get('link')
+        ];
+
+        Mail::send('emails.welcome', $data, function ($message) use ($email) {
+            $message->to($email['to']['email'], $email['to']['name']);
+            $message->subject($email['subject']);
+        });
+
+        return [
+            'status'    => 'success',
+            'message'   => 'Mail has been send.'
+        ];
     }
 }
