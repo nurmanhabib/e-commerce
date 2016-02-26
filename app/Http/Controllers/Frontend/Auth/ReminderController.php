@@ -6,9 +6,9 @@ use App\Http\Controllers\Controller;
 
 class ReminderController extends Controller
 {
-    public function create()
+    public function forgotPassword()
     {
-        // return view('auth.reminder');
+        return view('auth.forgot-password');
     }
 
     public function reset($token)

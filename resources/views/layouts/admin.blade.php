@@ -9,6 +9,7 @@
     <!-- Global stylesheets -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
     <link href="{{ asset('assets/css/icons/icomoon/styles.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('assets/css/icons/fontawesome/styles.min.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('assets/css/bootstrap.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('assets/css/core.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('assets/css/components.css') }}" rel="stylesheet" type="text/css">
@@ -18,7 +19,7 @@
     @yield('styles')
 </head>
 
-<body class="navbar-top">
+<body class="navbar-top" id="checkauth">
 
 <!-- Main navbar -->
 <div class="navbar navbar-inverse navbar-fixed-top">
@@ -206,7 +207,7 @@
                         </li>
 
                         <li class="media">
-                            <div class="media-left"><img src="assets/images/placeholder.jpg" class="img-circle img-sm" alt=""></div>
+                            <div class="media-left"><img src="{{ asset('assets/images/placeholder.jpg') }}" class="img-circle img-sm" alt=""></div>
                             <div class="media-body">
                                 <a href="#" class="media-heading">
                                     <span class="text-semibold">Richard Vango</span>
@@ -237,7 +238,7 @@
                     <li><a href="#"><span class="badge bg-teal-400 pull-right">58</span> <i class="icon-comment-discussion"></i> Messages</a></li>
                     <li class="divider"></li>
                     <li><a href="#"><i class="icon-cog5"></i> Account settings</a></li>
-                    <li><a href="#"><i class="icon-switch2"></i> Logout</a></li>
+                    <li id="logout"><a v-on:click="logout"><i class="icon-switch2"></i> Logout</a></li>
                 </ul>
             </li>
         </ul>
@@ -333,23 +334,8 @@
         <div class="content-wrapper">
 
             <!-- Page header -->
-            <div class="page-header">
-                <div class="page-header-content">
-                    <div class="page-title">
-                        <h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">Home</span> - Dashboard</h4>
-                    </div>
-                </div>
-
-                <div class="breadcrumb-line">
-                    <ul class="breadcrumb">
-                        <li><a href="index.html"><i class="icon-home2 position-left"></i> Home</a></li>
-                        <li><a href="index.html">Home</a></li>
-                        <li class="active">Dashboard</li>
-                    </ul>
-                </div>
-            </div>
+            @yield('header')
             <!-- /page header -->
-
 
             <!-- Content area -->
             <div class="content">
@@ -379,6 +365,11 @@
     <script type="text/javascript" src="{{ asset('assets/js/core/libraries/jquery.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('assets/js/core/libraries/bootstrap.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('assets/js/plugins/loaders/blockui.min.js') }}"></script>
+    <script src="{{ asset('node_modules/vue/dist/vue.min.js') }}"></script>
+    <script src="{{ asset('node_modules/vue-resource/dist/vue-resource.min.js') }}"></script>
+    <script src="{{ asset('vue/http.js') }}"></script>
+    <script src="{{ asset('vue/auth/logout.js') }}"></script>
+    <!-- <script src="{{ asset('vue/auth/checkauth.js') }}"></script> -->
 <!-- /core JS files -->
 
 <!-- Theme JS files -->

@@ -73,8 +73,8 @@ class UserRepository extends Repository
             if (app('hash')->check($password, $user->password)) {
                 return [
                     'status'    => 'success',
-                    'user'      => $user->load('profile'),
-                    'token'     => JWTAuth::fromUser($user),
+                    'user'      => $user,
+                    'token'     => $this->getToken($user),
                 ];
             }
         }
@@ -83,6 +83,25 @@ class UserRepository extends Repository
             'status'    => 'failed',
             'message'   => 'Credentials is not valid.'
         ];
+    }
+
+    public function authenticateById($id)
+    {
+        $user = $this->find($id);
+
+        if ($user) {
+            return [
+                'user'  => $user,
+                'token' => $this->getToken($user),
+            ];
+        } else {
+            return null;
+        }
+    }
+
+    public function getToken(User $user)
+    {
+        return JWTAuth::fromUser($user);
     }
 
     public function setProfile(User $user, array $profile)

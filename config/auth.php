@@ -35,7 +35,7 @@ return [
     */
 
     'guards' => [
-        'api' => ['driver' => 'token', 'provider' => 'api'],
+        'api' => ['driver' => 'api'],
     ],
 
     /*
@@ -56,7 +56,7 @@ return [
     */
 
     'providers' => [
-        'api' => ['driver' => 'eloquent', 'model' => 'App\Models\User']
+        //
     ],
 
     /*

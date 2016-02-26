@@ -6,13 +6,22 @@ use App\Events\UserRegistered;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\Supplier;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
 
 class SupplierController extends Controller
 {
-	public function index(Request $request)
+    public function index()
+    {
+        return [
+            'status'    => 'success',
+            'suppliers' => Supplier::all(),
+        ];
+    }
+
+	public function store(Request $request)
 	{
 		$this->validate($request, [
             'name'     			=> 'required',
@@ -33,17 +42,17 @@ class SupplierController extends Controller
             'website'
         );
 
+        $user       = app('auth')->user();
         $supplier   = Supplier::create($credentials);
         $supplier->createSlug($request->input('name'));
-        // $user       = app('auth')->user();
-        // $supplier->users()->attach($user);
+        $supplier->users()->attach($user);
 
-        if($supplier){
+        if ($supplier) {
             return [
                 'status'    => 'success',
                 'user'      => $supplier,
             ];  
-        }else{
+        } else {
             return [
                 'status'    => 'failed',
                 'user'      => 'Create supplier data was failed.',
@@ -55,12 +64,12 @@ class SupplierController extends Controller
     {
         $supplier   = Supplier::find($id);
 
-        if($supplier){
+        if ($supplier) {
             return [
                 'status'    => 'success',
                 'supplier'  => $supplier
             ];
-        }else{
+        } else {
             return [
                 'status'    => 'failed',
                 'supplier'  => 'Supplier data not found.'
@@ -80,7 +89,7 @@ class SupplierController extends Controller
 
         $supplier   = Supplier::find($id);
 
-        if($supplier){
+        if ($supplier) {
             $supplier->slug             = $request->input('slug');
             $supplier->name             = $request->input('name');
             $supplier->address_line_1   = $request->input('address_line_1');
@@ -91,19 +100,19 @@ class SupplierController extends Controller
             $supplier->tags             = $request->input('tags');
             $supplier->website          = $request->input('website');
 
-            if($supplier->save()){
+            if ($supplier->save()) {
                 return [
                     'status'    => 'success',
                     'message'   => 'Supplier data successfully updated.',
                     'supplier'  => $supplier
                 ];
-            }else{
+            } else {
                 return [
                     'status'    => 'failed',
                     'message'   => 'Supplier data failed to update.'
                 ];
             }
-        }else{
+        } else {
             return [
                 'status'    => 'failed',
                 'message'   => 'Supplier data not found.'
@@ -116,18 +125,21 @@ class SupplierController extends Controller
         $supplier   = Supplier::find($id);
 
         if ($supplier) {
-            if($supplier->delete()){
+            
+            $deleteProduct  = Product::where('supplier_id', '=', $id)->delete();
+
+            if ($supplier->delete()) {
                 return [
                     'status'    => 'success',
                     'message'   => 'Supplier data successfully deleted.'
                 ];
-            }else{
+            } else {
                 return [
                     'status'    => 'failed',
-                    'message'   => 'Supplier data failed to update.'
+                    'message'   => 'Supplier data failed to deleted.'
                 ];
             }
-        }else{
+        } else {
             return [
                 'status'    => 'failed',
                 'message'   => 'Supplier data not found.'
