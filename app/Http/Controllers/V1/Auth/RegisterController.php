@@ -26,6 +26,27 @@ class RegisterController extends Controller
         $this->validate($request, [
             'email' => 'required|email|unique:users'
         ]);
+
+        $credentials    = [
+            'username'      => null,
+            'email'         => $request->get('email'),
+            'password'      => null
+        ];
+        $profile        = [
+            'first_name'    => null,
+            'last_name'     => null,
+            'gender'        => null,
+            'avatar'        => null
+        ];
+
+        $user   = $this->userRepository->register($credentials, $profile, $request->has('activated'));
+
+        return [
+            'status'            => 'success',
+            'user'              => $user,
+            'activation_code'   => $user->activation_code
+        ];
+
     }
 
     public function register(Request $request)
