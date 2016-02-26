@@ -28,7 +28,7 @@ class SendmailController extends Controller
             'text'  => $request->get('text')
         ];
 
-        Mail::send('emails.example-template', $data, function ($message) use ($email) {
+        Mail::send('emails.default', $data, function ($message) use ($email) {
             $message->to($email['to']['email'], $email['to']['name']);
             $message->subject($email['subject']);
         });
