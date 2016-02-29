@@ -1,22 +1,15 @@
-new Vue({
-	el: '#checkauth',
-	data() {
-
-	},
-	ready: function(){
-		var auth = this.checkAuthentication()
-		if(auth == false){
-			window.location.assign(LOGIN_USER)
-		}
-	},
+var vue = new Vue({
+	el: '#checkAuth',
 	methods: {
-		checkAuthentication(){
-			var status = localStorage.getItem('amtekcommerce_token')
-			if(status !== null){
-				return true
+		checkAuth: function(){
+			var auth = checkCookie('amtekcommerce_token')
+			if (auth == false) {
+				window.location.assign(LOGIN_USER)
 			} else {
-				return false
+				console.log(auth)
 			}
 		}
 	}
 })
+
+vue.checkAuth()
