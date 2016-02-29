@@ -28,7 +28,7 @@
 				<div class="row">
 					<div class="col-sm-6">
 						<label class="checkbox-inline">
-							<input type="checkbox" class="styled" checked="checked">
+							<input v-model="credentials.remember" type="checkbox" class="styled" checked="checked">
 							Remember
 						</label>
 					</div>
