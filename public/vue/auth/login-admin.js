@@ -26,8 +26,6 @@ new Vue({
 		      	// Redirect to a specified route
 		      	if(data.status == 'success') {
 		      		// Token disimpan di localStorage 'cookies'
-		        	// localStorage.setItem('amtekcommerce_token', data.token)
-		        	// localStorage.setItem('role', 'admin')
 		        	var expiredDays = 30
 		        	setCookie('remember', remember, expiredDays)
 		        	setCookie('amtekcommerce_token', data.token)
