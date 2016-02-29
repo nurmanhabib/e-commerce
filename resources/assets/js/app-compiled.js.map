@@ -1,0 +1,1 @@
+{"version":3,"sources":["app.js"],"names":[],"mappings":"AAAA,OAAO,OAAP,MAAoB,0BAApB;;AAEA,eAAe;AACX,gBAAY;AACR,mBAAW,OAAX;KADJ;CADJ","file":"app-compiled.js","sourcesContent":["import Loading from './components/Loading.vue';\r\n\r\nexport default {\r\n    components: {\r\n        'loading': Loading\r\n    }\r\n}"]}
