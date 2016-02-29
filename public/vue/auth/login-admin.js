@@ -20,12 +20,22 @@ new Vue({
 				password: this.credentials.password
 			}
 
+			var remember = this.credentials.remember
+
 			this.$http.post(LOGIN_URL, credentials, (data) => {
 		      	// Redirect to a specified route
 		      	if(data.status == 'success') {
 		      		// Token disimpan di localStorage 'cookies'
-		        	localStorage.setItem('amtekcommerce_token', data.token)
-		        	localStorage.setItem('role', 'admin')
+		        	// localStorage.setItem('amtekcommerce_token', data.token)
+		        	// localStorage.setItem('role', 'admin')
+		        	var expiredDays = 30
+		        	setCookie('remember', remember, expiredDays)
+		        	setCookie('amtekcommerce_token', data.token)
+		        	setCookie('role', data.user.roles[0].slug)
+
+		        	console.log(getCookie('remember'))
+		        	console.log(getCookie('amtekcommerce_token'))
+		        	console.log(getCookie('role'))
 
 		        	// routing bila data success login redirect ke home
 		        	window.location.assign(ADMIN_SITE)
@@ -33,7 +43,7 @@ new Vue({
 		          	// alert notifikasi failed login
 		          	this.status = data.status
 		          	this.error = data.message
-		          	console.log(this.error)
+		          	console.log(data)
 		      	}
 
 	    	}).error((err) => {
@@ -44,10 +54,11 @@ new Vue({
 
 		},
 		checkAuth(){
-			var status = localStorage.getItem('amtekcommerce_token')
-			if(status !== null){
+			var token = getCookie('amtekcommerce_token')
+			if(token !== ''){
 				window.location.assign(ADMIN_SITE)
 			} else {
+				clearCookie()
 				console.log(status)
 			}
 		}
