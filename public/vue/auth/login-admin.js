@@ -11,6 +11,7 @@ new Vue({
 		}
 	},
 	ready: function(){
+		clearCookies()
 		this.checkAuth()
 	},
 	methods: {
@@ -28,12 +29,8 @@ new Vue({
 		      		// Token disimpan di localStorage 'cookies'
 		        	var expiredDays = 30
 		        	setCookie('remember', remember, expiredDays)
-		        	setCookie('amtekcommerce_token', data.token)
-		        	setCookie('role', data.user.roles[0].slug)
-
-		        	console.log(getCookie('remember'))
-		        	console.log(getCookie('amtekcommerce_token'))
-		        	console.log(getCookie('role'))
+		        	setCookie('amtekcommerce_token', data.token, expiredDays)
+		        	setCookie('role', data.user.roles[0].slug, expiredDays)
 
 		        	// routing bila data success login redirect ke home
 		        	window.location.assign(ADMIN_SITE)
@@ -56,8 +53,7 @@ new Vue({
 			if(token !== ''){
 				window.location.assign(ADMIN_SITE)
 			} else {
-				clearCookie()
-				console.log(status)
+				console.log(token)
 			}
 		}
 	}

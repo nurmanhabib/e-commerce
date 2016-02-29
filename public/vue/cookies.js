@@ -29,9 +29,10 @@ function eraseCookie(name) {
     setCookie(name,"",-1);
 }
 
-function clearCookie() {
+function clearCookies() {
     var cookies = document.cookie.split(";");
     for (var i = 0; i < cookies.length; i++) {
       eraseCookie(cookies[i].split("=")[0]);
+      console.log(cookies[i].split("=")[0])
     }
 }

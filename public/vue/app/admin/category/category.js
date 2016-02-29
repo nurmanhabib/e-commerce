@@ -1,6 +1,6 @@
 new Vue({
 	el: '#category',
-	data(){
+	data: function() {
 		return {
 			status: '',
 			categories: '',
