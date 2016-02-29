@@ -30,7 +30,7 @@
 		new Vue({
 			el: '#admin',
 			ready: function(){
-				console.log(localStorage.getItem('auth'))
+				console.log(getCookie('amtekcommerce_token'))
 			}
 		})
 	</script>
