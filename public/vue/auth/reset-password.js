@@ -35,7 +35,6 @@ new Vue({
             }
 
             this.$http.post(API_URL + '/auth/reset-password', credentials, (data) => {
-                console.log(data)
                 if (data.status == 'success') {
                     window.location.assign(LOGIN_USER)
                 } else {
