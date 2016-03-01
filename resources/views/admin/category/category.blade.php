@@ -134,7 +134,7 @@
 					</div>
 
 					<div class="modal-footer">
-						<button type="reset" v-on:click="cancelEdit" class="btn btn-default" data-dismiss="modal">Close</button>
+						<button v-on:click="cancelEdit" type="reset" class="btn btn-default" data-dismiss="modal">Close</button>
 						<button v-on:click="updateCategory(edit.id)" type="button" class="btn btn-primary" data-dismiss="modal">Update Category</button>
 					</div>
 				</div>
