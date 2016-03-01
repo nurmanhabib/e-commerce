@@ -48,8 +48,7 @@ new Vue({
 					name: this.newProducts.name,
 					description: this.newProducts.description,
 					price: this.newProducts.price,
-					category_id: this.newProducts.category_id,
-					supplier_id: this.newProducts.supplier_id
+					category_id: this.newProducts.category_id
 				}
 
 				this.$http.post(API_URL + '/products', newproducts, (data) => {
