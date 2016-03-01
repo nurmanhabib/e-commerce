@@ -379,12 +379,12 @@
     <!-- Build Core -->
     <script src="{{ asset('app/admin/build.js') }}"></script>
 
-    <script src="{{ asset('node_modules/vue/dist/vue.min.js') }}"></script>
+    <!-- <script src="{{ asset('node_modules/vue/dist/vue.min.js') }}"></script>
     <script src="{{ asset('node_modules/vue-resource/dist/vue-resource.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('vue/cookies.js') }}"></script>
     <script src="{{ asset('vue/http.js') }}"></script>
     <script src="{{ asset('vue/auth/logout.js') }}"></script>
-    <script src="{{ asset('vue/auth/checkauth.js') }}"></script>
+    <script src="{{ asset('vue/auth/checkauth.js') }}"></script> -->
 <!-- /core JS files -->
 
 <!-- Theme JS files -->
