@@ -9,6 +9,10 @@ new Vue({
         }
     },
     methods: {
+        /**
+         * Fungsi untuk mengirimkan link reset password ke email user
+         * @return {[type]} [description]
+         */
         forgotPassword: function() {
             var email = {
                 email: this.email
@@ -46,6 +50,10 @@ new Vue({
                 console.log(this.error)
             })
         },
+        /**
+         * Fungsi untuk menghapus status dan message saat alert diclose
+         * @return {[type]} [description]
+         */
         clearMessage: function() {
             this.status     = ''
             this.message    = ''
