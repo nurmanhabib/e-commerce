@@ -41,7 +41,7 @@ class User extends Model implements
 
     protected $with = [
         'profile',
-        'roles'
+        'roles',
     ];
 
     public function createPassword($plain)
@@ -114,6 +114,11 @@ class User extends Model implements
     public function hasPassword()
     {
         return !empty($this->password);
+    }
+
+    public function socialites()
+    {
+        return $this->hasMany(UserSocialite::class);
     }
 
 //    public function tenants()

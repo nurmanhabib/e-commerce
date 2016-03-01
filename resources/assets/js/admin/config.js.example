@@ -1,0 +1,4 @@
+module.exports = {
+	api_root: 'http://localhost:8000/api/v1/',
+	api_token: ''
+}

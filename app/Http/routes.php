@@ -14,6 +14,7 @@
 $app->get('/', 'HomeController@index');
 
 $app->group(['namespace' => 'App\Http\Controllers\Frontend\Auth'], function () use ($app) {
+    $app->get('login/social', 'Social\SocialController@login');
     $app->get('login', 'LoginController@user');
     $app->get('admin', 'LoginController@admin');
     $app->get('supplier', 'LoginController@supplier');

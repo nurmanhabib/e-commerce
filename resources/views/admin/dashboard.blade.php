@@ -24,14 +24,3 @@
     	isi
     </div>
 @stop
-
-@section('scripts')
-	<script>
-		new Vue({
-			el: '#admin',
-			ready: function(){
-				console.log(getCookie('amtekcommerce_token'))
-			}
-		})
-	</script>
-@stop

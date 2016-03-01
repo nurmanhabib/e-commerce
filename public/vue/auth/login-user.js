@@ -51,8 +51,12 @@ new Vue({
 			if(status !== null){
 				window.location.assign(ADMIN_SITE)
 			} else {
-				console.log(status)
+
 			}
+		},
+
+		social(driver) {
+			this.$broadcast('social-auth', driver);
 		}
 	}
 })
