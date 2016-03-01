@@ -37,7 +37,7 @@
 					</div>
 
 					<div class="col-sm-6 text-right">
-						<a href="login_password_recover.html">Forgot password?</a>
+						<a v-on:click="forgotPassword">Forgot password?</a>
 					</div>
 				</div>
 			</div>
