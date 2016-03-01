@@ -1,7 +1,6 @@
 new Vue({
 	el: '#login',
-	
-	data(){
+	data: function() {
 		return {
 			credentials: {
 				email: '',
@@ -15,7 +14,7 @@ new Vue({
 		this.checkAuth()
 	},
 	methods: {
-		loginAdmin(){
+		loginAdmin: function() {
 			var credentials = {
 				email: this.credentials.email,
 				password: this.credentials.password
@@ -45,16 +44,19 @@ new Vue({
 	      		this.error = err
 	    	})
 		},
-		removeAlert(){
+		removeAlert: function() {
 
 		},
-		checkAuth(){
+		checkAuth: function() {
 			var token = getCookie('amtekcommerce_token')
 			if(token !== ''){
 				window.location.assign(ADMIN_SITE)
 			} else {
 				console.log(token)
 			}
-		}
+		},
+		forgotPassword: function() {
+			window.location.assign(FORGOT_PASSWORD)
+		},
 	}
 })
