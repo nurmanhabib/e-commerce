@@ -89,7 +89,6 @@
 	<script src="{{ asset('node_modules/vue-resource/dist/vue-resource.min.js') }}" ></script>
     <script type="text/javascript" src="{{ asset('vue/cookies.js') }}"></script>
 	<script src="{{ asset('vue/http.js') }}"></script>
-	<script src="{{ asset('vue/cookies.js') }}"></script>
 	<!-- /Vue JS -->
 	
 	@yield('script')

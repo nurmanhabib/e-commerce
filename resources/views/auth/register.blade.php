@@ -75,4 +75,5 @@
 @stop
 
 @section('script')
+	<script src="{{ asset('vue/auth/register.js') }}"></script>
 @stop
