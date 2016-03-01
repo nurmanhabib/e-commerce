@@ -56,15 +56,6 @@ new Vue({
 			}
 		},
 
-		// Untuk delete category
-		deleteCategory(id){
-			this.$http.delete(API_URL + '/categories/' + id).then(function(response){
-				this.showCategories()
-
-				console.log(response.data.message)
-			})
-		},
-
 		// Untuk edit category
 		editCategory(category){
 			this.edit = category
@@ -87,7 +78,7 @@ new Vue({
 
 					return this.showCategories()
 				})
-			}else{
+			} else {
 				alert('Kategori tidak boleh kosong, silahkan ulangi lagi')
 				return this.showCategories()
 			}
@@ -95,6 +86,15 @@ new Vue({
 
 		cancelEdit(category){
 			return this.showCategories()
-		}
+		},
+
+		// Untuk delete category
+		deleteCategory(id){
+			this.$http.delete(API_URL + '/categories/' + id).then(function(response){
+				this.showCategories()
+
+				console.log(response.data.message)
+			})
+		},
 	}
 })
