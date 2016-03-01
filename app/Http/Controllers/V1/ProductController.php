@@ -5,6 +5,7 @@ namespace App\Http\Controllers\V1;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\Supplier;
+use App\Models\userSupplier;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -44,10 +45,13 @@ class ProductController extends Controller
         	'name',
         	'description',
         	'price',
-        	'category_id',
-        	'supplier_id'
+        	'category_id'
         );
 
+        $user 		= app('auth')->user();
+        $supplier 	= userSupplier::where('user_id', '=', $user->id)->get();
+        
+        $credentials['supplier_id'] = $supplier[0]->supplier_id;
         $product 	= Product::create($credentials);
 
         if($product){
@@ -112,7 +116,6 @@ class ProductController extends Controller
 			$product->description 	= $request->input('description');
 			$product->price 		= $request->input('price');
 			$product->category_id 	= $request->input('category_id');
-			$product->supplier_id 	= $request->input('supplier_id');
 
 			if($product->save()){
 				return [

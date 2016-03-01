@@ -11,9 +11,14 @@ class LoginController extends Controller
         return view('auth.user.login');
     }
 
-    public function vendor()
+     public function admin()
     {
-    	return view('auth.vendor.login');
+        return view('auth.admin.login');
+    }
+
+    public function supplier()
+    {
+    	return view('auth.supplier.login');
     }
 
 }

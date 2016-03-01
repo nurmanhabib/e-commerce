@@ -8,7 +8,10 @@
 				<h5 class="content-group">Login to your account <small class="display-block">Your credentials</small></h5>
 			</div>
 
-			@{{error}}
+			<div v-if="error !== '' " class="alert alert-danger alert-styled-left alert-bordered">
+				<button v-on:click="clearError" type="button" class="close" data-dismiss="alert"><span>×</span><span class="sr-only">Close</span></button>
+				<span class="text-semibold">@{{ error }}</span>
+		    </div>
 
 			<div class="form-group has-feedback has-feedback-left">
 				<input v-model="credentials.email" type="email" class="form-control" placeholder="Email">
@@ -34,7 +37,7 @@
 					</div>
 
 					<div class="col-sm-6 text-right">
-						<a href="login_password_recover.html">Forgot password?</a>
+						<a v-on:click="forgotPassword">Forgot password?</a>
 					</div>
 				</div>
 			</div>
