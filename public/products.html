@@ -270,7 +270,7 @@
 
 					<!-- User menu -->
 					<div class="sidebar-user">
-						<div class="category-content">
+						<div class="Products-content">
 							<div class="media">
 								<a href="#" class="media-left"><img src="assets/images/placeholder.jpg" class="img-circle img-sm" alt=""></a>
 								<div class="media-body">
@@ -294,8 +294,8 @@
 
 
 					<!-- Main navigation -->
-					<div class="sidebar-category sidebar-category-visible">
-						<div class="category-content no-padding">
+					<div class="sidebar-Products sidebar-Products-visible">
+						<div class="Products-content no-padding">
 							<ul class="navigation navigation-main navigation-accordion">
 
 								<!-- Main -->
@@ -366,7 +366,145 @@
 				<!-- Content area -->
 				<div class="content">
 
-					isi
+					<div id="product">		
+
+						<div class="panel panel-flat">
+							<div class="panel-heading">
+								<legend class="text-bold panel-title">Products</legend>
+							</div>
+							<div class="panel-body">
+								<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal_add"><i class="icon-plus22 position-right"></i> Add Product</button>
+								<table class="table datatable-basic">
+									<thead>
+										<tr>
+											<th><strong>Id</strong></th>
+											<th><strong>Product Name</strong></th>
+											<th><strong>Products</strong></th>
+											<th class="text-center"><strong>Actions</strong></th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>1</td>
+											<td>Laptop</td>
+											<td>Gadget</td>
+											<td class="text-center">
+												<a href="#" class="btn border-slate text-slate-800 btn-flat btn-xs" data-toggle="modal" data-target="#modal_edit" data-popup="tooltip" title="" data-original-title="Edit"><i class="fa fa-pencil"></i></a>
+												<a href="#" class="btn border-slate text-slate-800 btn-flat btn-xs" data-popup="tooltip" title="" data-original-title="Delete"><i class="fa fa-trash"></i></a>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+
+						<!-- Modal Add Products -->
+						<div id="modal_add" class="modal fade">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal">&times;</button>
+										<h3 class="modal-title">Add Product</h3>
+									</div>
+
+									<div class="modal-body">
+										<form class="form-horizontal" action="#">
+											<fieldset class="content-group">
+												
+												<div class="form-group">
+							                    	<label class="control-label col-lg-4">Code</label>
+													<div class="col-lg-8">
+														<input type="text" class="form-control">
+													</div>
+							                    </div>
+
+												<div class="form-group">
+													<label class="control-label col-lg-4">Products Name</label>
+													<div class="col-lg-8">
+														<input type="text" class="form-control">
+													</div>
+												</div>
+
+												<div class="form-group">
+													<label class="control-label col-lg-4">Description</label>
+													<div class="col-lg-8">
+														<textarea class="form-control" rows="5" cols="5"></textarea>
+													</div>
+												</div>
+
+												<div class="form-group">
+													<label class="control-label col-lg-4">Price</label>
+													<div class="col-lg-8">
+														<input type="text" class="form-control">
+													</div>
+												</div>
+											</fieldset>
+										</form>
+									</div>
+
+									<div class="modal-footer">
+										<button type="reset" class="btn btn-default" data-dismiss="modal">Close</button>
+										<button type="button" class="btn btn-primary" data-dismiss="modal">Add Products</button>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- /Modal Add Products -->
+
+						<!-- Modal Edit Products -->
+						<div id="modal_edit" class="modal fade">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal">&times;</button>
+										<h3 class="modal-title">Edit Products</h3>
+									</div>
+
+									<div class="modal-body">
+										<form class="form-horizontal" action="#">
+											<fieldset class="content-group">
+												
+												<div class="form-group">
+							                    	<label class="control-label col-lg-4">Code</label>
+													<div class="col-lg-8">
+														<input type="text" class="form-control">
+													</div>
+							                    </div>
+
+												<div class="form-group">
+													<label class="control-label col-lg-4">Products Name</label>
+													<div class="col-lg-8">
+														<input type="text" class="form-control">
+													</div>
+												</div>
+
+												<div class="form-group">
+													<label class="control-label col-lg-4">Description</label>
+													<div class="col-lg-8">
+														<textarea class="form-control" rows="5" cols="5"></textarea>
+													</div>
+												</div>
+
+												<div class="form-group">
+													<label class="control-label col-lg-4">Price</label>
+													<div class="col-lg-8">
+														<input type="text" class="form-control">
+													</div>
+												</div>
+											</fieldset>
+										</form>
+									</div>
+
+									<div class="modal-footer">
+										<button type="reset" class="btn btn-default" data-dismiss="modal">Close</button>
+										<button type="button" class="btn btn-primary" data-dismiss="modal">Update Products</button>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- /Modal Add Products -->
+
+					</div>
 
 
 					<!-- Footer -->

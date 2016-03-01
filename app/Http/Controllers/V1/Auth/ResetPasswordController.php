@@ -57,13 +57,11 @@ class ResetPasswordController extends Controller
     public function resetPassword(Request $request)
     {
         $this->validate($request, [
-            'email'             => 'required|email',
             'password'          => 'required|min:6|confirmed',
-            'remember_token'    => 'required|size:100'
+            'remember_token'    => 'required'
         ]);
 
         $user = $this->userRepository->resetPassword(
-            $request->get('email'),
             $request->get('remember_token'),
             $request->get('password')
         );

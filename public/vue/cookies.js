@@ -17,13 +17,22 @@ function getCookie(cname) {
 }
 
 function checkCookie(cname) {
-    var user = getCookie(cname);
-    if (user != "") {
-        alert("Welcome again " + user);
+    var cookie = getCookie(cname);
+    if (cookie != "") {
+        return true;
     } else {
-        user = prompt("Please enter your name:", "");
-        if (user != "" && user != null) {
-            setCookie("username", user, 365);
-        }
+        return false;
+    }
+}
+
+function eraseCookie(name) {
+    setCookie(name,"",-1);
+}
+
+function clearCookies() {
+    var cookies = document.cookie.split(";");
+    for (var i = 0; i < cookies.length; i++) {
+      eraseCookie(cookies[i].split("=")[0]);
+      console.log(cookies[i].split("=")[0])
     }
 }

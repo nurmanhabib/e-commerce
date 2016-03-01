@@ -1,6 +1,7 @@
 new Vue({
 	el: '#login',
-	data: function() {
+	
+	data(){
 		return {
 			credentials: {
 				email: '',
@@ -14,7 +15,7 @@ new Vue({
 		this.checkAuth()
 	},
 	methods: {
-		loginAdmin: function() {
+		loginSupplier(){
 			var credentials = {
 				email: this.credentials.email,
 				password: this.credentials.password
@@ -32,7 +33,7 @@ new Vue({
 		        	setCookie('role', data.user.roles[0].slug, expiredDays)
 
 		        	// routing bila data success login redirect ke home
-		        	window.location.assign(ADMIN_SITE)
+		        	window.location.assign(SITE_URL + '/supplier/products')
 		      	} else {
 		          	// alert notifikasi failed login
 		          	this.status = data.status
@@ -44,26 +45,21 @@ new Vue({
 	      		this.error = err
 	    	})
 		},
-
-		removeAlert: function() {
+		removeAlert(){
 
 		},
-
-		checkAuth: function() {
+		checkAuth(){
 			var token = getCookie('amtekcommerce_token')
 			if(token !== ''){
-				window.location.assign(ADMIN_SITE)
+				window.location.assign(SITE_URL + '/supplier/products')
 			} else {
 				console.log(token)
 			}
 		},
-
-		forgotPassword: function() {
-			window.location.assign(FORGOT_PASSWORD)
-		},
-
-		clearError: function() {
-			this.error = ''
+		getAuthHeader() {
+			return {
+				'Authorization': 'Bearer' + getCookie('amtekcommerce_token')
+			}
 		}
 	}
 })

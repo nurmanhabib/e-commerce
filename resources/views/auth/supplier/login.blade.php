@@ -38,7 +38,7 @@
 			</div>
 
 			<div class="form-group">
-				<button v-on:click="loginUser" type="button" class="btn bg-blue btn-block">Login <i class="icon-arrow-right14 position-right"></i></button>
+				<button v-on:click="loginSupplier" type="button" class="btn bg-blue btn-block">Login <i class="icon-arrow-right14 position-right"></i></button>
 			</div>
 
 			<div class="content-divider text-muted form-group"><span>or sign in with</span></div>
@@ -50,11 +50,12 @@
 			</ul>
 
 			<div class="content-divider text-muted form-group"><span>Don't have an account?</span></div>
-			<a href="login_registration.html" class="btn btn-default btn-block content-group">Sign up</a>
+			<a href="login_registration.html" class="btn bg-teal btn-block content-group">Create Account</a>
 			<span class="help-block text-center no-margin">By continuing, you're confirming that you've read our <a href="#">Terms &amp; Conditions</a> and <a href="#">Cookie Policy</a></span>
 		</div>
 	</form>
 @stop
 
 @section('script')
+ 	<script src="{{ asset('vue/auth/login-supplier.js') }}"></script>
 @stop

@@ -43,8 +43,8 @@
 							<td>@{{ category.name }}</td>
 							<td>@{{ category.slug }}</td>
 							<td class="text-center">
-								<a v-on:click="editCategory(category)" class="btn border-slate text-slate-800 btn-flat btn-xs" data-toggle="modal" data-target="#modal_edit" data-popup="tooltip" title="" data-original-title="Edit"><i class="fa fa-pencil"></i></a>
-								<a v-on:click="deleteCategory(category.id)" class="btn border-slate text-slate-800 btn-flat btn-xs" data-popup="tooltip" title="" data-original-title="Delete"><i class="fa fa-trash"></i></a>
+								<a v-on:click="editCategory(category)" class="btn btn-default btn-xs" data-toggle="modal" data-target="#modal_edit" data-popup="tooltip" title="" data-original-title="Edit"><i class="fa fa-pencil"></i></a>
+								<a v-on:click="deleteCategory(category.id)" class="btn btn-default btn-xs" data-popup="tooltip" title="" data-original-title="Delete"><i class="fa fa-trash"></i></a>
 							</td>
 						</tr>
 					</tbody>
@@ -134,7 +134,7 @@
 					</div>
 
 					<div class="modal-footer">
-						<button type="reset" class="btn btn-default" data-dismiss="modal">Close</button>
+						<button v-on:click="cancelEdit" type="reset" class="btn btn-default" data-dismiss="modal">Close</button>
 						<button v-on:click="updateCategory(edit.id)" type="button" class="btn btn-primary" data-dismiss="modal">Update Category</button>
 					</div>
 				</div>

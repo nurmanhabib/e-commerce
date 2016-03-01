@@ -150,9 +150,9 @@ class UserRepository extends Repository
         return $user->makeVisible('activation_code');
     }
 
-    public function resetPassword($email, $remember_token, $password)
+    public function resetPassword($remember_token, $password)
     {
-        $user = $this->findWhere(compact('email', 'remember_token'))->first();
+        $user = $this->findWhere(compact('remember_token'))->first();
 
         if ($user) {
             $this->setPassword($user, $password);

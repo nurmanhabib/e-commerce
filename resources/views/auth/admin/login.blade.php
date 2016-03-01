@@ -1,12 +1,17 @@
 @extends('layouts.login')
 
 @section('content')
-	<form id="login">
+	<form id="login" v-on:submit.prevent="loginAdmin">
 		<div class="panel panel-body login-form">
 			<div class="text-center">
 				<div class="icon-object border-slate-300 text-slate-300"><i class="icon-reading"></i></div>
 				<h5 class="content-group">Login to your account <small class="display-block">Your credentials</small></h5>
 			</div>
+
+			<div v-if="error !== '' " class="alert alert-danger alert-styled-left alert-bordered">
+				<button v-on:click="clearError" type="button" class="close" data-dismiss="alert"><span>×</span><span class="sr-only">Close</span></button>
+				<span class="text-semibold">@{{ error }}</span>
+		    </div>
 
 			<div class="form-group has-feedback has-feedback-left">
 				<input v-model="credentials.email" type="email" class="form-control" placeholder="Email">
@@ -16,7 +21,7 @@
 			</div>
 
 			<div class="form-group has-feedback has-feedback-left">
-				<input v-model="credentials.password" type="text" class="form-control" placeholder="Password">
+				<input v-model="credentials.password" type="password" class="form-control" placeholder="Password">
 				<div class="form-control-feedback">
 					<i class="icon-lock2 text-muted"></i>
 				</div>
@@ -26,19 +31,19 @@
 				<div class="row">
 					<div class="col-sm-6">
 						<label class="checkbox-inline">
-							<input type="checkbox" class="styled" checked="checked">
+							<input v-model="credentials.remember" type="checkbox" class="styled" checked="checked">
 							Remember
 						</label>
 					</div>
 
 					<div class="col-sm-6 text-right">
-						<a href="login_password_recover.html">Forgot password?</a>
+						<a v-on:click="forgotPassword">Forgot password?</a>
 					</div>
 				</div>
 			</div>
 
 			<div class="form-group">
-				<button v-on:click="loginAdmin" type="button" class="btn bg-blue btn-block">Login <i class="icon-arrow-right14 position-right"></i></button>
+				<button type="submit" class="btn bg-blue btn-block">Login <i class="icon-arrow-right14 position-right"></i></button>
 			</div>		
 		</div>
 	</form>

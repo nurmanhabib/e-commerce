@@ -4,11 +4,12 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Limitless - Responsive Web Application Kit by Eugene Kopyov</title>
+	<title>Amtek-Commerce</title>
 
 	<!-- Global stylesheets -->
 	<link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
 	<link href="{{ asset('assets/css/icons/icomoon/styles.css') }}" rel="stylesheet" type="text/css">
+	<link href="{{ asset('assets/css/icons/fontawesome/styles.min.css') }}" rel="stylesheet" type="text/css">
 	<link href="{{ asset('assets/css/bootstrap.css') }}" rel="stylesheet" type="text/css">
 	<link href="{{ asset('assets/css/core.css') }}" rel="stylesheet" type="text/css">
 	<link href="{{ asset('assets/css/components.css') }}" rel="stylesheet" type="text/css">
@@ -17,7 +18,7 @@
 
 </head>
 
-<body>
+<body class="login-cover">
 
 	<!-- Main navbar -->
 	<div class="navbar navbar-inverse">
@@ -28,29 +29,6 @@
 
 			<ul class="nav navbar-nav pull-right visible-xs-block">
 				<li><a data-toggle="collapse" data-target="#navbar-mobile"><i class="icon-tree5"></i></a></li>
-			</ul>
-		</div>
-
-		<div class="navbar-collapse collapse" id="navbar-mobile">
-			<ul class="nav navbar-nav navbar-right">
-				<li>
-					<a href="#">
-						<i class="icon-display4"></i> <span class="visible-xs-inline-block position-right"> Go to website</span>
-					</a>
-				</li>
-
-				<li>
-					<a href="#">
-						<i class="icon-user-tie"></i> <span class="visible-xs-inline-block position-right"> Contact admin</span>
-					</a>
-				</li>
-
-				<li class="dropdown">
-					<a class="dropdown-toggle" data-toggle="dropdown">
-						<i class="icon-cog3"></i>
-						<span class="visible-xs-inline-block position-right"> Options</span>
-					</a>
-				</li>
 			</ul>
 		</div>
 	</div>
@@ -75,8 +53,8 @@
 
 
 					<!-- Footer -->
-					<div class="footer text-muted">
-						&copy; 2015. <a href="#">Limitless Web App Kit</a> by <a href="http://themeforest.net/user/Kopyov" target="_blank">Eugene Kopyov</a>
+					<div class="footer text-white">
+						&copy; 2016. <a href="#" class="text-white">Amtek-Commerce</a> by <a href="http://amteklab.com" class="text-white" target="_blank">Amteklab</a>
 					</div>
 					<!-- /footer -->
 
@@ -109,8 +87,8 @@
 	<!-- Vue JS -->
 	<script src="{{ asset('node_modules/vue/dist/vue.min.js') }}"></script>
 	<script src="{{ asset('node_modules/vue-resource/dist/vue-resource.min.js') }}" ></script>
+    <script type="text/javascript" src="{{ asset('vue/cookies.js') }}"></script>
 	<script src="{{ asset('vue/http.js') }}"></script>
-	<script src="{{ asset('vue/cookies.js') }}"></script>
 	<!-- /Vue JS -->
 	
 	@yield('script')
