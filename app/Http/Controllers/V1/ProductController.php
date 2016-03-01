@@ -116,7 +116,6 @@ class ProductController extends Controller
 			$product->description 	= $request->input('description');
 			$product->price 		= $request->input('price');
 			$product->category_id 	= $request->input('category_id');
-			$product->supplier_id 	= $request->input('supplier_id');
 
 			if($product->save()){
 				return [
