@@ -45,8 +45,8 @@
 							<td>@{{ product.description }}</td>
 							<td>@{{ product.price }}</td>
 							<td class="text-center">
-								<a v-on:click="editProducts(product)" class="btn border-slate text-slate-800 btn-flat btn-xs" data-toggle="modal" data-target="#modal_edit" data-popup="tooltip" title="" data-original-title="Edit"><i class="fa fa-pencil"></i></a>
-								<a v-on:click="deleteProducts(product.id)" class="btn border-slate text-slate-800 btn-flat btn-xs" data-popup="tooltip" title="" data-original-title="Delete"><i class="fa fa-trash"></i></a>
+								<a v-on:click="editProducts(product)" class="btn btn-default btn-xs" data-toggle="modal" data-target="#modal_edit" data-popup="tooltip" title="" data-original-title="Edit" title="Edit"><i class="fa fa-pencil"></i></a>
+								<a v-on:click="deleteProducts(product.id)" class="btn btn-default btn-xs" data-popup="tooltip" title="" data-original-title="Delete"><i class="fa fa-trash"></i></a>
 							</td>
 						</tr>
 					</tbody>
