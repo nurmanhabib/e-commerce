@@ -2,7 +2,6 @@ new Vue({
     el: '#register',
     data: function() {
         return {
-            username:   '',
             email:      '',
             password:   '',
             profile: {
@@ -18,7 +17,6 @@ new Vue({
     methods: {
         registerMember: function() {
             var credentials = {
-                username:   this.username,
                 email:      this.email,
                 password:   this.password,
                 profile: {
