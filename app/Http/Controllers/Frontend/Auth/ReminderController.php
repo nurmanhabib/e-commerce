@@ -13,6 +13,8 @@ class ReminderController extends Controller
 
     public function reset($token)
     {
-        // return view('auth.reset');
+    	$data = compact('token');
+
+        return view('auth.reset', $data);
     }
 }

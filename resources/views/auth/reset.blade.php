@@ -2,6 +2,7 @@
 
 @section('content')
 	<form v-on:submit.prevent="resetPassword" id="reset-password">
+		<input type="hidden" v-model="remember_token" value="{{ $token }}">
 		<div class="panel panel-body login-form">
 			<div class="text-center">
 				<div class="icon-object border-warning text-warning"><i class="icon-spinner11"></i></div>
@@ -12,13 +13,6 @@
 				<div class="alert alert-danger alert-styled-left alert-bordered">
 				  	<button v-on:click="clearMessage" type="button" class="close" data-dismiss="alert"><span>×</span><span class="sr-only">Close</span></button>
 					<span class="text-semibold">@{{ message }}</span>
-				</div>
-			</div>
-
-			<div class="form-group has-feedback">
-				<input type="email" class="form-control" v-model="email" placeholder="Your email">
-				<div class="form-control-feedback">
-					<i class="icon-mail5 text-muted"></i>
 				</div>
 			</div>
 

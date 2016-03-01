@@ -2,6 +2,7 @@ new Vue({
     el: '#reset-password',
     data: function() {
         return {
+            remember_token: '',
             email: '',
             password: '',
             password_confirmation: '',
@@ -15,11 +16,7 @@ new Vue({
          * @return {token} token untuk reset password
          */
         getToken: function() {
-            var url = window.location.href;
-            //get rid of the trailing / before doing a simple split on /
-            var url_parts = url.replace(/\/\s*$/,'').split('/'); 
-
-            return url_parts[4]
+            return this.remember_token
         },
         /**
          * Fungsi untuk reset password

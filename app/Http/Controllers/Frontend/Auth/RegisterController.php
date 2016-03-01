@@ -6,8 +6,8 @@ use App\Http\Controllers\Controller;
 
 class RegisterController extends Controller
 {
-    public function supplier()
+    public function register()
     {
-        return view('auth.supplier.register');
+        return view('auth.register');
     }
 }
