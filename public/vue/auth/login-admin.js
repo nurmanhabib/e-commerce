@@ -44,9 +44,11 @@ new Vue({
 	      		this.error = err
 	    	})
 		},
+
 		removeAlert: function() {
 
 		},
+
 		checkAuth: function() {
 			var token = getCookie('amtekcommerce_token')
 			if(token !== ''){
@@ -55,8 +57,13 @@ new Vue({
 				console.log(token)
 			}
 		},
+
 		forgotPassword: function() {
 			window.location.assign(FORGOT_PASSWORD)
 		},
+
+		clearError: function() {
+			this.error = ''
+		}
 	}
 })
