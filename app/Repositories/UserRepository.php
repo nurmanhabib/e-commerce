@@ -11,6 +11,7 @@ namespace App\Repositories;
 use App\Events\UserRegistered;
 use App\Models\Role;
 use App\Models\User;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
@@ -33,15 +34,36 @@ class UserRepository extends Repository
         return User::class;
     }
 
+    public function registerEmail($email, $role = 'member')
+    {
+        $credentials = compact('email');
+
+        return $this->register($credentials);
+    }
+
     public function registerAndActivate(array $credentials, array $profile = [], $role = 'member')
     {
         $this->register($credentials, $profile, $role, true);
     }
 
+    public function registerSocial($driver, $appid, array $credentials, array $profile = [], $role = 'member', $activated = false)
+    {
+        $user = $this->register($credentials, $profile, $role, $activated);
+
+        $user->socialite()->forceFill([
+            'name'  => $driver,
+            'appid' => $appid
+        ]);
+    }
+
     public function register(array $credentials, array $profile = [], $role = 'member', $activated = false)
     {
         if (array_key_exists('password', $credentials)) {
-            $credentials['password'] = $this->createPassword($credentials['password']);
+            if (!empty($credentials['email'])) {
+                $credentials['password'] = $this->createPassword($credentials['password']);
+            } else {
+                unset($credentials['password']);
+            }
         }
 
         $user = $this->create($credentials);
@@ -50,8 +72,10 @@ class UserRepository extends Repository
             $this->generateActivationCode($user);
         }
 
-        if (!empty($profile) && !$user->hasProfile()) {
+        if (!$user->hasProfile()) {
             $user->profile()->create($profile);
+        } else {
+            $user->profile()->update($profile);
         }
 
         $role = Role::where('slug', $role)->first();
@@ -60,7 +84,7 @@ class UserRepository extends Repository
             $user->roles()->attach($role);
         }
 
-        return $user;
+        return $user->load('suppliers');
     }
 
     public function authenticate(array $credentials)
@@ -87,14 +111,15 @@ class UserRepository extends Repository
 
     public function authenticateById($id)
     {
-        $user = $this->find($id);
+        try {
+            $user = $this->find($id);
 
-        if ($user) {
             return [
-                'user'  => $user,
-                'token' => $this->getToken($user),
+                'status'    => 'success',
+                'user'      => $user,
+                'token'     => $this->getToken($user),
             ];
-        } else {
+        } catch (ModelNotFoundException $e) {
             return null;
         }
     }
