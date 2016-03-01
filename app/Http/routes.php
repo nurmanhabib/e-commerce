@@ -21,7 +21,7 @@ $app->group(['namespace' => 'App\Http\Controllers\Frontend\Auth'], function () u
     $app->get('forgot-password', 'ReminderController@forgotPassword');
 });
 
-$app->group(['namespace' => 'App\Http\Controllers\Frontend\Admin', 'middleware' => 'auth.web', 'prefix' => 'admin'], function () use ($app) {
+$app->group(['namespace' => 'App\Http\Controllers\Frontend\Admin', 'prefix' => 'admin'], function () use ($app) {
     $app->get('/', 'DashboardController@login');
     $app->get('dashboard', 'DashboardController@index');
     $app->get('category', 'CategoryController@index');
