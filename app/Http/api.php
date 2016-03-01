@@ -51,7 +51,7 @@ $api->group(['middleware' => 'auth'], function ($api) {
 /*******************************
  **  Resource Route (or CRUD) **
  *******************************/
-// resource('users',       'UserController', $api);
+resource('users',       'Admin\UserController', $api);
 resource('suppliers',   'SupplierController', $api);
 resource('products',    'ProductController', $api);
 resource('categories',  'CategoryController', $api);
