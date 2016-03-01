@@ -50,7 +50,7 @@
 			</ul>
 
 			<div class="content-divider text-muted form-group"><span>Don't have an account?</span></div>
-			<a href="login_registration.html" class="btn btn-default btn-block content-group">Sign up</a>
+			<a href="login_registration.html" class="btn bg-teal btn-block content-group">Create Account</a>
 			<span class="help-block text-center no-margin">By continuing, you're confirming that you've read our <a href="#">Terms &amp; Conditions</a> and <a href="#">Cookie Policy</a></span>
 		</div>
 	</form>
