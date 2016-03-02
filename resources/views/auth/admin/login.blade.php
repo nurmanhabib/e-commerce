@@ -43,7 +43,7 @@
 			</div>
 
 			<div class="form-group">
-				<button type="submit" class="btn bg-blue btn-block">Login <i class="icon-arrow-right14 position-right"></i></button>
+				<button type="submit" class="btn bg-blue btn-block btn-ladda btn-ladda-progress" data-style="zoom-out">Login <i class="icon-arrow-right14 position-right"></i></button>
 			</div>		
 		</div>
 	</form>
