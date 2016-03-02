@@ -4,7 +4,9 @@ new Vue({
 	data(){
 		return {
 			credentials: {
-				email: ''
+				email: '',
+				password: '',
+				remember: ''
 			},
 			error: ''
 		}
@@ -13,17 +15,22 @@ new Vue({
 		this.checkAuth()
 	},
 	methods: {
-		loginUser(){
+		loginUser: function() {
 			var credentials = {
-				email: this.credentials.email
+				email: this.credentials.email,
+				password: this.credentials.password
 			}
+
+			var remember = this.credentials.remember
 
 			this.$http.post(LOGIN_URL, credentials, (data) => {
 		      	// Redirect to a specified route
 		      	if(data.status == 'success') {
 		      		// Token disimpan di localStorage 'cookies'
-		        	localStorage.setItem('amtekcommerce_token', data.token)
-		        	localStorage.setItem('role', 'user')
+		        	var expiredDays = 30
+		        	setCookie('remember', remember, expiredDays)
+		        	setCookie('amtekcommerce_token', data.token, expiredDays)
+		        	setCookie('role', data.user.roles[0].slug, expiredDays)
 		        	// routing bila data success login redirect
 		        	window.location.assign(ADMIN_SITE)
 		      	} else {
