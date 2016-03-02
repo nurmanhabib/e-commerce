@@ -1,11 +1,13 @@
 var Loading = require('./components/Loading.vue');
 var Content = require('./components/Content.vue');
+var Dashboard = require('./components/Dashboard.vue');
 var Config = require('./config.js');
 
 module.exports = {
     components: {
         'loading': Loading,
-        'content': Content
+        'content': Content,
+        'dashboard': Dashboard
     },
     methods: {
     	loading(type, timeout) {
@@ -22,5 +24,8 @@ module.exports = {
     	loaded() {
     		this.$broadcast('loading.hide');
     	}
+    },
+
+    ready() {
     }
 }
