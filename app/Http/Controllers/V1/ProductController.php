@@ -45,6 +45,7 @@ class ProductController extends Controller
         	'name',
         	'description',
         	'price',
+        	'tags',
         	'category_id'
         );
 
