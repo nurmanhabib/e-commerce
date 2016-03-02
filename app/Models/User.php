@@ -116,8 +116,13 @@ class User extends Model implements
         return !empty($this->password);
     }
 
-//    public function tenants()
-//    {
-//        return $this->belongsToMany(Tenant::class, 'user_tenant');
-//    }
+    public function supplier()
+    {
+        return $this->belongsToMany(Supplier::class, 'user_supplier');
+    }
+   
+    public function shippingAddress()
+    {
+        return $this->hasMany(ShippingAddress::class);
+    }
 }

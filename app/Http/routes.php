@@ -17,7 +17,8 @@ $app->group(['namespace' => 'App\Http\Controllers\Frontend\Auth'], function () u
     $app->get('login', 'LoginController@user');
     $app->get('admin', 'LoginController@admin');
     $app->get('supplier', 'LoginController@supplier');
-    $app->get('register', 'RegisterController@register');
+    $app->get('register', 'RegisterController@registerOnlyEmail');
+    $app->get('register/{activation_code}', 'RegisterController@activate');
     $app->get('reset-password/{token}', 'ReminderController@reset');
     $app->get('forgot-password', 'ReminderController@forgotPassword');
 });
