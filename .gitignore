@@ -1,6 +1,8 @@
 /vendor
 /node_modules
 /public/node_modules
+/public/app/admin/buid.js
+/public/buid.js
 /.idea
 .env
 npm-debug.log
