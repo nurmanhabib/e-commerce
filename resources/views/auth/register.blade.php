@@ -46,7 +46,7 @@
 			</div>
 
 			<div class="form-group has-feedback has-feedback-left">
-				<input v-model="password" type="text" minlength="8" class="form-control" placeholder="Password">
+				<input v-model="password" type="password" minlength="8" class="form-control" placeholder="Password">
 				<div class="form-control-feedback">
 					<i class="icon-lock2 text-muted"></i>
 				</div>
