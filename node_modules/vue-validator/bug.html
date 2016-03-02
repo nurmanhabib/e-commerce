@@ -1,0 +1,44 @@
+<html>
+  <head>
+    <title>vue-validator prototype</title>
+    <script src="./node_modules/vue/dist/vue.js"></script>
+    <script src="./dist/vue-validator.js"></script>
+  </head>
+  <body>
+    <form id="test">
+      <input type="text" v-validate="custom" v-model="groupname">
+      <span class="error" v-if="validation.groupname.custom">Group name should be longer than 3 letter</span>
+      <ul>
+        <li v-repeat="person : persons">
+          <input type="text" v-model="person.name" v-validate="required, custom">
+          <span class="error" v-if="validation.person.name.custom">custome</span>
+          <span class="error" v-if="validation.person.name.required">required</span>
+        </li>
+      </ul>
+    </form>
+    <script>
+      Vue.use(window['vue-validator']);
+      var test = new Vue({
+        el: '#test',
+        data: {
+          groupname: '',
+          persons: [
+            {
+              name: ''
+            },
+            {
+              name: ''
+            }
+          ]
+        },
+        validator: {
+          validates: {
+            custom: function (val) {
+              return val.length > 3;
+            }
+          }
+        }
+      });
+    </script>
+  </body>
+</html>
