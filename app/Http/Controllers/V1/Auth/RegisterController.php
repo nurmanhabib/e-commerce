@@ -56,6 +56,38 @@ class RegisterController extends Controller
     }
 
     /**
+     * Untuk melengkapi data dari register berdasarkan email
+     * 
+     * @param  Request $request [description]
+     * @return [type]           [description]
+     */
+    public function completeRegistration(Request $request)
+    {
+        $this->validate($request, [
+            'activation_code'       => 'required',
+            'password'              => 'required|min:10',
+
+            'profile.first_name'    => 'required',
+            'profile.last_name'     => 'required',
+            'profile.gender'        => 'required',
+            'address.address_line_1'=> 'required',
+            'address.phone'         => 'required'
+        ]);
+
+        $credentials    = $request->only('password', 'activation_code');
+        $profile        = $request->get('profile');
+        $address        = $request->get('address');
+        $address['name']= 'home';
+        $user           = $this->userRepository->completeRegistration($credentials, $address, $profile);
+
+        return [
+            'status'            => 'success',
+            'user'              => $user,
+            'activation_code'   => $user->activation_code
+        ];
+    }
+
+    /**
      * Untuk register berdasarkan data lengkap
      * 
      * @param  Request $request [description]
@@ -64,17 +96,15 @@ class RegisterController extends Controller
     public function register(Request $request)
     {
         $this->validate($request, [
-            'username'              => 'required|min:8|max:20|unique:users',
             'email'                 => 'required|email|unique:users',
             'password'              => 'required|min:10',
 
             'profile.first_name'    => 'required',
             'profile.last_name'     => 'required',
-            'profile.gender'        => 'required',
-            'profile.avatar'        => 'required',
+            'profile.gender'        => 'required'
         ]);
 
-        $credentials    = $request->only('username', 'email', 'password');
+        $credentials    = $request->only('email', 'password');
         $profile        = $request->get('profile');
         $user           = $this->userRepository->register($credentials, $profile, $request->has('activated'));
 
