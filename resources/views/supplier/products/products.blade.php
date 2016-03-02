@@ -176,6 +176,13 @@
 									</div>
 								</div>
 
+								<div class="form-group">
+									<label class="control-label col-lg-4">Tags</label>
+									<div class="col-lg-8">
+										<input v-model="edit.tags" type="text" class="form-control">
+									</div>
+								</div>
+
 							</fieldset>
 						</form>
 					</div>
