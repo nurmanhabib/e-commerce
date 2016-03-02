@@ -9,6 +9,7 @@ new Vue({
 				name: '',
 				description: '',
 				price: '',
+				tags: '',
 				category_id: 0
 			},
 			edit: {
@@ -16,6 +17,7 @@ new Vue({
 				name: '',
 				description: '',
 				price: '',
+				tags: '',
 				category_id: ''
 			}
 		}
@@ -48,6 +50,7 @@ new Vue({
 					name: this.newProducts.name,
 					description: this.newProducts.description,
 					price: this.newProducts.price,
+					tags: this.newProducts.tags,
 					category_id: this.newProducts.category_id
 				}
 
@@ -59,6 +62,7 @@ new Vue({
 					this.newProducts.name = ''
 					this.newProducts.description = ''
 					this.newProducts.price = ''
+					this.newProducts.tags = ''
 					this.newProducts.category_id = 0
 
 					return this.showProducts()
@@ -93,6 +97,7 @@ new Vue({
 					this.edit.name = ''
 					this.edit.description = ''
 					this.edit.price = ''
+					this.edit.tags = ''
 					this.edit.category_id = '0'
 
 					return this.showProducts()
