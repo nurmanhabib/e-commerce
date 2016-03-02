@@ -90,4 +90,30 @@ class SendmailController extends Controller
             'message'   => 'Mail has been send.'
         ];
     }
+
+    public function register(Request $request)
+    {
+        $this->validate($request, [
+            'to.email'  => 'required',
+            'to.name'   => 'required|string',
+            'subject'   => 'required',
+            'link'      => 'required'
+        ]);
+
+        $email  = $request->all();
+        $data   = [
+            'email' => $email['to']['email'],  
+            'link'  => $request->get('link')
+        ];
+
+        Mail::send('emails.register', $data, function ($message) use ($email) {
+            $message->to($email['to']['email'], $email['to']['name']);
+            $message->subject($email['subject']);
+        });
+
+        return [
+            'status'    => 'success',
+            'message'   => 'Mail has been send.'
+        ];
+    }
 }
