@@ -105,6 +105,13 @@
 									</div>
 								</div>
 
+								<div class="form-group">
+									<label class="control-label col-lg-4">Tags</label>
+									<div class="col-lg-8">
+										<input v-model="newProducts.tags" type="text" class="form-control">
+									</div>
+								</div>
+
 							</fieldset>
 						</form>
 					</div>
@@ -166,6 +173,13 @@
 									<label class="control-label col-lg-4">Description</label>
 									<div class="col-lg-8">
 										<textarea v-model="edit.description" class="form-control" rows="5" cols="5"></textarea>
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label class="control-label col-lg-4">Tags</label>
+									<div class="col-lg-8">
+										<input v-model="edit.tags" type="text" class="form-control">
 									</div>
 								</div>
 

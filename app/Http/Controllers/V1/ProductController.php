@@ -45,6 +45,7 @@ class ProductController extends Controller
         	'name',
         	'description',
         	'price',
+        	'tags',
         	'category_id'
         );
 
@@ -115,6 +116,7 @@ class ProductController extends Controller
 			$product->name 			= $request->input('name');
 			$product->description 	= $request->input('description');
 			$product->price 		= $request->input('price');
+			$product->tags 			= $request->input('tags');
 			$product->category_id 	= $request->input('category_id');
 
 			if($product->save()){

@@ -11,6 +11,7 @@ namespace App\Repositories;
 use App\Events\UserRegistered;
 use App\Models\Role;
 use App\Models\User;
+use App\Models\ShippingAddress;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
@@ -59,6 +60,29 @@ class UserRepository extends Repository
         if ($role) {
             $user->roles()->attach($role);
         }
+
+        return $user;
+    }
+
+    public function completeRegistration(array $credentials, array $address, array $profile = [], $role = 'member', $activated = true)
+    {
+        $credentials    = collect($credentials);
+        $password       = $credentials->pull('password');
+        $user           = $this->findWhere($credentials->toArray())->first();
+
+        $user = $this->createShippingAddress($user, $address);
+
+        $role = Role::where('slug', $role)->first();
+        if ($role) {
+            $user->roles()->attach($role);
+        }
+
+        $this->setProfile($user, $profile);
+
+        $user->password         = $this->createPassword($password);
+        $user->activation_code  = null;
+
+        $user->save();
 
         return $user;
     }
@@ -125,9 +149,9 @@ class UserRepository extends Repository
         return $user->makeVisible('activation_code');
     }
 
-    public function resetPassword($email, $remember_token, $password)
+    public function resetPassword($remember_token, $password)
     {
-        $user = $this->findWhere(compact('email', 'remember_token'))->first();
+        $user = $this->findWhere(compact('remember_token'))->first();
 
         if ($user) {
             $this->setPassword($user, $password);
@@ -164,5 +188,12 @@ class UserRepository extends Repository
         $user->save();
 
         return $user;
+    }
+
+    public function createShippingAddress(User $user, array $address)
+    {
+        $user->shippingAddress()->create($address);
+
+        return $user->load('shippingAddress');
     }
 }

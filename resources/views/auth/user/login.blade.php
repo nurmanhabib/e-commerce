@@ -1,7 +1,7 @@
 @extends('layouts.login')
 
 @section('content')
-	<form id="login">
+	<form id="login" v-on:submit.prevent="loginUser">
 		<div class="panel panel-body login-form">
 			<div class="text-center">
 				<div class="icon-object border-slate-300 text-slate-300"><i class="icon-reading"></i></div>
@@ -17,11 +17,18 @@
 				</div>
 			</div>
 
+			<div class="form-group has-feedback has-feedback-left">
+				<input v-model="credentials.password" type="password" minlength="10" class="form-control" placeholder="Password">
+				<div class="form-control-feedback">
+					<i class="icon-lock2 text-muted"></i>
+				</div>
+			</div>
+
 			<div class="form-group login-options">
 				<div class="row">
 					<div class="col-sm-6">
 						<label class="checkbox-inline">
-							<input type="checkbox" class="styled" checked="checked">
+							<input v-model="credentials.remember" type="checkbox" class="styled" checked="checked">
 							Remember
 						</label>
 					</div>
@@ -33,7 +40,9 @@
 			</div>
 
 			<div class="form-group">
-				<button v-on:click="loginUser" type="button" class="btn bg-blue btn-block">Login <i class="icon-arrow-right14 position-right"></i></button>
+				<button type="submit" class="btn bg-blue btn-block">
+					Login <i class="icon-arrow-right14 position-right"></i>
+				</button>
 			</div>
 
 			<div class="content-divider text-muted form-group"><span>or sign in with</span></div>

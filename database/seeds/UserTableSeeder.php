@@ -27,6 +27,7 @@ class UserTableSeeder extends Seeder
         $roles = collect([
             'admin'     => 'Administrator',
             'member'    => 'Member',
+            'supplier'  => 'Supplier'
         ]);
 
         $roles->transform(function ($name, $slug) {
@@ -45,6 +46,12 @@ class UserTableSeeder extends Seeder
                 'email'     => 'member@amteklab.com',
                 'password'  => 'password',
                 'roles'     => ['member'],
+            ],
+            [
+                'username'  => 'supplier',
+                'email'     => 'supplier@amteklab.com',
+                'password'  => 'password',
+                'roles'     => ['supplier'],
             ],
         ]);
 
