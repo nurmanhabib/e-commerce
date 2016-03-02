@@ -38,7 +38,7 @@
 			</div>
 
 			<div class="form-group">
-				<button v-on:click="loginSupplier" type="button" class="btn bg-blue btn-block">Login <i class="icon-arrow-right14 position-right"></i></button>
+				<button v-on:click="loginSupplier" type="button" class="btn bg-blue btn-block btn-ladda btn-ladda-progress" data-style="zoom-out">Login <i class="icon-arrow-right14 position-right"></i></button>
 			</div>
 
 			<div class="content-divider text-muted form-group"><span>or sign in with</span></div>
