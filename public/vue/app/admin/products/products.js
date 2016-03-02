@@ -87,6 +87,7 @@ new Vue({
 					name: this.edit.name,
 					description: this.edit.description,
 					price: this.edit.price,
+					tags: this.edit.tags,
 					category_id: this.edit.category_id
 				}
 				this.$http.put(API_URL + '/products/' + id, product, (data) => {
