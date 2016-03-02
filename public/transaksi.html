@@ -302,7 +302,10 @@
 								<!-- Main -->
 								<li class="navigation-header"><span>Dashboard</span> <i class="icon-menu" title="Main pages"></i></li>
 								<li><a href="index.html"><i class="icon-home4"></i> <span>Dashboard</span></a></li>
-								<li class="active"><a href="index.html"><i class="icon-cart2"></i> <span>Transaksi</span></a></li>
+								<li><a href="#"><i class="icon-file-text2"></i> <span>Category</span></a></li>
+								<li><a href="#"><i class="icon-cart2"></i> <span>Product</span></a></li>
+								<li class="active"><a href="index.html"><i class="icon-cart2"></i> <span>Transaction</span></a></li>
+								<li><a href="user-management.html"><i class="icon-users2"></i> <span>User Management</span></a></li>
 								<!-- /main -->
 
 							</ul>
@@ -322,14 +325,14 @@
 				<div class="page-header">
 					<div class="page-header-content">
 						<div class="page-title">
-							<h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">Transaksi</h4>
+							<h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">Transaction</h4>
 						</div>
 					</div>
 
 					<div class="breadcrumb-line">
 						<ul class="breadcrumb">
 							<li><a href="index.html"><i class="icon-home2 position-left"></i> Home</a></li>
-							<li class="active">Transaksi</li>
+							<li class="active">Transaction</li>
 						</ul>
 					</div>
 				</div>
@@ -341,16 +344,15 @@
 
 					<div class="panel panel-flat">
 						<div class="panel-heading">
-							<legend class="text-bold panel-title">Transaksi</legend>
+							<legend class="text-bold panel-title">Transaction</legend>
 						</div>
 						<div class="panel-body">
-							<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal_add"><i class="icon-plus22"></i> Add transasksi</button>
 							<table class="table datatable-basic">
 								<thead>
 									<tr>
-										<th><strong>Id Transaksi</strong></th>
-										<th><strong>Nama Toko</strong></th>
-										<th><strong>Total Pembayaran</strong></th>
+										<th><strong>Id Transaction</strong></th>
+										<th><strong>Store</strong></th>
+										<th><strong>Total Payment</strong></th>
 										<th><strong>Status</strong></th>
 										<th class="text-center"><strong>Actions</strong></th>
 									</tr>
@@ -362,8 +364,18 @@
 										<td>1100000</td>
 										<td><span class="label label-warning">Pending</span></td>
 										<td class="text-center">
-											<a v-on:click="edittransasksis(transasksi)" class="btn btn-default btn-xs" data-toggle="modal" data-target="#modal_edit" data-popup="tooltip" title="" data-original-title="Edit" title="Edit"><i class="fa fa-pencil"></i></a>
-											<a v-on:click="deletetransasksis(transasksi.id)" class="btn btn-default btn-xs" data-popup="tooltip" title="" data-original-title="Delete"><i class="fa fa-trash"></i></a>
+											<a class="btn btn-info btn-xs" data-toggle="modal" data-target="#modal_edit" data-popup="tooltip" title="" data-original-title="Detail" title="Detail">Detail</a>
+											<a class="btn btn-default btn-xs" data-popup="tooltip" title="" data-original-title="Delete"><i class="fa fa-trash"></i></a>
+										</td>
+									</tr>
+									<tr v-for="transasksi in transasksis">
+										<td>183</td>
+										<td>Amteklab</td>
+										<td>19090000</td>
+										<td><span class="label label-success">Delivered</span></td>
+										<td class="text-center">
+											<a class="btn btn-info btn-xs" data-toggle="modal" data-target="#modal_edit" data-popup="tooltip" title="" data-original-title="Detail" title="Detail">Detail</a>
+											<a class="btn btn-default btn-xs" data-popup="tooltip" title="" data-original-title="Delete"><i class="fa fa-trash"></i></a>
 										</td>
 									</tr>
 								</tbody>
