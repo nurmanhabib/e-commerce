@@ -56,7 +56,7 @@ class RegisterController extends Controller
     }
 
     /**
-     * Untuk melengkapi data dari register berdasarkan email
+     * Untuk melengkapi data dari register member berdasarkan email
      * 
      * @param  Request $request [description]
      * @return [type]           [description]
@@ -79,6 +79,39 @@ class RegisterController extends Controller
         $address        = $request->get('address');
         $address['name']= 'home';
         $user           = $this->userRepository->completeRegistration($credentials, $address, $profile);
+
+        return [
+            'status'            => 'success',
+            'user'              => $user,
+            'activation_code'   => $user->activation_code
+        ];
+    }
+
+    /**
+     * Untuk melengkapi data dari register supplier berdasarkan email
+     * 
+     * @param  Request $request [description]
+     * @return [type]           [description]
+     */
+    public function completeRegistrationSupplier(Request $request)
+    {
+        $this->validate($request, [
+            'activation_code'           => 'required',
+            'password'                  => 'required|min:10',
+
+            'profile.first_name'        => 'required',
+            'profile.last_name'         => 'required',
+            'profile.gender'            => 'required',
+
+            'supplier.name'             => 'required',
+            'supplier.address_line_1'   => 'required',
+            'supplier.phone_1'          => 'required'
+        ]);
+
+        $credentials    = $request->only('password', 'activation_code');
+        $profile        = $request->get('profile');
+        $supplier       = $request->get('supplier');
+        $user           = $this->userRepository->completeRegistrationSupplier($credentials, $supplier, $profile);
 
         return [
             'status'            => 'success',
