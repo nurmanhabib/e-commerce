@@ -9,7 +9,7 @@
 			</div>
 
 			<div v-if="error !== '' " class="alert alert-danger alert-styled-left alert-bordered">
-				<button v-on:click="clearError" type="button" class="close" data-dismiss="alert"><span>×</span><span class="sr-only">Close</span></button>
+				<button v-on:click="clearError" type="button" class="close" data-dismiss="alert"><span>&times;</span><span class="sr-only">Close</span></button>
 				<span class="text-semibold">@{{ error }}</span>
 		    </div>
 
@@ -31,7 +31,7 @@
 				<div class="row">
 					<div class="col-sm-6">
 						<label class="checkbox-inline">
-							<input v-model="credentials.remember" type="checkbox" class="styled" checked="checked">
+							<input v-model="credentials.remember" type="checkbox" class="styled">
 							Remember
 						</label>
 					</div>

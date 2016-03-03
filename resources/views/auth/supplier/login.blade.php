@@ -8,6 +8,11 @@
 				<h5 class="content-group">Login to your account <small class="display-block">Your credentials</small></h5>
 			</div>
 
+			<div v-if="error !== '' " class="alert alert-danger alert-styled-left alert-bordered">
+				<button v-on:click="clearError" type="button" class="close" data-dismiss="alert"><span>&times;</span><span class="sr-only">Close</span></button>
+				<span class="text-semibold">@{{ error }}</span>
+		    </div>
+
 			<div class="form-group has-feedback has-feedback-left">
 				<input v-model="credentials.email" type="email" class="form-control" placeholder="Email">
 				<div class="form-control-feedback">
@@ -16,7 +21,7 @@
 			</div>
 
 			<div class="form-group has-feedback has-feedback-left">
-				<input v-model="credentials.password" type="text" class="form-control" placeholder="Password">
+				<input v-model="credentials.password" type="password" class="form-control" placeholder="Password">
 				<div class="form-control-feedback">
 					<i class="icon-lock2 text-muted"></i>
 				</div>
@@ -26,13 +31,13 @@
 				<div class="row">
 					<div class="col-sm-6">
 						<label class="checkbox-inline">
-							<input type="checkbox" class="styled" checked="checked">
+							<input v-model="credentials.remember" type="checkbox" class="styled">
 							Remember
 						</label>
 					</div>
 
 					<div class="col-sm-6 text-right">
-						<a href="login_password_recover.html">Forgot password?</a>
+						<a v-on:click="forgotPassword">Forgot password?</a>
 					</div>
 				</div>
 			</div>
@@ -50,7 +55,7 @@
 			</ul>
 
 			<div class="content-divider text-muted form-group"><span>Don't have an account?</span></div>
-			<a href="login_registration.html" class="btn bg-teal btn-block content-group">Create Account</a>
+			<a v-on:click="signUp" class="btn bg-teal btn-block content-group">Create Account</a>
 			<span class="help-block text-center no-margin">By continuing, you're confirming that you've read our <a href="#">Terms &amp; Conditions</a> and <a href="#">Cookie Policy</a></span>
 		</div>
 	</form>

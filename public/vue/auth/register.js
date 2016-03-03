@@ -53,7 +53,6 @@ new Vue({
                 this.address.phone          = ''
             }).error((err) => {
                 this.error = err.message
-                console.log(err)
             })
         },
 
@@ -76,15 +75,13 @@ new Vue({
                     this.status     = data.status
                     this.message    = data.message
                     this.email      = ''
-                    console.log(data)
+
                 }).error((err) => {
-                    this.error = err
-                    console.log(this.error)
+                    this.error = err.message
                 })    
 
             }).error((err) => {
                 this.error = err.message
-                console.log(err)
             })
         },
 
@@ -118,7 +115,6 @@ new Vue({
                 this.address.phone          = ''
             }).error((err) => {
                 this.error = err.message
-                console.log(err)
             })
         },
 
