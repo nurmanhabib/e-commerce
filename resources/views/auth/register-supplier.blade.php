@@ -5,7 +5,7 @@
 		<div class="panel panel-body login-form">
 			<div class="text-center">
 				<div class="icon-object border-success text-success"><i class="icon-plus3"></i></div>
-				<h5 class="content-group">Register account <small class="display-block">Email is required</small></h5>
+				<h5 class="content-group">Register account Supplier <small class="display-block">Email is required</small></h5>
 			</div>
 
 		    <div v-if="message !== null || error !== null">
@@ -20,7 +20,7 @@
 			</div>
 
 			<div class="form-group has-feedback has-feedback-left">
-				<input type="hidden" v-model="register_for" value="member">
+				<input type="hidden" v-model="register_for" value="supplier">
 				<input v-model="email" type="email" class="form-control" placeholder="Email">
 				<div class="form-control-feedback">
 					<i class="icon-mail5 text-muted"></i>
