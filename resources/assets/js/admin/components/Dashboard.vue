@@ -3,7 +3,7 @@
 </style>
 
 <template>
-	Message from dashboard: {{ message }}
+	<slot>Message from dashboard: {{ message }}</slot>
 </template>
 
 <script lang="es6">
