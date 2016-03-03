@@ -28,7 +28,8 @@ $api->post('auth/reset-password',   'Auth\ResetPasswordController@resetPassword'
  **  User Profile (Logged In) **
  *******************************/
 $api->group(['middleware' => 'auth'], function ($api) {
-    // $api->get('user',                   'User\UserController@show');
+    $api->get('user',                   'User\UserController@show');
+    $api->get('user/roles',             'User\UserController@roles');
     // $api->put('user',                   'User\UserController@update');
     $api->get('user/profile',           'User\ProfileController@show');
     $api->put('user/profile',           'User\ProfileController@update');
