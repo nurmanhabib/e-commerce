@@ -22,6 +22,8 @@
 
 <body class="navbar-top">
     <div id="app">
+        <auth role="admin"></auth>
+
         <loading>
             <div class="loading">
                 <div class="loader">Loading...</div>
@@ -378,13 +380,7 @@
 
     <!-- Build Core -->
     <script src="{{ asset('app/admin/build.js') }}"></script>
-
-    <!-- <script src="{{ asset('node_modules/vue/dist/vue.min.js') }}"></script>
-    <script src="{{ asset('node_modules/vue-resource/dist/vue-resource.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('vue/cookies.js') }}"></script>
-    <script src="{{ asset('vue/http.js') }}"></script>
-    <script src="{{ asset('vue/auth/logout.js') }}"></script>
-    <script src="{{ asset('vue/auth/checkauth.js') }}"></script> -->
+    <!-- /Build Core -->
 <!-- /core JS files -->
 
 <!-- Theme JS files -->
