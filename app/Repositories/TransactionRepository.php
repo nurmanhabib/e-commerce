@@ -60,18 +60,25 @@ class TransactionRepository extends Repository
 
 	}
 
-	public function setStatusInvoice(User $user, Invoice $invoice, $status)
+	public function setStatusInvoice(Invoice $invoice, $status)
 	{
+		$invoice->status 	= $status;
+		$invoice->save();
 
+		return $invoice;
 	}
 
 	public function getAllInvoice()
 	{
+		$invoice = Invoice::all();
 
+		return $invoice;
 	}
 
 	public function getInvoiceByStatus($status)
 	{
-		
+		$invoice = Invoice::where('status', $status)->get();
+
+		return $invoice;
 	}
 }
