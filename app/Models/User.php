@@ -125,4 +125,9 @@ class User extends Model implements
     {
         return $this->hasMany(ShippingAddress::class);
     }
+
+    public function invoices()
+    {
+        return $this->hasMany(Invoice::class);
+    }
 }

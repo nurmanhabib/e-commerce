@@ -71,21 +71,25 @@ class UserRepository extends Repository
         $password       = $credentials->pull('password');
         $user           = $this->findWhere($credentials->toArray())->first();
 
-        $user = $this->createShippingAddress($user, $address);
+        if ($user) {
+            $user = $this->createShippingAddress($user, $address);
 
-        $role = Role::where('slug', $role)->first();
-        if ($role) {
-            $user->roles()->attach($role);
+            $role = Role::where('slug', $role)->first();
+            if ($role) {
+                $user->roles()->attach($role);
+            }
+
+            $this->setProfile($user, $profile);
+
+            $user->password         = $this->createPassword($password);
+            $user->activation_code  = null;
+
+            $user->save();
+
+            return $user;    
+        } else {
+            return ['message' => 'User not found', 'activation_code' => 'activation code not found.'];
         }
-
-        $this->setProfile($user, $profile);
-
-        $user->password         = $this->createPassword($password);
-        $user->activation_code  = null;
-
-        $user->save();
-
-        return $user;
     }
 
     public function completeRegistrationSupplier(array $credentials, array $supplier, array $profile = [], $role = 'supplier', $activated = true)
@@ -111,7 +115,7 @@ class UserRepository extends Repository
 
             return $user;
         } else {
-            return ['message' => 'User not found', 'activation_code' => null];
+            return ['message' => 'User not found', 'activation_code' => 'Activation code not found.'];
         }
     }
 

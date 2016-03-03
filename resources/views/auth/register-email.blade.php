@@ -28,7 +28,7 @@
 			</div>
 			
 			<div class="from-group">
-				<button type="submit" class="btn bg-teal btn-block btn-lg">Register <i class="icon-circle-right2 position-right"></i></button>
+				<button type="submit" class="btn bg-teal btn-block btn-lg btn-ladda btn-ladda-progress">Register <i class="icon-circle-right2 position-right"></i></button>
 			</div><br>
 
 			<div class="content-divider text-muted form-group"><span>or create account with</span></div>
