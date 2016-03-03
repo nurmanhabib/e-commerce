@@ -1,7 +1,7 @@
 @extends('layouts.login')
 
 @section('content')
-	<form id="register" v-on:submit.prevent="activateAccount">
+	<form id="register" v-on:submit.prevent="activateMember">
 		<input type="hidden" v-model="activation_code" value="{{ $activation_code }}">
 		<div class="panel panel-body login-form">
 			<div class="text-center">
