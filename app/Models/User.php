@@ -120,9 +120,19 @@ class User extends Model implements
     {
         return $this->hasMany(UserSocialite::class);
     }
+    
+    public function supplier()
+    {
+        return $this->belongsToMany(Supplier::class, 'user_supplier');
+    }
+   
+    public function shippingAddress()
+    {
+        return $this->hasMany(ShippingAddress::class);
+    }
 
-//    public function tenants()
-//    {
-//        return $this->belongsToMany(Tenant::class, 'user_tenant');
-//    }
+    public function invoices()
+    {
+        return $this->hasMany(Invoice::class);
+    }
 }

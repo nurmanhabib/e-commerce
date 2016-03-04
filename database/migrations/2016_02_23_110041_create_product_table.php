@@ -16,8 +16,9 @@ class CreateProductTable extends Migration
             $table->increments('id');
             $table->string('code', 100);
             $table->string('name');
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->integer('price');
+            $table->text('tags')->nullable();
             $table->integer('category_id');
             $table->integer('supplier_id');
             $table->timestamps();
