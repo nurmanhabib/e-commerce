@@ -54,6 +54,8 @@ new Vue({
 					category_id: this.newProducts.category_id
 				}
 
+				console.log(newproducts)
+
 				this.$http.post(API_URL + '/products', newproducts, (data) => {
 
 					console.log(data);
@@ -66,9 +68,11 @@ new Vue({
 					this.newProducts.category_id = 0
 
 					return this.showProducts()
+				}).error((err) => {
+					console.log(err)
 				})
 			} else {
-				alert('Kategori tidak boleh kosong')
+				alert('Nama tidak boleh kosong')
 				return this.showProducts()
 			}
 		},
