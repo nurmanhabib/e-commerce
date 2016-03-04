@@ -11,8 +11,10 @@ function resource($path, $controller, &$api)
 }
 
 // Register
-$api->post('auth/register-email',   'Auth\RegisterController@emailOnly');
-$api->post('auth/register',         'Auth\RegisterController@register');
+$api->post('auth/register-email',       'Auth\RegisterController@emailOnly');
+$api->post('auth/complete-registration', 'Auth\RegisterController@completeRegistration');
+$api->post('auth/complete-registration-supplier', 'Auth\RegisterController@completeRegistrationSupplier');
+$api->post('auth/register',             'Auth\RegisterController@register');
 
 // Autentikasi
 $api->post('auth/credentials',      'Auth\LoginController@credentials');
@@ -64,3 +66,4 @@ resource('categories',  'CategoryController', $api);
 $api->post('sendmail',          'Sendmail\SendmailController@send');
 $api->post('welcome-mail',      'Sendmail\SendmailController@welcome');
 $api->post('forgot-password',   'Sendmail\SendmailController@forgotPassword');
+$api->post('register',          'Sendmail\SendmailController@register');

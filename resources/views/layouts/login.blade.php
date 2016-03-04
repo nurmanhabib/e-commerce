@@ -15,6 +15,7 @@
 	<link href="{{ asset('assets/css/components.css') }}" rel="stylesheet" type="text/css">
 	<link href="{{ asset('assets/css/colors.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('app/admin/css/loading.css') }}" rel="stylesheet" type="text/css">
+	<link href="{{ asset('assets/css/extras/animate.min.css') }}" rel="stylesheet" type="text/css">
 	<!-- /global stylesheets -->
 
 </head>
@@ -89,14 +90,27 @@
 
 	<!-- Theme JS files -->
 	<script type="text/javascript" src="{{ asset('assets/js/plugins/forms/styling/uniform.min.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('assets/js/plugins/velocity/velocity.min.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('assets/js/plugins/velocity/velocity.ui.min.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('assets/js/plugins/buttons/spin.min.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('assets/js/plugins/buttons/ladda.min.js') }}"></script>
 
 	<script type="text/javascript" src="{{ asset('assets/js/core/app.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('assets/js/pages/login.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('assets/js/pages/components_buttons.js') }}"></script>
 	<!-- /theme JS files -->
 	
     <!-- Build Core -->
     <script src="{{ asset('app/admin/build.js') }}"></script>
     <!-- /Build Core -->
+
+	<!-- Vue JS -->
+	<script src="{{ asset('node_modules/vue/dist/vue.min.js') }}"></script>
+	<script src="{{ asset('node_modules/vue-resource/dist/vue-resource.min.js') }}" ></script>
+	<script src="{{ asset('node_modules/vue-validator/dist/vue-validator.min.js') }}" ></script>
+    <script type="text/javascript" src="{{ asset('vue/cookies.js') }}"></script>
+	<script src="{{ asset('vue/http.js') }}"></script>
+	<!-- /Vue JS -->
 	
 	@yield('script')
 

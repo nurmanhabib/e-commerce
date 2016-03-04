@@ -9,6 +9,7 @@ new Vue({
 				name: '',
 				description: '',
 				price: '',
+				tags: '',
 				category_id: 0
 			},
 			edit: {
@@ -16,7 +17,8 @@ new Vue({
 				name: '',
 				description: '',
 				price: '',
-				category_id: ''
+				tags: '',
+				category_id: 0
 			}
 		}
 	},
@@ -48,23 +50,28 @@ new Vue({
 					name: this.newProducts.name,
 					description: this.newProducts.description,
 					price: this.newProducts.price,
+					tags: this.newProducts.tags,
 					category_id: this.newProducts.category_id
 				}
 
-				this.$http.post(API_URL + '/products', newproducts, (data) => {
+				console.log(newproducts)
 
-					console.log(data);
+				this.$http.post(API_URL + '/products', newproducts, (data) => {
+					$('#modal_add').modal('hide');
 					//Mengembalikan inputan kosong pada form input
 					this.newProducts.code = ''
 					this.newProducts.name = ''
 					this.newProducts.description = ''
 					this.newProducts.price = ''
+					this.newProducts.tags = ''
 					this.newProducts.category_id = 0
 
 					return this.showProducts()
+				}).error((err) => {
+					console.log(err)
 				})
 			} else {
-				alert('Kategori tidak boleh kosong')
+				alert('Nama tidak boleh kosong')
 				return this.showProducts()
 			}
 		},
@@ -83,17 +90,18 @@ new Vue({
 					name: this.edit.name,
 					description: this.edit.description,
 					price: this.edit.price,
+					tags: this.edit.tags,
 					category_id: this.edit.category_id
 				}
 				this.$http.put(API_URL + '/products/' + id, product, (data) => {
-
-					console.log(data)
+					$('#modal_edit').modal('hide');
 
 					this.edit.code = ''
 					this.edit.name = ''
 					this.edit.description = ''
 					this.edit.price = ''
-					this.edit.category_id = '0'
+					this.edit.tags = ''
+					this.edit.category_id = 0
 
 					return this.showProducts()
 				})
