@@ -1,0 +1,106 @@
+Hash: 44e3e4fed961c325b435
+Version: webpack 1.11.0
+Time: 5562ms
+                  Asset     Size  Chunks             Chunk Names
+test/specs/validates.js  2.41 MB       0  [emitted]  test/specs/validates.js
+chunk    {0} test/specs/validates.js (test/specs/validates.js) 625 kB [rendered]
+    [0] ./test/specs/validates.js 31.3 kB {0} [not cacheable] [built]
+    [1] ./~/power-assert/index.js 543 bytes {0} [not cacheable] [built]
+    [2] (webpack)/~/node-libs-browser/~/assert/assert.js 6.87 kB {0} [not cacheable] [built]
+    [3] (webpack)/~/node-libs-browser/~/util/util.js 13.2 kB {0} [not cacheable] [built]
+    [4] (webpack)/~/node-libs-browser/~/process/browser.js 1.9 kB {0} [not cacheable] [built]
+    [5] (webpack)/~/node-libs-browser/~/util/support/isBufferBrowser.js 196 bytes {0} [not cacheable] [built]
+    [6] (webpack)/~/node-libs-browser/~/util/~/inherits/inherits_browser.js 679 bytes {0} [not cacheable] [built]
+    [7] ./~/power-assert/~/empower/index.js 2.01 kB {0} [not cacheable] [built]
+    [8] ./~/power-assert/~/empower/lib/default-options.js 670 bytes {0} [not cacheable] [built]
+    [9] ./~/power-assert/~/empower/lib/decorator.js 3.62 kB {0} [not cacheable] [built]
+   [10] ./~/power-assert/~/empower/~/escallmatch/index.js 5.74 kB {0} [not cacheable] [built]
+   [11] ./~/power-assert/~/empower/~/escallmatch/~/esprima/esprima.js 177 kB {0} [not cacheable] [built]
+   [12] ./~/power-assert/~/empower/~/escallmatch/~/estraverse/estraverse.js 25.7 kB {0} [not cacheable] [built] [1 error]
+   [14] ./~/power-assert/~/empower/~/escallmatch/~/espurify/index.js 331 bytes {0} [not cacheable] [built]
+   [15] ./~/power-assert/~/empower/~/escallmatch/~/espurify/lib/create-whitelist.js 503 bytes {0} [not cacheable] [built]
+   [16] ./~/power-assert/~/empower/~/escallmatch/~/espurify/lib/ast-properties.js 5.36 kB {0} [not cacheable] [built]
+   [17] ./~/power-assert/~/empower/~/escallmatch/~/espurify/~/object-keys/index.js 3.53 kB {0} [not cacheable] [built]
+   [18] ./~/power-assert/~/empower/~/escallmatch/~/espurify/~/object-keys/isArguments.js 427 bytes {0} [not cacheable] [built]
+   [19] ./~/power-assert/~/xtend/immutable.js 325 bytes {0} [not cacheable] [built]
+   [20] ./~/power-assert/~/empower/~/escallmatch/~/espurify/lib/clone-ast.js 1.61 kB {0} [not cacheable] [built]
+   [21] ./~/power-assert/~/empower/~/escallmatch/~/espurify/~/isarray/index.js 123 bytes {0} [not cacheable] [built]
+   [22] ./~/power-assert/~/empower/~/escallmatch/~/array-foreach/index.js 263 bytes {0} [not cacheable] [built]
+   [23] ./~/power-assert/~/empower/~/escallmatch/~/array-map/index.js 300 bytes {0} [not cacheable] [built]
+   [24] ./~/power-assert/~/empower/~/escallmatch/~/array-filter/index.js 518 bytes {0} [not cacheable] [built]
+   [25] ./~/power-assert/~/empower/~/escallmatch/~/array-reduce/index.js 500 bytes {0} [not cacheable] [built]
+   [26] ./~/power-assert/~/empower/~/escallmatch/~/indexof/index.js 233 bytes {0} [not cacheable] [built]
+   [27] ./~/power-assert/~/empower/~/escallmatch/~/deep-equal/index.js 2.16 kB {0} [not cacheable] [built]
+   [28] ./~/power-assert/~/empower/~/escallmatch/~/deep-equal/lib/keys.js 213 bytes {0} [not cacheable] [built]
+   [29] ./~/power-assert/~/empower/~/escallmatch/~/deep-equal/lib/is_arguments.js 629 bytes {0} [not cacheable] [built]
+   [30] ./~/power-assert/~/xtend/mutable.js 310 bytes {0} [not cacheable] [built]
+   [31] ./~/power-assert/~/empower/lib/capturable.js 674 bytes {0} [not cacheable] [built]
+   [32] ./~/power-assert/~/empower/lib/decorate.js 1.48 kB {0} [not cacheable] [built]
+   [33] ./~/power-assert/~/power-assert-formatter/index.js 57 bytes {0} [not cacheable] [built]
+   [34] ./~/power-assert/~/power-assert-formatter/lib/create.js 1.83 kB {0} [not cacheable] [built]
+   [35] ./~/power-assert/~/power-assert-formatter/~/stringifier/index.js 2.51 kB {0} [not cacheable] [built]
+   [36] ./~/power-assert/~/power-assert-formatter/~/stringifier/~/traverse/index.js 8.75 kB {0} [not cacheable] [built]
+   [37] ./~/power-assert/~/power-assert-formatter/~/type-name/index.js 579 bytes {0} [not cacheable] [built]
+   [38] ./~/power-assert/~/power-assert-formatter/~/stringifier/strategies.js 9.4 kB {0} [not cacheable] [built]
+   [39] ./~/power-assert/~/power-assert-formatter/~/stringifier/~/array-foreach/index.js 263 bytes {0} [not cacheable] [built]
+   [40] ./~/power-assert/~/power-assert-formatter/~/stringifier/~/array-filter/index.js 518 bytes {0} [not cacheable] [built]
+   [41] ./~/power-assert/~/power-assert-formatter/~/stringifier/~/array-reduce-right/index.js 807 bytes {0} [not cacheable] [built]
+   [42] ./~/power-assert/~/power-assert-formatter/~/stringifier/~/indexof/index.js 233 bytes {0} [not cacheable] [built]
+   [43] ./~/power-assert/~/power-assert-formatter/lib/string-width.js 746 bytes {0} [not cacheable] [built]
+   [44] ./~/power-assert/~/power-assert-formatter/~/eastasianwidth/eastasianwidth.js 8.72 kB {0} [not cacheable] [built]
+   [45] ./~/power-assert/~/power-assert-formatter/lib/string-writer.js 666 bytes {0} [not cacheable] [built]
+   [46] ./~/power-assert/~/power-assert-formatter/lib/traverse.js 1.65 kB {0} [not cacheable] [built]
+   [47] ./~/power-assert/~/power-assert-formatter/~/estraverse/estraverse.js 25.6 kB {0} [not cacheable] [built] [1 error]
+   [49] ./~/power-assert/~/power-assert-formatter/~/acorn/dist/acorn.js 186 kB {0} [not cacheable] [built]
+   [50] (webpack)/~/node-libs-browser/~/events/events.js 6.61 kB {0} [not cacheable] [built]
+   [51] ./~/power-assert/~/power-assert-formatter/lib/esnode.js 1.38 kB {0} [not cacheable] [built]
+   [52] ./~/power-assert/~/power-assert-formatter/lib/location.js 2.59 kB {0} [not cacheable] [built]
+   [53] ./~/power-assert/~/power-assert-formatter/lib/udiff.js 1.02 kB {0} [not cacheable] [built]
+   [54] ./~/power-assert/~/power-assert-formatter/~/googlediff/index.js 93 bytes {0} [not cacheable] [built]
+   [55] ./~/power-assert/~/power-assert-formatter/~/googlediff/javascript/diff_match_patch_uncompressed.js 54.7 kB {0} [not cacheable] [built]
+   [56] ./~/power-assert/~/power-assert-formatter/lib/default-options.js 469 bytes {0} [not cacheable] [built]
+   [57] ./~/power-assert/~/power-assert-formatter/lib/built-in/assertion.js 345 bytes {0} [not cacheable] [built]
+   [58] ./~/power-assert/~/power-assert-formatter/lib/built-in/binary-expression.js 2.95 kB {0} [not cacheable] [built]
+   [59] ./~/power-assert/~/power-assert-formatter/~/object-keys/index.js 3.53 kB {0} [not cacheable] [built]
+   [60] ./~/power-assert/~/power-assert-formatter/~/object-keys/isArguments.js 427 bytes {0} [not cacheable] [built]
+   [61] ./~/power-assert/~/power-assert-formatter/lib/built-in/diagram.js 3.06 kB {0} [not cacheable] [built]
+   [62] ./~/power-assert/~/power-assert-formatter/lib/built-in/file.js 535 bytes {0} [not cacheable] [built]
+   [63] ./~/power-assert/~/power-assert-formatter/lib ^\.\/.*$ 656 bytes {0} [built]
+   [64] ./lib/validates.js 10 kB {0} [not cacheable] [built]
+
+WARNING in ./~/power-assert/~/power-assert-formatter/lib/create.js
+Critical dependencies:
+31:32-53 the request of a dependency is an expression
+ @ ./~/power-assert/~/power-assert-formatter/lib/create.js 31:32-53
+
+WARNING in ./~/power-assert/~/power-assert-formatter/~/acorn/dist/acorn.js
+Critical dependencies:
+27:31-39 This seems to be a pre-built javascript file. Though this is possible, it's not recommended. Try to require the original source to get better results.
+ @ ./~/power-assert/~/power-assert-formatter/~/acorn/dist/acorn.js 27:31-39
+
+ERROR in ./~/power-assert/~/power-assert-formatter/~/estraverse/package.json
+Module parse failed: /Users/kazupon/Projects/opensource/vue/vue-validator/node_modules/power-assert/node_modules/power-assert-formatter/node_modules/estraverse/package.json Line 2: Unexpected token :
+You may need an appropriate loader to handle this file type.
+| {
+|   "name": "estraverse",
+|   "description": "ECMAScript JS AST traversal functions",
+|   "homepage": "https://github.com/estools/estraverse",
+ @ ./~/power-assert/~/power-assert-formatter/~/estraverse/estraverse.js 761:22-47
+
+ERROR in ./~/power-assert/~/empower/~/escallmatch/~/estraverse/package.json
+Module parse failed: /Users/kazupon/Projects/opensource/vue/vue-validator/node_modules/power-assert/node_modules/empower/node_modules/escallmatch/node_modules/estraverse/package.json Line 2: Unexpected token :
+You may need an appropriate loader to handle this file type.
+| {
+|   "name": "estraverse",
+|   "description": "ECMAScript JS AST traversal functions",
+|   "homepage": "https://github.com/estools/estraverse",
+ @ ./~/power-assert/~/empower/~/escallmatch/~/estraverse/estraverse.js 766:22-47
+[32m11 08 2015 01:38:49.954:INFO [karma]: [39mKarma v0.13.8 server started at http://localhost:9876/
+[32m11 08 2015 01:38:49.960:INFO [launcher]: [39mStarting browser PhantomJS
+[32m11 08 2015 01:38:51.019:INFO [PhantomJS 1.9.8 (Mac OS X 0.0.0)]: [39mConnected on socket 2aROl1JGIcsm4EA9AAAA with id 3775969
+[31mPhantomJS 1.9.8 (Mac OS X 0.0.0) ERROR[39m
+  Error: Cannot find module "./package.json"
+  at /Users/kazupon/Projects/opensource/vue/vue-validator/test/specs/validates.js:7091:0 <- webpack:///~/power-assert/~/empower/~/escallmatch/~/estraverse/estraverse.js:28:25
+
+PhantomJS 1.9.8 (Mac OS X 0.0.0): Executed 0 of 0[31m ERROR[39m (0.223 secs / 0 secs)
+
