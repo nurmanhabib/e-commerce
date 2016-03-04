@@ -1,14 +1,24 @@
 var Loading = require('./components/Loading.vue');
+var Auth = require('./components/Auth.vue');
+var Login = require('./components/Login.vue');
 var Content = require('./components/Content.vue');
 var Dashboard = require('./components/Dashboard.vue');
-var Config = require('./config.js');
+var Category = require('./components/Category.vue');
+
+var config = require('./config.js');
+var auth = require('./helpers/auth.js');
+var redirect = require('./helpers/redirect.js');
 
 module.exports = {
     components: {
         'loading': Loading,
+        'auth': Auth,
+        'login': Login,
         'content': Content,
-        'dashboard': Dashboard
+        'dashboard': Dashboard,
+        'category': Category
     },
+    
     methods: {
     	loading(type, timeout) {
     		if (typeof type == 'undefined') {
@@ -21,11 +31,23 @@ module.exports = {
     			this.$broadcast('loading.hide');
     		}
     	},
+
     	loaded() {
     		this.$broadcast('loading.hide');
-    	}
+    	},
+
+        logout() {
+            auth.logout();
+
+            redirect.login();
+        }
     },
 
     ready() {
+        // 
+    },
+
+    events: {
+        // 
     }
 }
