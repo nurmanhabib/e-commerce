@@ -64,20 +64,20 @@
 					</div>
 
 					<div class="modal-body">
-						<form class="form-horizontal" action="#">
+						<form class="form-horizontal" v-on:submit.prevent="addProducts">
 							<fieldset class="content-group">
 								
 								<div class="form-group">
 			                    	<label class="control-label col-lg-4">Code</label>
 									<div class="col-lg-8">
-										<input v-model="newProducts.code" type="text" class="form-control">
+										<input v-model="newProducts.code" required type="text" class="form-control">
 									</div>
 			                    </div>
 
 			                    <div class="form-group">
 			                    	<label class="control-label col-lg-4">Category</label>
 			                    	<div class="col-lg-8">
-			                            <select v-model="newProducts.category_id" name="select" class="form-control">
+			                            <select v-model="newProducts.category_id" required name="select" class="form-control">
 			                                <option value="0" selected>--- None ---</option>
 			                                <option v-for="category in categories" value="@{{ category.id }}">@{{ category.name }}</option>
 			                            </select>
@@ -87,21 +87,21 @@
 								<div class="form-group">
 									<label class="control-label col-lg-4">Products Name</label>
 									<div class="col-lg-8">
-										<input v-model="newProducts.name" type="text" class="form-control">
+										<input v-model="newProducts.name" required type="text" class="form-control">
 									</div>
 								</div>
 
 								<div class="form-group">
 									<label class="control-label col-lg-4">Price</label>
 									<div class="col-lg-8">
-										<input v-model="newProducts.price" type="text" class="form-control">
+										<input v-model="newProducts.price" required type="text" class="form-control">
 									</div>
 								</div>
 
 								<div class="form-group">
 									<label class="control-label col-lg-4">Description</label>
 									<div class="col-lg-8">
-										<textarea v-model="newProducts.description" class="form-control" rows="5" cols="5"></textarea>
+										<textarea v-model="newProducts.description" required class="form-control" rows="5" cols="5"></textarea>
 									</div>
 								</div>
 
@@ -113,12 +113,15 @@
 								</div>
 
 							</fieldset>
+
+							<div class="pull-right">
+								<button type="reset" class="btn btn-default">Reset</button>
+								<button type="submit" class="btn btn-primary">Add Products</button>
+							</div>
 						</form>
 					</div>
 
 					<div class="modal-footer">
-						<button type="reset" class="btn btn-default" data-dismiss="modal">Close</button>
-						<button v-on:click="addProducts" type="button" class="btn btn-primary" data-dismiss="modal">Add Products</button>
 					</div>
 				</div>
 			</div>
