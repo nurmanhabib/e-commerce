@@ -104,35 +104,38 @@ new Vue({
         },
 
         activateMember: function() {
-            var activation_code = this.getActivationCode()
-            var credentials = {
-                profile: {
-                    first_name: this.profile.first_name,
-                    last_name: this.profile.last_name,
-                    gender: this.profile.gender
-                },
-                address: {
-                    address_line_1: this.address.address_line_1,
-                    address_line_2: this.address.address_line_2,
-                    phone:          this.address.phone
-                },
-                password: this.password,
-                activation_code: activation_code
+            if (this.password.length >= 10) {
+                var activation_code = this.getActivationCode()
+                var credentials = {
+                    profile: {
+                        first_name: this.profile.first_name,
+                        last_name: this.profile.last_name,
+                        gender: this.profile.gender
+                    },
+                    address: {
+                        address_line_1: this.address.address_line_1,
+                        address_line_2: this.address.address_line_2,
+                        phone:          this.address.phone
+                    },
+                    password: this.password,
+                    activation_code: activation_code
+                }
+                this.$http.post(API_URL + '/auth/complete-registration', credentials, (data) => {
+                    this.registration_status    = 'success'
+                    this.profile.first_name     = null
+                    this.profile.last_name      = null
+                    this.profile.gender         = null
+                    this.password               = null
+                    this.activation_code        = null
+                    this.address.address_line_1 = null
+                    this.address.address_line_2 = null
+                    this.address.phone          = null
+                }).error((err) => {
+                    this.error = err.message
+                })
+            } else {
+                this.error = "Your password is min 10 character!"
             }
-            
-            this.$http.post(API_URL + '/auth/complete-registration', credentials, (data) => {
-                this.registration_status    = 'success'
-                this.profile.first_name     = null
-                this.profile.last_name      = null
-                this.profile.gender         = null
-                this.password               = null
-                this.activation_code        = null
-                this.address.address_line_1 = null
-                this.address.address_line_2 = null
-                this.address.phone          = null
-            }).error((err) => {
-                this.error = err.message
-            })
         },
 
         activateSupplier: function() {
