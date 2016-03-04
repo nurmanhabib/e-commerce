@@ -40,35 +40,35 @@
 										<div class="col-md-12">
 											<div class="form-group">
 												<label>Name Supplier:</label>
-												<input type="text" v-model="supplier.name" class="form-control" placeholder="Name Supplier"></input>
+												<input type="text" v-model="supplier.name" required class="form-control" placeholder="Name Supplier"></input>
 											</div>
 										</div>
 
 										<div class="col-md-6">
 											<div class="form-group">
 												<label>Address 1 :</label>
-												<textarea type="text" v-model="supplier.address1" class="form-control" cols="5" rows="3" placeholder="Address 1"></textarea>
+												<textarea type="text" v-model="supplier.address1" required maxlength="100" class="form-control" cols="5" rows="3" placeholder="Address 1"></textarea>
 											</div>
 										</div>
 
 										<div class="col-md-6">
 											<div class="form-group">
 												<label>Address 2 :</label>
-												<textarea type="text" v-model="supplier.address2" class="form-control" cols="5" rows="3" placeholder="Address 2"></textarea>
+												<textarea type="text" v-model="supplier.address2" required maxlength="200" class="form-control" cols="5" rows="3" placeholder="Address 2"></textarea>
 											</div>
 										</div>
 
 										<div class="col-md-6">
 											<div class="form-group">
 												<label>Phone 1 :</label>
-												<input type="text" v-model="supplier.phone1" class="form-control" placeholder="Phone 1"></input>
+												<input type="text" v-model="supplier.phone1" maxlength="14" required class="form-control" placeholder="Phone 1"></input>
 											</div>
 										</div>
 
 										<div class="col-md-6">
 											<div class="form-group">
 												<label>Phone 2 :</label>
-												<input type="text" v-model="supplier.phone2" class="form-control" placeholder="Phone 2"></input>
+												<input type="text" v-model="supplier.phone2" maxlength="14" class="form-control" placeholder="Phone 2"></input>
 											</div>
 										</div>
 									</div>
@@ -88,7 +88,7 @@
 										<div class="col-md-6">
 											<div class="form-group">
 												<label>Email :</label>
-												<input type="email" v-model="supplier.email" class="form-control" placeholder="Email"></input>
+												<input type="email" v-model="supplier.email" required class="form-control" placeholder="Email"></input>
 											</div>
 										</div>
 
@@ -108,14 +108,14 @@
 										<div class="col-md-8 col-lg-offset-2">
 											<div class="form-group">
 												<label>First Name :</label>
-												<input type="text" v-model="profile.first_name" class="form-control" placeholder="First Name"></input>
+												<input type="text" v-model="profile.first_name" required class="form-control" placeholder="First Name"></input>
 											</div>
 										</div>
 
 										<div class="col-md-8 col-lg-offset-2">
 											<div class="form-group">
 												<label>Last Name :</label>
-												<input type="text" v-model="profile.last_name" class="form-control" placeholder="Last Name"></input>
+												<input type="text" v-model="profile.last_name" required class="form-control" placeholder="Last Name"></input>
 											</div>
 										</div>
 
@@ -143,7 +143,7 @@
 										<div class="col-md-6 col-lg-offset-3">
 											<div class="form-group">
 												<label>Password :</label>
-												<input type="password" v-model="password" class="form-control" minlength="10" placeholder="Password"></input>
+												<input type="password" v-model="password" pattern=".{10,}" required title="10 characters minimum" class="form-control" minlength="10" placeholder="Password"></input>
 											</div>
 										</div>
 									</div>
