@@ -14,14 +14,14 @@
 		    </div>
 
 			<div class="form-group has-feedback has-feedback-left">
-				<input v-model="credentials.email" type="email" class="form-control" placeholder="Email">
+				<input v-model="credentials.email" required type="email" class="form-control" placeholder="Email">
 				<div class="form-control-feedback">
 					<i class="icon-user text-muted"></i>
 				</div>
 			</div>
 
 			<div class="form-group has-feedback has-feedback-left">
-				<input v-model="credentials.password" type="password" class="form-control" placeholder="Password">
+				<input v-model="credentials.password" required type="password" class="form-control" placeholder="Password">
 				<div class="form-control-feedback">
 					<i class="icon-lock2 text-muted"></i>
 				</div>
