@@ -125,15 +125,23 @@
 </template>
 
 <script>
+	var objCategory = function () {
+		return {
+			id: 0,
+			slug: '',
+			name: '',
+			parent_id: 0,
+			created_at: null,
+			updated_at: null
+		}
+	}
+
 	module.exports = {
 		data() {
 			return {
 				categories: null,
-				newCategory: {
-					name: '',
-					parent_id: 0
-				},
-				editedCategory: null,
+				newCategory: new objCategory(),
+				editedCategory: new objCategory(),
 			}
 		},
 
@@ -164,6 +172,7 @@
 						this.error = data.message;
 					} else if (data.status == 'success') {
 						this.categories.push(category);
+						console.log(category);
 
 						this.resetAdd();
 					}

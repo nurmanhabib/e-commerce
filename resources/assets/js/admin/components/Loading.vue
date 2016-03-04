@@ -26,8 +26,6 @@
                 if (typeof timeout !== 'undefined') {
                     var that = this;
 
-                    alert('ada timeout ' + timeout);
-
                     setTimeout(function() {
                         that.hide();
                     }, timeout);
@@ -40,11 +38,7 @@
         },
 
         ready() {
-            var that = this;
-
-            setTimeout(function () {
-                that.hide();
-            }, 2000);
+            // 
         },
 
         events: {
