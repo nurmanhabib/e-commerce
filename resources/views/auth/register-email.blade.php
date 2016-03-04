@@ -8,7 +8,7 @@
 				<h5 class="content-group">Register account <small class="display-block">Email is required</small></h5>
 			</div>
 
-		    <div v-if="message !== null || error !== null">
+		    <div v-if="message || error">
 				<div v-if="status == 'success'" class="alert alert-success alert-styled-left alert-bordered">
 				  	<button v-on:click="clearMessage" type="button" class="close" data-dismiss="alert"><span>×</span><span class="sr-only">Close</span></button>
 					<span class="text-semibold">@{{ message }}</span>
