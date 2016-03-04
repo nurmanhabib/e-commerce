@@ -55,9 +55,24 @@ class TransactionRepository extends Repository
 
 	}
 
-	public function sendmailInvoice(User $user, array $invoice)
+	public function sendmailInvoice(User $user, Invoice $invoice)
 	{
+        $data   = [
+        	'email' 			=> $email['to']['email'],
+            'invoice_id'  		=> $invoice['invoice'],
+            'invoice_item' 		=> $invoice['items'],
+            'total_transfer'	=> $invoice['total_prices']
+        ];
 
+        Mail::send('emails.invoice', $data, function ($message) use ($email) {
+            $message->to($email['to']['email'], $email['to']['name']);
+            $message->subject($email['subject']);
+        });
+
+        return [
+            'status'    => 'success',
+            'message'   => 'Mail has been send.'
+        ];
 	}
 
 	public function setStatusInvoice(Invoice $invoice, $status)
