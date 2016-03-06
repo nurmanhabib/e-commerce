@@ -32,10 +32,7 @@ class ConfigController extends Controller
 
         $this->configRepository->setForName($name, $value);
 
-        return [
-            'name'  => $name,
-            'value' => $this->show($name)
-        ];
+        return $this->show($name);
     }
 
     public function show($name)
