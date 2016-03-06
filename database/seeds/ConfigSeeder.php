@@ -10,27 +10,34 @@ class ConfigSeeder extends Seeder
         app('db')->table('config')->truncate();
 
         $configs = [
-            'amtekcommerce.name'                            => 'Amtekcommerce',
-            'amtekcommerce.slogan'                          => 'Online Marketplace',
-            'amtekcommerce.logo'                            => 'amc-contents/logo.jpg',
+            'name'                          => 'Amtekcommerce',
+            'slogan'                        => 'Online Marketplace',
+            'logo'                          => 'amc-contents/logo.jpg',
 
-            'amtekcommerce.socialauth.facebook.api'         => ['value' => null, 'autoload' => false],
-            'amtekcommerce.socialauth.facebook.token'       => ['value' => null, 'autoload' => false],
-            'amtekcommerce.socialauth.facebook.secret'      => ['value' => null, 'autoload' => false],
+            'socialauth.facebook.api'       => ['value' => null, 'autoload' => false],
+            'socialauth.facebook.token'     => ['value' => null, 'autoload' => false],
+            'socialauth.facebook.secret'    => ['value' => null, 'autoload' => false],
 
-            'amtekcommerce.socialauth.twitter.api'          => ['value' => null, 'autoload' => false],
-            'amtekcommerce.socialauth.twitter.token'        => ['value' => null, 'autoload' => false],
-            'amtekcommerce.socialauth.twitter.secret'       => ['value' => null, 'autoload' => false],
+            'socialauth.twitter.api'        => ['value' => null, 'autoload' => false],
+            'socialauth.twitter.token'      => ['value' => null, 'autoload' => false],
+            'socialauth.twitter.secret'     => ['value' => null, 'autoload' => false],
 
-            'amtekcommerce.socialauth.google.api'           => ['value' => null, 'autoload' => false],
-            'amtekcommerce.socialauth.google.token'         => ['value' => null, 'autoload' => false],
-            'amtekcommerce.socialauth.google.secret'        => ['value' => null, 'autoload' => false],
+            'socialauth.google.api'         => ['value' => null, 'autoload' => false],
+            'socialauth.google.token'       => ['value' => null, 'autoload' => false],
+            'socialauth.google.secret'      => ['value' => null, 'autoload' => false],
 
-            'amtekcommerce.socialauth.instagram.api'        => ['value' => null, 'autoload' => false],
-            'amtekcommerce.socialauth.instagram.token'      => ['value' => null, 'autoload' => false],
-            'amtekcommerce.socialauth.instagram.secret'     => ['value' => null, 'autoload' => false],
+            'socialauth.instagram.api'      => ['value' => null, 'autoload' => false],
+            'socialauth.instagram.token'    => ['value' => null, 'autoload' => false],
+            'socialauth.instagram.secret'   => ['value' => null, 'autoload' => false],
         ];
 
-        app(ConfigRepository::class)->setForAll($configs);
+        $prefix     = 'amtekcommerce.';
+        $results    = [];
+
+        foreach ($configs as $key => $value) {
+            $results[$prefix . $key] = $value;
+        }
+
+        app(ConfigRepository::class)->setForAll($results);
     }
 }
