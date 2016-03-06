@@ -1,4 +1,9 @@
 module.exports = {
-	api_root: 'http://localhost:8000/api/v1/',
-	api_token: ''
+	// Site
+	SITE_URL: 'http://localhost:8000/admin',
+	BASE_URL: 'http://localhost:8000/admin',
+
+	// API Endpoints
+	API_URL: 'http://localhost:8000/api/v1',
+	API_TOKEN: ''
 }

@@ -70,32 +70,17 @@
 
         methods: {
             login() {
+                var that = this;
                 var credentials = this.credentials;
+                var remember = false;
 
-                this.$http.post('auth/credentials', credentials).then(function (response) {
-                    var data = response.data;
-
-                    // Redirect to a specified route
-                    if (data.status == 'success') {
-                        // Token disimpan di cookie
-                        cookie.set('token', data.token);
-
-                        // Event user.login
-                        this.$root.$broadcast('user.login', {user: data.user});
-
-                        // Set remember jika user memilih opsi 'remember me'
-                        // cokie.set('remember', data.token);
-
-                        // Redirect ke home
-                        redirect.toDashboard();
-                    } else {
-                        // alert notifikasi failed login
-                        this.status = data.status;
-                        this.error = data.message;
-                    }
+                auth.attempt(credentials, 'admin', remember).then(function (response) {
+                    auth.saveToken(response.data.token, remember);
+                    
+                    redirect.toDashboard();
                 }, function (response) {
-                    // Error with API
-                })
+                    that.error = response.message;
+                });
             },
 
             clearError() {

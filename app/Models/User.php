@@ -59,8 +59,11 @@ class User extends Model implements
         return $this;
     }
 
-    public function hasRole($slug)
+    public function hasRole($slug = [])
     {
+        if (empty($slug))
+            return true;
+
         $roles = $this->roles->filter(function ($role) use ($slug) {
             if (is_array($slug)) {
                 foreach ($slug as $s) {

@@ -21,9 +21,7 @@ module.exports = {
     
     methods: {
     	loading(type, timeout) {
-    		if (typeof type == 'undefined') {
-    			type = 'show';
-    		}
+            var type = type || 'show';
 
     		if (type == 'show') {
     			this.$broadcast('loading.show', {timeout: timeout});
@@ -44,10 +42,12 @@ module.exports = {
     },
 
     ready() {
-        // 
+        this.loaded();
     },
 
     events: {
-        // 
+        'auth.fail': function (message) {
+            console.log(message);
+        }
     }
 }

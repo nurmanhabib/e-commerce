@@ -107,7 +107,7 @@
 							<div class="form-group">
 								<label class="control-label col-lg-4">Category</label>
 								<div class="col-lg-8">
-									<input v-model="editedCategory.name" value="{{ edit.name }}" type="text" class="form-control"> 
+									<input v-model="editedCategory.name" value="{{ editedCategory.name }}" type="text" class="form-control"> 
 								</div>
 							</div>
 						</fieldset>
@@ -124,16 +124,26 @@
 	<!-- /Modal Add Category -->
 </template>
 
-<script>
+<script lang="es6">
+	var _ = require('underscore');
+
+	var objCategory = function () {
+		return {
+			id: 0,
+			slug: '',
+			name: '',
+			parent_id: 0,
+			created_at: null,
+			updated_at: null
+		}
+	}
+
 	module.exports = {
 		data() {
 			return {
 				categories: null,
-				newCategory: {
-					name: '',
-					parent_id: 0
-				},
-				editedCategory: null,
+				newCategory: new objCategory(),
+				editedCategory: new objCategory(),
 			}
 		},
 
@@ -150,6 +160,14 @@
 				});
 			},
 
+			getChilds(parent, except) {
+				var that = this;
+
+				return new Promise(function (resolve, reject) {
+					that.$http.get()
+				});
+			},
+
 			/**
 			 * Membuat kategori baru
 			 * @return {void}
@@ -163,8 +181,7 @@
 					if (data.status_code == 422) {
 						this.error = data.message;
 					} else if (data.status == 'success') {
-						this.categories.push(category);
-
+						this.categories.push(data.category);
 						this.resetAdd();
 					}
 				}, function (response) {
@@ -177,10 +194,7 @@
 			 * @return {void}
 			 */
 			resetAdd() {
-				this.newCategory = {
-					name: '',
-					parent_id: 0
-				}
+				this.newCategory = new objCategory();
 			},
 
 			/**
@@ -189,34 +203,39 @@
 			 * @return {void}
 			 */
 			editCategory(category) {
-				this.beforeEditCache = {
-					name: category.name,
-					parent_id: category.parent_id
-				};
+				// Sebelum di edit, data disimpan ke dalam cache
+				this.beforeEditCache = _.clone(category);
 
+				// Data dimasukkan ke variabel editedCategory
 				this.editedCategory = category;
 			},
 
 			/**
 			 * Menghapus data modify menjadi default
+			 * @param  {object} category
 			 * @return {void}
 			 */
 			cancelEdit(category) {
-				// Mengembalikan category dalam cache
+				// Mengembalikan data dari cache
 				category.name = this.beforeEditCache.name;
 				category.parent_id = this.beforeEditCache.parent_id;
 
-				this.editedCategory = null;
+				this.beforeEditCache = new objCategory();
+				this.editedCategory = new objCategory();
 			},
 
+			/**
+			 * Memperbaui kategori
+			 * @param  {object} category
+			 * @return {void}
+			 */
 			updateCategory(category) {
-				console.log(category.$index);
-				// this.$http.put('categories/' + category.id, category).then(function (response) {
-				// 	this.beforeEditCache = category;
-				// 	this.editedCategory = null;
-				// }, function (response) {
-				// 	// 
-				// })
+				this.$http.put('categories/' + category.id, category).then(function (response) {
+					this.beforeEditCache = new objCategory();
+					this.editedCategory = new objCategory();
+				}, function (response) {
+					// 
+				})
 			},
 
 			/**
