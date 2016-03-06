@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Categories extends Model 
+class Category extends Model 
 {
 
     /**
@@ -13,7 +13,7 @@ class Categories extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 
+        'name',
         'parent_id'
     ];
 
@@ -30,8 +30,8 @@ class Categories extends Model
     {
         parent::boot();
 
-        Categories::creating(function (Categories $categories) {
-            $categories->generateSlug();
+        Category::creating(function (Category $category) {
+            $category->generateSlug();
         });
     }
 
@@ -50,7 +50,7 @@ class Categories extends Model
     public function createSlug($title, $numb = 0)
     {
         $slug       = str_slug($title, '-') . ($numb ? '-' . $numb : '');
-        $already    = Categories::findBySlug($slug);
+        $already    = Category::findBySlug($slug);
 
         if ($already->count())
             return $this->createSlug($title, $numb+1);
