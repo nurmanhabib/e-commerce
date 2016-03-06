@@ -85,8 +85,7 @@
 				var redirectTo = this.redirect;
 				var message = message || 'Auth fail.';
 
-				this.$root.$broadcast('auth.fail', message);
-				this.$root.$broadcast('auth.fail', message);
+				this.$root.$broadcast('auth.failed', message);
 
 				if (redirectTo == 'false') {
 					// 
