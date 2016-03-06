@@ -58,6 +58,7 @@ resource('users',       'Admin\UserController', $api);
 resource('suppliers',   'SupplierController', $api);
 resource('products',    'ProductController', $api);
 resource('categories',  'CategoryController', $api);
+resource('configs',     'ConfigController', $api);
 // resource('discounts',   'DiscountController', $api);
 
 /*******************************
