@@ -142,18 +142,32 @@ class UserRepository extends Repository
         }
     }
 
-    public function authenticate(array $credentials)
+    public function authenticate(array $credentials, $expected_roles = [])
     {
         $credentials    = collect($credentials);
         $password       = $credentials->pull('password');
         $user           = $this->findWhere($credentials->toArray())->first();
 
         if ($user) {
-            if (app('hash')->check($password, $user->password)) {
+            if ($user->active) {
+                if ($user->hasRole($expected_roles)) {
+                    if (app('hash')->check($password, $user->password)) {
+                        return [
+                            'status'    => 'success',
+                            'user'      => $user,
+                            'token'     => $this->getToken($user),
+                        ];
+                    }
+                } else {
+                    return [
+                        'status'    => 'not_role',
+                        'message'   => 'You do not have access rights.'
+                    ];
+                }
+            } else {
                 return [
-                    'status'    => 'success',
-                    'user'      => $user,
-                    'token'     => $this->getToken($user),
+                    'status'    => 'not_activated',
+                    'message'   => 'User not activated.'
                 ];
             }
         }
