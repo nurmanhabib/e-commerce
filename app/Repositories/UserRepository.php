@@ -11,6 +11,7 @@ namespace App\Repositories;
 use App\Events\UserRegistered;
 use App\Models\Role;
 use App\Models\User;
+use App\Models\Supplier;
 use App\Models\ShippingAddress;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Tymon\JWTAuth\Facades\JWTAuth;
@@ -70,21 +71,52 @@ class UserRepository extends Repository
         $password       = $credentials->pull('password');
         $user           = $this->findWhere($credentials->toArray())->first();
 
-        $user = $this->createShippingAddress($user, $address);
+        if ($user) {
+            $user = $this->createShippingAddress($user, $address);
 
-        $role = Role::where('slug', $role)->first();
-        if ($role) {
-            $user->roles()->attach($role);
+            $role = Role::where('slug', $role)->first();
+            if ($role) {
+                $user->roles()->attach($role);
+            }
+
+            $this->setProfile($user, $profile);
+
+            $user->password         = $this->createPassword($password);
+            $user->activation_code  = null;
+
+            $user->save();
+
+            return $user;    
+        } else {
+            return ['message' => 'User not found', 'activation_code' => 'activation code not found.'];
         }
+    }
 
-        $this->setProfile($user, $profile);
+    public function completeRegistrationSupplier(array $credentials, array $supplier, array $profile = [], $role = 'supplier', $activated = true)
+    {
+        $credentials    = collect($credentials);
+        $password       = $credentials->pull('password');
+        $user           = $this->findWhere($credentials->toArray())->first();
 
-        $user->password         = $this->createPassword($password);
-        $user->activation_code  = null;
+        if ($user) {
+            $role = Role::where('slug', $role)->first();
+            if ($role) {
+                $user->roles()->attach($role);
+            }
 
-        $user->save();
+            $this->setProfile($user, $profile);
+            
+            $this->createSupplier($user, $supplier);
 
-        return $user;
+            $user->password         = $this->createPassword($password);
+            $user->activation_code  = null;
+
+            $user->save();
+
+            return $user;
+        } else {
+            return ['message' => 'User not found', 'activation_code' => 'Activation code not found.'];
+        }
     }
 
     public function authenticate(array $credentials)
@@ -195,5 +227,12 @@ class UserRepository extends Repository
         $user->shippingAddress()->create($address);
 
         return $user->load('shippingAddress');
+    }
+
+    public function createSupplier(User $user, array $supplier)
+    {
+        $supplier = Supplier::create($supplier);
+        $supplier->createSlug($supplier['name']);
+        $supplier->users()->attach($user);
     }
 }
