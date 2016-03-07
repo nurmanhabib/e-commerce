@@ -1,3 +1,8 @@
 /vendor
+/node_modules
+/public/node_modules
+/public/app/admin/build.js
+/public/build.js
 /.idea
 .env
+npm-debug.log

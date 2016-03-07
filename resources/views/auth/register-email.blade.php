@@ -8,7 +8,7 @@
 				<h5 class="content-group">Register account <small class="display-block">Email is required</small></h5>
 			</div>
 
-		    <div v-if="message !== '' || error !== ''">
+		    <div v-if="message || error">
 				<div v-if="status == 'success'" class="alert alert-success alert-styled-left alert-bordered">
 				  	<button v-on:click="clearMessage" type="button" class="close" data-dismiss="alert"><span>×</span><span class="sr-only">Close</span></button>
 					<span class="text-semibold">@{{ message }}</span>
@@ -20,6 +20,7 @@
 			</div>
 
 			<div class="form-group has-feedback has-feedback-left">
+				<input type="hidden" v-model="register_for" value="member">
 				<input v-model="email" type="email" class="form-control" placeholder="Email">
 				<div class="form-control-feedback">
 					<i class="icon-mail5 text-muted"></i>
@@ -27,7 +28,7 @@
 			</div>
 			
 			<div class="from-group">
-				<button type="submit" class="btn bg-teal btn-block btn-lg">Register <i class="icon-circle-right2 position-right"></i></button>
+				<button type="submit" class="btn bg-teal btn-block btn-lg btn-ladda btn-ladda-progress">Register <i class="icon-circle-right2 position-right"></i></button>
 			</div><br>
 
 			<div class="content-divider text-muted form-group"><span>or create account with</span></div>

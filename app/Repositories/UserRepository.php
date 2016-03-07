@@ -11,7 +11,8 @@ namespace App\Repositories;
 use App\Events\UserRegistered;
 use App\Models\Role;
 use App\Models\User;
-use App\Models\ShippingAddress;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use App\Models\Supplier;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
@@ -34,15 +35,36 @@ class UserRepository extends Repository
         return User::class;
     }
 
+    public function registerEmail($email, $role = 'member')
+    {
+        $credentials = compact('email');
+
+        return $this->register($credentials);
+    }
+
     public function registerAndActivate(array $credentials, array $profile = [], $role = 'member')
     {
         $this->register($credentials, $profile, $role, true);
     }
 
+    public function registerSocial($driver, $appid, array $credentials, array $profile = [], $role = 'member', $activated = false)
+    {
+        $user = $this->register($credentials, $profile, $role, $activated);
+
+        $user->socialite()->forceFill([
+            'name'  => $driver,
+            'appid' => $appid
+        ]);
+    }
+
     public function register(array $credentials, array $profile = [], $role = 'member', $activated = false)
     {
         if (array_key_exists('password', $credentials)) {
-            $credentials['password'] = $this->createPassword($credentials['password']);
+            if (!empty($credentials['email'])) {
+                $credentials['password'] = $this->createPassword($credentials['password']);
+            } else {
+                unset($credentials['password']);
+            }
         }
 
         $user = $this->create($credentials);
@@ -51,8 +73,10 @@ class UserRepository extends Repository
             $this->generateActivationCode($user);
         }
 
-        if (!empty($profile) && !$user->hasProfile()) {
+        if (!$user->hasProfile()) {
             $user->profile()->create($profile);
+        } else {
+            $user->profile()->update($profile);
         }
 
         $role = Role::where('slug', $role)->first();
@@ -61,7 +85,7 @@ class UserRepository extends Repository
             $user->roles()->attach($role);
         }
 
-        return $user;
+        return $user->load('suppliers');
     }
 
     public function completeRegistration(array $credentials, array $address, array $profile = [], $role = 'member', $activated = true)
@@ -70,35 +94,80 @@ class UserRepository extends Repository
         $password       = $credentials->pull('password');
         $user           = $this->findWhere($credentials->toArray())->first();
 
-        $user = $this->createShippingAddress($user, $address);
+        if ($user) {
+            $user = $this->createShippingAddress($user, $address);
 
-        $role = Role::where('slug', $role)->first();
-        if ($role) {
-            $user->roles()->attach($role);
+            $role = Role::where('slug', $role)->first();
+            if ($role) {
+                $user->roles()->attach($role);
+            }
+
+            $this->setProfile($user, $profile);
+
+            $user->password         = $this->createPassword($password);
+            $user->activation_code  = null;
+
+            $user->save();
+
+            return $user;    
+        } else {
+            return ['message' => 'User not found', 'activation_code' => 'activation code not found.'];
         }
-
-        $this->setProfile($user, $profile);
-
-        $user->password         = $this->createPassword($password);
-        $user->activation_code  = null;
-
-        $user->save();
-
-        return $user;
     }
 
-    public function authenticate(array $credentials)
+    public function completeRegistrationSupplier(array $credentials, array $supplier, array $profile = [], $role = 'supplier', $activated = true)
     {
         $credentials    = collect($credentials);
         $password       = $credentials->pull('password');
         $user           = $this->findWhere($credentials->toArray())->first();
 
         if ($user) {
-            if (app('hash')->check($password, $user->password)) {
+            $role = Role::where('slug', $role)->first();
+            if ($role) {
+                $user->roles()->attach($role);
+            }
+
+            $this->setProfile($user, $profile);
+            
+            $this->createSupplier($user, $supplier);
+
+            $user->password         = $this->createPassword($password);
+            $user->activation_code  = null;
+
+            $user->save();
+
+            return $user;
+        } else {
+            return ['message' => 'User not found', 'activation_code' => 'Activation code not found.'];
+        }
+    }
+
+    public function authenticate(array $credentials, $expected_roles = [])
+    {
+        $credentials    = collect($credentials);
+        $password       = $credentials->pull('password');
+        $user           = $this->findWhere($credentials->toArray())->first();
+
+        if ($user) {
+            if ($user->active) {
+                if ($user->hasRole($expected_roles)) {
+                    if (app('hash')->check($password, $user->password)) {
+                        return [
+                            'status'    => 'success',
+                            'user'      => $user,
+                            'token'     => $this->getToken($user),
+                        ];
+                    }
+                } else {
+                    return [
+                        'status'    => 'not_role',
+                        'message'   => 'You do not have access rights.'
+                    ];
+                }
+            } else {
                 return [
-                    'status'    => 'success',
-                    'user'      => $user,
-                    'token'     => $this->getToken($user),
+                    'status'    => 'not_activated',
+                    'message'   => 'User not activated.'
                 ];
             }
         }
@@ -111,14 +180,15 @@ class UserRepository extends Repository
 
     public function authenticateById($id)
     {
-        $user = $this->find($id);
+        try {
+            $user = $this->find($id);
 
-        if ($user) {
             return [
-                'user'  => $user,
-                'token' => $this->getToken($user),
+                'status'    => 'success',
+                'user'      => $user,
+                'token'     => $this->getToken($user),
             ];
-        } else {
+        } catch (ModelNotFoundException $e) {
             return null;
         }
     }
@@ -195,5 +265,12 @@ class UserRepository extends Repository
         $user->shippingAddress()->create($address);
 
         return $user->load('shippingAddress');
+    }
+
+    public function createSupplier(User $user, array $supplier)
+    {
+        $supplier = Supplier::create($supplier);
+        $supplier->createSlug($supplier['name']);
+        $supplier->users()->attach($user);
     }
 }

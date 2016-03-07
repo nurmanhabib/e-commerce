@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
+use Tymon\JWTAuth\Exceptions\JWTException;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
 class AuthServiceProvider extends ServiceProvider
@@ -33,9 +34,13 @@ class AuthServiceProvider extends ServiceProvider
         // the User instance via an API token or any other method necessary.
 
         Auth::viaRequest('api', function ($request) {
-            $playload = JWTAuth::parseToken()->getPayload();
+            try {
+                $playload = JWTAuth::parseToken()->getPayload();
 
-            return User::find($playload['sub']);
+                return User::find($playload['sub']);
+            } catch (JWTException $e) {
+                return null;
+            }
         });
     }
 }

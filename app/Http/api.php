@@ -13,6 +13,7 @@ function resource($path, $controller, &$api)
 // Register
 $api->post('auth/register-email',       'Auth\RegisterController@emailOnly');
 $api->post('auth/complete-registration', 'Auth\RegisterController@completeRegistration');
+$api->post('auth/complete-registration-supplier', 'Auth\RegisterController@completeRegistrationSupplier');
 $api->post('auth/register',             'Auth\RegisterController@register');
 
 // Autentikasi
@@ -29,7 +30,8 @@ $api->post('auth/reset-password',   'Auth\ResetPasswordController@resetPassword'
  **  User Profile (Logged In) **
  *******************************/
 $api->group(['middleware' => 'auth'], function ($api) {
-    // $api->get('user',                   'User\UserController@show');
+    $api->get('user',                   'User\UserController@show');
+    $api->get('user/roles',             'User\UserController@roles');
     // $api->put('user',                   'User\UserController@update');
     $api->get('user/profile',           'User\ProfileController@show');
     $api->put('user/profile',           'User\ProfileController@update');
@@ -52,7 +54,7 @@ $api->group(['middleware' => 'auth'], function ($api) {
 /*******************************
  **  Resource Route (or CRUD) **
  *******************************/
-// resource('users',       'UserController', $api);
+resource('users',       'Admin\UserController', $api);
 resource('suppliers',   'SupplierController', $api);
 resource('products',    'ProductController', $api);
 resource('categories',  'CategoryController', $api);

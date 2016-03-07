@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class DeleteShippingAddressTable extends Migration
+class CreateConfigTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,7 +12,13 @@ class DeleteShippingAddressTable extends Migration
      */
     public function up()
     {
-        Schema::drop('shipping_address');
+        Schema::create('config', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name');
+            $table->text('value');
+
+            $table->unique('name');
+        });
     }
 
     /**
@@ -22,6 +28,6 @@ class DeleteShippingAddressTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::drop('config');
     }
 }

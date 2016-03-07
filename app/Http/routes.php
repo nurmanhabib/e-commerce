@@ -14,10 +14,13 @@
 $app->get('/', 'HomeController@index');
 
 $app->group(['namespace' => 'App\Http\Controllers\Frontend\Auth'], function () use ($app) {
+    $app->get('login/social', 'Social\SocialController@login');
     $app->get('login', 'LoginController@user');
     $app->get('admin', 'LoginController@admin');
     $app->get('supplier', 'LoginController@supplier');
-    $app->get('register', 'RegisterController@registerOnlyEmail');
+    $app->get('supplier/register', 'RegisterController@registerSupplier');
+    $app->get('supplier/register/{activation_code}', 'RegisterController@activateSupplier');
+    $app->get('register', 'RegisterController@registerMember');
     $app->get('register/{activation_code}', 'RegisterController@activate');
     $app->get('reset-password/{token}', 'ReminderController@reset');
     $app->get('forgot-password', 'ReminderController@forgotPassword');

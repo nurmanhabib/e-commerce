@@ -34,8 +34,9 @@ class LoginController extends Controller
             'password'  => 'required',
         ]);
 
-        $credentials    = $request->all();
-        $authenticate   = $this->userRepository->authenticate($credentials);
+        $credentials    = $request->except('expected_roles');
+        $expected_roles = $request->get('expected_roles');
+        $authenticate   = $this->userRepository->authenticate($credentials, $expected_roles);
 
         return $authenticate;
     }

@@ -41,7 +41,7 @@ class User extends Model implements
 
     protected $with = [
         'profile',
-        'roles'
+        'roles',
     ];
 
     public function createPassword($plain)
@@ -59,8 +59,11 @@ class User extends Model implements
         return $this;
     }
 
-    public function hasRole($slug)
+    public function hasRole($slug = [])
     {
+        if (empty($slug))
+            return true;
+
         $roles = $this->roles->filter(function ($role) use ($slug) {
             if (is_array($slug)) {
                 foreach ($slug as $s) {
@@ -116,6 +119,11 @@ class User extends Model implements
         return !empty($this->password);
     }
 
+    public function socialites()
+    {
+        return $this->hasMany(UserSocialite::class);
+    }
+    
     public function supplier()
     {
         return $this->belongsToMany(Supplier::class, 'user_supplier');
@@ -124,5 +132,10 @@ class User extends Model implements
     public function shippingAddress()
     {
         return $this->hasMany(ShippingAddress::class);
+    }
+
+    public function invoices()
+    {
+        return $this->hasMany(Invoice::class);
     }
 }

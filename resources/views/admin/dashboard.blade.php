@@ -21,17 +21,6 @@
 @section('content')
     <h1>Control Panel - Amtek Ecommerce v1.0.0</h1>
     <div id="admin">
-    	isi
+    	<dashboard></dashboard>
     </div>
-@stop
-
-@section('scripts')
-	<script>
-		new Vue({
-			el: '#admin',
-			ready: function(){
-				console.log(getCookie('amtekcommerce_token'))
-			}
-		})
-	</script>
 @stop
