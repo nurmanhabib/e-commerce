@@ -19,7 +19,7 @@ class CreateInvoiceDetailsTable extends Migration
             $table->integer('quantity');
             $table->integer('price');
             $table->integer('product_id')->nullable();
-            $table->integer('transaction_id');
+            $table->integer('invoice_id');
             $table->timestamps();
         });
     }
