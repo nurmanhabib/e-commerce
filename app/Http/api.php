@@ -19,6 +19,7 @@ $api->post('auth/register',             'Auth\RegisterController@register');
 // Autentikasi
 $api->post('auth/credentials',      'Auth\LoginController@credentials');
 $api->post('auth/id',               'Auth\LoginController@id');
+$api->post('auth/remember',         'Auth\LoginController@viaRemember');
 // $api->post('auth/hashids',          'Auth\LoginController@hashids');
 $api->post('auth/refresh-token',    'Auth\LoginController@refreshToken');
 
