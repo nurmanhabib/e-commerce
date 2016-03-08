@@ -19,9 +19,47 @@ use Tymon\JWTAuth\Facades\JWTAuth;
 
 class TransactionRepository extends Repository
 {
-	public function createInvoice(User $user, array $product)
+	public function model()
+    {
+        return Invoice::class;
+    }
+
+    public function saveTransactionShipping(array $buyer)
+    {
+    	$transactionShipping = $this->transaction_address()->create($buyer);
+
+    	return $transactionShipping;
+    }
+
+    public function splitProductsBySupplier(array $products)
+    {
+    	$products = collect($products);
+
+    	$products = $products->map(function ($product_id) {
+    		return Product::find($product_id);
+    	});
+
+    	$grouping = $products->groupBy(function ($product) {
+    		return $product->supplier_id;
+    	});
+
+    	$groupProductBySupplier = [];
+
+    	foreach ($grouping as $supplier_id => $products) {
+    		$groupProductBySupplier[] = [
+    			'supplier'	=> Supplier::find($supplier_id),
+    			'products'	=> $products
+    		];
+    	}
+
+    	return $groupProductBySupplier;
+    }
+
+	public function createInvoice(User $user, Invoice $invoice, array $products, ShippingAddress $shippingAddress)
 	{
-		$user->invoices()->create($product);
+		$invoice = $invoice->detail_invoice()->create($products);
+
+		$user->invoices()->create($invoice);
 
         return $user->load('invoices');
 	}
@@ -69,10 +107,7 @@ class TransactionRepository extends Repository
             $message->subject($email['subject']);
         });
 
-        return [
-            'status'    => 'success',
-            'message'   => 'Mail has been send.'
-        ];
+        return $user;
 	}
 
 	public function setStatusInvoice(Invoice $invoice, $status)
