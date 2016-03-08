@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateInvoiceDetailsTable extends Migration
+class CreatePaymentConfirmationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,13 +12,11 @@ class CreateInvoiceDetailsTable extends Migration
      */
     public function up()
     {
-        Schema::create('invoice_details', function (Blueprint $table) {
+        Schema::create('payment_confirmations', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name', 100);
-            $table->string('description',100)->nullable();
-            $table->integer('quantity');
-            $table->integer('price');
-            $table->integer('product_id')->nullable();
+            $table->string('bank_name', 45);
+            $table->string('on_behalf');
+            $table->integer('nominal');
             $table->integer('invoice_id');
             $table->timestamps();
         });
@@ -31,6 +29,6 @@ class CreateInvoiceDetailsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('invoice_details');
+        Schema::drop('payment_confirmations');
     }
 }
