@@ -1,0 +1,515 @@
+/* 
+ * Author 	: Singgih Saputro
+ * Twitter 	: @singgihsap
+ * Version 	: 1.0
+ *  
+ * #1.GENERAL
+ * #2.HEADER
+ * #3.CONTENT
+ * #4.SIDEBAR
+ * #5.FOOTER  
+ **/
+
+$white: #FFF
+$black: #000
+$grey: #F8F8F8
+$grey-black: #DDDDDD
+$shadow: #D2C2C2
+$dark: #E7E7E7
+$aspalt: #243143
+$aspalt-light: #37474f
+$blue: #1489AC
+$orange: #FF4415
+$orange-light: #FF7D5D
+
+$margin: 5px
+$margin-top: 5px
+$margin-right: 5px
+$margin-bottom: 5px
+$margin-left: 5px
+
+$padding: 5px
+$padding-top: 5px
+$padding-right: 5px
+$padding-bottom: 5px
+$padding-left: 5px
+
+=transition($transition)
+	-webkit-transition: all $transition ease-in-out
+	-moz-transition: all $transition ease-in-out
+	-o-transition: all $transition ease-in-out
+	transition: all $transition ease-in-out
+
+
+/* #1.GENERAL */
+body
+	background-color: $grey
+
+.container
+	max-width: 980px
+
+.form-control
+	width: 100%
+	height: 40px
+	box-shadow: none
+	border: 2px solid $grey-black
+	background-color: $grey
+	+transition(0.3s)
+	&:active,
+	&:focus
+		border: 2px solid $orange-light
+		box-shadow: none
+		+transition(0.3s)
+
+
+.form-search
+	width: 104%
+	border-radius: 0px
+	height: 42px
+	background-color: $grey
+	border: 2px solid $white
+
+.btn-search
+	border-radius: 0px
+	background-color: $orange-light
+	border-color: $orange-light
+	color: $white
+	font-weight: 600
+	margin-left: -15px
+	height: 42px
+
+.btn-login
+	background-color: $orange-light
+	color: $white
+	height: 40px
+	font-weight: 600
+	margin-top: $margin-top + 15
+	&:hover,
+	&:focus,
+	&:active
+		background-color: $orange
+		color: $white
+		font-weight: 600
+		+transition(0.3s)
+
+.btn-see-all
+	color: $shadow
+	border-bottom: 2px solid $grey-black
+	+transition(0.3s)
+	&:hover,
+	&:focus,
+	&:active
+		border-bottom: 2px solid $aspalt
+		font-size: 20px
+		color: $aspalt
+		text-decoration: none
+		box-shadow: 0 2px 4px $shadow
+		+transition(0.3s)
+
+.owl-carousel
+	.item
+		img
+			width: 100%
+			height: 200px
+
+/* #2.HEADER */
+header
+	background-color: $white
+	height: auto
+
+	.navbar
+		margin-bottom: $margin-bottom - 5
+		background-color: $white
+		height: 80px
+		border-bottom: 1px solid $grey-black
+
+	#navbar-main
+		height: 80px
+		.navbar-brand
+			border-right: 2px solid #A6A6A6
+			height: 78px
+			padding: $padding + 23
+			font-size: 20px
+			font-weight: 600
+		.header-top-left
+			height: 80px
+			i
+				font-size: 25px
+				padding: $padding + 6
+				color: #A6A6A6
+		.header-top-right
+			height: 80px
+			padding: $padding + 20
+
+	#navbar-content
+		background-color: $aspalt
+		color: $white
+		form
+			padding: $padding + 2
+			.form-group
+				margin-bottom: $margin-bottom - 5
+
+	#header-main
+		.carousel
+			.carousel-inner
+				position: relative
+				width: 100%
+				overflow: hidden
+				img
+					width: 100%
+					height: 380px
+					object-fit: cover
+			.carousel-caption
+				text-align: left
+				margin-left: $margin-left - 67
+				.content-caption
+					padding-bottom: $padding-bottom + 50
+					h1
+						color: $aspalt
+						text-shadow: none
+						font-weight: 600
+						line-height: 50px
+					.btn-caption
+						border-radius: 0px
+						background-color: $orange-light
+						border-color: $orange-light
+						color: $white
+						font-weight: 600
+			.carousel-indicators
+				text-align: right
+				li
+					width: 16px
+					height: 16px
+					margin: $margin - 4
+					border: 1px solid $aspalt
+					background-color: $white
+				.active
+					background-color: $aspalt
+			.carousel-control
+				text-shadow: none
+				opacity: 1
+				background-image: none
+				.fa-angle-left
+					width: 80px
+					height: 80px
+					position: absolute
+					top: 40%
+					margin-top: $margin-top - 15
+					font-size: 80px
+					color: $aspalt
+					margin-left: $margin-left - 25
+				.fa-angle-right
+					width: 80px
+					height: 80px
+					position: absolute
+					top: 40%
+					margin-top: $margin-top - 15
+					font-size: 80px
+					color: $aspalt
+					margin-left: $margin-left - 65
+
+	#header-content
+		background-color: $grey
+		.header-content
+			padding: $padding + 15
+			width: 100%
+			height: 165px
+			line-height: 80px
+			img
+				width: 45px
+				height: 50px
+			h4
+				font-size: 20px
+
+/* #3.CONTENT */
+#content
+	padding-top: $padding-top + 40
+	padding-bottom: $padding-bottom
+
+	.popular-supplier
+		padding-top: $padding-top + 20
+		padding-bottom: $padding-bottom + 35
+		background-color: $white
+		.popular-supplier-title
+			margin-bottom: $margin-bottom + 20
+			padding-bottom: $padding-bottom + 5
+			h4
+				border-bottom: 2px solid $grey-black
+				display: inline-block
+				padding-bottom: $padding-bottom + 5
+				font-size: 22px
+				margin-left: $margin-left + 10
+
+		.content-popular-supplier
+			max-width: 100%
+			box-shadow: 0 1px 2px $shadow
+			border-radius: 8px
+			.thumbnail
+				padding: $padding - 5
+				border-radius: 8px
+				&:hover,
+				&:focus,
+				&:active
+					text-decoration: none
+					box-shadow: 0 5px 8px 5px $grey-black
+					+transition(0.3s)
+					border: 1px solid $grey-black
+				img
+					height: auto
+					border-top-left-radius: 8px
+					border-top-right-radius: 8px
+					max-width: 100%
+					+transition(0.3s)
+
+
+	.hot-product
+		background-color: $grey
+		padding-bottom: $padding-bottom + 35
+		.hot-product-title
+			padding-top: $padding-top + 20
+			padding-bottom: $padding-bottom + 20
+			h4
+				border-bottom: 2px solid $grey-black
+				display: inline-block
+				padding-bottom: $padding-bottom + 5
+				font-size: 22px
+				margin-left: $margin-left + 10
+
+	.popular-product
+		background-color: $white
+		padding-bottom: $padding-bottom + 35
+		.popular-product-title
+			padding-top: $padding-top + 20
+			padding-bottom: $padding-bottom + 20
+			h4
+				border-bottom: 2px solid $grey-black
+				display: inline-block
+				padding-bottom: $padding-bottom + 5
+				font-size: 22px
+				margin-left: $margin-left + 10
+
+// CONTENT-LOGIN
+#content-login
+	background: url(../../assets/images/lil_fiber.png)
+	ul
+		list-style: none
+		padding-left: $padding-left - 5
+		li
+			display: inline-block
+	.login-box
+		margin-top: $margin-top + 65
+		margin-bottom: $margin-bottom + 65
+		.login-left
+			border: 2px solid $grey-black
+			background-color: $dark
+			border-radius: 4px
+			height: 446px
+			margin-bottom: $margin-bottom + 5
+			.login-left-content
+				text-align: center
+				font-weight: 600
+				margin-top: 50%
+		.login-right
+			border: 2px solid $grey-black
+			background-color: $white
+			border-radius: 4px
+			padding: $padding + 30
+			margin-bottom: $margin-bottom + 5
+			.login-top-right
+				border-bottom: 2px solid $grey-black
+				p
+					margin-top: $margin-top + 15
+					margin-bottom: $margin-bottom + 15
+					font-weight: 600
+			.login-bottom-right
+				margin-top: $margin-top + 10
+				p
+					font-weight: 600
+				li
+					i.fa-facebook
+						padding-top: $padding-top +3
+						padding-bottom: $padding-bottom + 3
+						width: 35px
+						text-align: center
+						color: $white
+						background-color: #798DB9
+						font-size: 20px
+						margin-right: $margin-right 
+						+transition(0.3s)
+						&:hover,
+						&:focus,
+						&:active 
+							background-color: #39579A
+							color: $white
+							+transition(0.3s)
+					i.fa-twitter
+						padding-top: $padding-top +3
+						padding-bottom: $padding-bottom + 3
+						width: 35px
+						text-align: center
+						color: $white
+						background-color: #5CBDE8
+						font-size: 20px
+						margin-right: $margin-right 
+						+transition(0.3s)
+						&:hover,
+						&:focus,
+						&:active 
+							background-color: #00A6E3
+							color: $white
+							+transition(0.3s)
+					i.fa-instagram
+						padding-top: $padding-top +3
+						padding-bottom: $padding-bottom + 3
+						width: 35px
+						text-align: center
+						color: $white
+						background-color: #6F94B2
+						font-size: 20px
+						margin-right: $margin-right 
+						+transition(0.3s)
+						&:hover,
+						&:focus,
+						&:active 
+							background-color: #406FA5
+							color: $white
+							+transition(0.3s)
+					i.fa-google-plus-square
+						padding-top: $padding-top +3
+						padding-bottom: $padding-bottom + 3
+						width: 35px
+						text-align: center
+						color: $white
+						background-color: #E2766A
+						font-size: 20px
+						margin-right: $margin-right 
+						+transition(0.3s)
+						&:hover,
+						&:focus,
+						&:active 
+							background-color: #D33E23
+							color: $white
+							+transition(0.3s)
+		.register
+			border: 2px solid $grey-black
+			background-color: $white
+			padding: $padding + 30
+			margin-bottom: $margin-bottom + 5
+			.register-title
+				text-align: center
+				margin-bottom: $margin-bottom + 25
+				h3
+					font-size: 22px
+					margin-bottom: $margin-bottom
+					color: $blue
+					font-weight: 600
+			.register-right
+				margin-top: 35%
+				margin-bottom: 35%
+				text-align: center
+				p
+					font-weight: 600
+					margin-right: $margin-right + 35
+				li
+					i.fa-facebook
+						padding-top: $padding-top + 5
+						padding-bottom: $padding-bottom + 5
+						width: 50px
+						text-align: center
+						color: $white
+						background-color: #798DB9
+						font-size: 30px
+						margin-right: $margin-right 
+						+transition(0.3s)
+						&:hover,
+						&:focus,
+						&:active 
+							background-color: #39579A
+							color: $white
+							+transition(0.3s)
+					i.fa-twitter
+						padding-top: $padding-top + 5
+						padding-bottom: $padding-bottom + 5
+						width: 50px
+						text-align: center
+						color: $white
+						background-color: #5CBDE8
+						font-size: 30px
+						margin-right: $margin-right 
+						+transition(0.3s)
+						&:hover,
+						&:focus,
+						&:active 
+							background-color: #00A6E3
+							color: $white
+							+transition(0.3s)
+					i.fa-instagram
+						padding-top: $padding-top + 5
+						padding-bottom: $padding-bottom + 5
+						width: 50px
+						text-align: center
+						color: $white
+						background-color: #6F94B2
+						font-size: 30px
+						margin-right: $margin-right 
+						+transition(0.3s)
+						&:hover,
+						&:focus,
+						&:active 
+							background-color: #406FA5
+							color: $white
+							+transition(0.3s)
+					i.fa-google-plus-square
+						padding-top: $padding-top + 5
+						padding-bottom: $padding-bottom + 5
+						width: 50px
+						text-align: center
+						color: $white
+						background-color: #E2766A
+						font-size: 30px
+						margin-right: $margin-right 
+						+transition(0.3s)
+						&:hover,
+						&:focus,
+						&:active 
+							background-color: #D33E23
+							color: $white
+							+transition(0.3s)
+
+/* #4.SIDEBAR */
+
+/* #5.FOOTER */
+.footer
+	width: 100%
+	height: 100%
+	background-color: $dark
+	.footer-top
+		padding-bottom: $padding-bottom + 20
+		border-bottom: 2px solid $grey-black
+		h4
+			font-weight: 600
+			margin-top: $margin-top + 30
+			margin-bottom: $margin-bottom + 20
+		.payment-card
+			img
+				height: 45px
+				margin-right: $margin-right + 5
+	.footer-content
+		padding-bottom: $padding-bottom + 10
+		border-bottom: 2px solid $grey-black
+		h4
+			margin-top: $margin-top + 30
+			margin-bottom: $margin-bottom + 15
+		ul
+			padding-left: $padding-left - 5
+			line-height: 1.8
+			li
+				list-style-type: none
+				a
+					text-decoration: none
+					color: $aspalt
+	.footer-bottom
+		padding: $padding + 5
+		p
+			text-align: center
+			margin-top: $margin-top + 5
