@@ -7,6 +7,8 @@ var Category = require('./components/Category.vue');
 
 var config = require('./config.js');
 var auth = require('./helpers/auth.js');
+var app = require('./helpers/app.js');
+var event = require('./helpers/event.js');
 var redirect = require('./helpers/redirect.js');
 
 module.exports = {
@@ -24,7 +26,7 @@ module.exports = {
             var type = type || 'show';
 
     		if (type == 'show') {
-    			this.$broadcast('loading.show', {timeout: timeout});
+    			this.$broadcast('loading.show', timeout);
     		} else if (type == 'hide') {
     			this.$broadcast('loading.hide');
     		}
@@ -43,11 +45,22 @@ module.exports = {
 
     ready() {
         this.loaded();
+
+        app.setApp(this);
+        event.setApp(this);
     },
 
     events: {
-        'auth.fail': function (message) {
-            console.log(message);
+        'auth.authenticating': function (credentials) {
+            // 
+        },
+
+        'auth.authenticated': function (token, user, roles) {
+            // 
+        },
+
+        'auth.failed': function (message) {
+            //
         }
     }
 }

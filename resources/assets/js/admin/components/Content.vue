@@ -17,7 +17,11 @@
 		},
 
 		events: {
-			'loaded': function () {
+			'loading.showing': function (timeout) {
+				this.loaded = false;
+			},
+
+			'loading.hidden': function () {
 				this.loaded = true;
 			}
 		}
