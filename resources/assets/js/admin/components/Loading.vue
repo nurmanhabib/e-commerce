@@ -3,7 +3,7 @@
 </style>
 
 <template>
-    <div v-show="show">
+    <div v-show="loading">
         <slot>Loading ...</slot>
     </div>
 </template>
@@ -12,28 +12,29 @@
     module.exports = {
         data() {
             return {
-                show: true
+                loading: true
             }
         },
 
         methods: {
-            showing(data) {
-                var timeout = data.timeout;
+            show(timeout) {
+                var timeout = timeout || 0;
 
-                this.show = true;
-                this.$parent.$broadcast('loading');
+                this.$parent.$broadcast('loading.showing');
 
-                if (typeof timeout !== 'undefined') {
-                    var that = this;
+                this.loading = true;
 
+                if (timeout > 0) {
                     setTimeout(function() {
                         that.hide();
                     }, timeout);
                 }
             },
+
             hide() {
-                this.show = false;
-                this.$parent.$broadcast('loaded');
+                this.loading = false;
+
+                this.$parent.$broadcast('loading.hidden');
             }
         },
 
@@ -43,8 +44,9 @@
 
         events: {
             'loading.show': function (timeout) {
-                this.showing(timeout);
+                this.show(timeout);
             },
+
             'loading.hide': function () {
                 this.hide();
             }

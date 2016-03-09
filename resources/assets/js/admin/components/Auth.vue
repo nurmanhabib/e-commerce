@@ -1,117 +1,71 @@
 <template>
-	<slot></slot>
+    <slot></slot>
 </template>
 
 <script lang="es6">
-	var _ = require('underscore');
-	var Vue = require('vue');
-	// var Promise = require('promise-polyfill');
-	// var setAsap = require('setasap');
+    var _ = require('underscore');
+    var Vue = require('vue');
 
-	var redirect = require('./../helpers/redirect.js');
-	var event = require('./../helpers/event.js');
-	var url = require('./../helpers/url.js');
-	var auth = require('./../helpers/auth.js');
-	var cookie = require('./../helpers/cookie.js');
+    var redirect = require('./../helpers/redirect.js');
+    var event = require('./../helpers/event.js');
+    var loading = require('./../helpers/loading.js');
+    var url = require('./../helpers/url.js');
+    var auth = require('./../helpers/auth.js');
 
-	module.exports = {
-		props: {
-			role: String,
-			redirect: {
-				type: String,
-				default: url.login()
-			}
-		},
+    module.exports = {
+        props: {
+            role: String,
+            redirect: {
+                type: String,
+                default: url.login()
+            },
+            error: ''
+        },
 
-		methods: {
-			hasToken() {
-				return cookie.has('token');
-			},
+        methods: {
+            hasToken() {
+                return auth.hasToken();
+            },
 
-			getToken() {
-				return cookie.get('token');
-			},
+            getToken() {
+                return auth.getToken();
+            },
 
-			getUser() {
-				var that = this;
-			},
+            getUser() {
+                return auth.user();
+            },
 
-			getAuthHeaders() {
-				return 'Bearer ' + this.getToken();
-			},
+            getAuthHeaders() {
+                return auth.getAuthHeaders();
+            },
 
-			/**
-			 * Check apakah token valid, jika tidak maka di redirect ke login
-			 * @return {void}
-			 */
-			check() {
-				if (this.hasToken() === false) {
-					return false;
-				}
+            getRoles() {
+                return auth.getRoles();
+            }
+        },
 
-				return true;
-			},
+        ready() {
+            var that = this;
 
-			getRoles() {
-				var that = this;
+            auth.setApp(this.$root);
+            event.setApp(this.$root);
 
-				return new Promise(function (resolve, reject) {
-					that.$http.get('user/roles').then(function (response) {
-						var roles = response.data.roles;
-						var roled = _.pluck(roles, 'slug');
+            // Fire event auth.checking
+            event.fire('loading.show');
+            event.fire('auth.checking');
 
-						resolve(roled);
-					});
-				});
-			},
+            auth.setGlobalAuthHeaders();
 
-			hasRole(checkRoles) {
-				var that = this;
+            // Proses pengecekan user apakah admin bukan
+            auth.check(['admin']).then(function (user, roles) {
+                event.fire('auth.checked', {user: user, roles: roles});
+                event.fire('loading.hide');
+            }, function (message) {
+                that.error = message;
+                event.fire('auth.failed', message);
 
-				return new Promise(function (resolve, reject) {
-					that.getRoles().then(function (userRoles) {
-						var intersection = _.intersection(userRoles, checkRoles);
-
-						if (_.size(intersection) === 0) {
-							return reject(null);
-						} else {
-							return resolve(intersection);
-						}
-					});
-				});
-			},
-
-			handleFail(message) {
-				var redirectTo = this.redirect;
-				var message = message || 'Auth fail.';
-
-				this.$root.$broadcast('auth.failed', message);
-
-				if (redirectTo == 'false') {
-					// 
-				} else {
-					redirect.to(redirectTo);
-				}
-			}
-		},
-
-		ready() {
-			// Jika belum ada token, maka dianggap belum login dan redirect login
-			if (this.check() === false) {
-				this.handleFail('Not login.');
-			} else {
-				Vue.http.headers.common['Authorization'] = 'Bearer ' + this.getToken();
-
-				var userRoles = this.role.split(',');
-
-				this.hasRole(userRoles).then(function (roled) {
-					// User has role
-					// Allow access page
-				}, function (err) {
-					// User has not roled, redirect login
-					this.handleFail('No access.');
-				});
-			}
-		}
-	}
+                redirect.to(that.redirect);
+            });
+        }
+    }
 </script>
