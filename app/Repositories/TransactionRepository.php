@@ -70,8 +70,8 @@ class TransactionRepository extends Repository
                 'supplier'      => $supplier,
                 'products'      => $products,
                 'invoice_id'    => $this->generateInvoice($supplier),
-                'checkout_date' => date('Y-m-d H:i:s'),
-                'due_date'      => date('Y-m-d H:i:s', strtotime('+24 hours'))
+                'checkout_date' => date('Y-m-d H:i'),
+                'due_date'      => date('Y-m-d H:i', strtotime('+24 hours'))
             ];
         }
 
@@ -187,5 +187,15 @@ class TransactionRepository extends Repository
     public function generatePaymentCode()
     {
         return rand(001,999);
+    }
+
+    public function totalPrice($products)
+    {
+        $totalPrice = 0;
+        foreach ($products as $product) {
+            $totalPrice = $totalPrice + ($product['price']*$product['quantity']);
+        }
+
+        return $totalPrice;
     }
 }

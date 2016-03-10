@@ -11,6 +11,7 @@ use App\Models\User;
 use App\Model\Product;
 use Illuminate\Http\Request;
 use Tymon\JWTAuth\Facades\JWTAuth;
+use Carbon\Carbon;
 
 class TransactionController extends Controller
 {
@@ -32,7 +33,8 @@ class TransactionController extends Controller
 
         $productsBySupplier = $this->transactionRepository->splitProductsBySupplier($productIDs, $quantities);
 
-        // // $transactionShipping    = $this->transactionRepository->saveTransactionShipping($destination);
+        // untuk menyimpan alamat pengiriman
+        // $transactionShipping    = $this->transactionRepository->saveTransactionShipping($destination);
 
         $userStatus         = $this->transactionRepository->checkUser($email);
 
@@ -42,12 +44,22 @@ class TransactionController extends Controller
             $buyer = $this->transactionRepository->getUserByEmail($email);
         }
 
-        return [
-         'status'                    => 'success',
-         'buyer'                     => $buyer,
-         'products'                  => $productsBySupplier,
-         'payment_code'              => $this->transactionRepository->generatePaymentCode(),
-        ];
+        $data = array();
+        foreach ($productsBySupplier as $products) {
+            $checkout_date  = new Carbon($products['checkout_date']);
+            $due_date       = new Carbon($products['due_date']);
+            $data[] = [
+                'email'             => $buyer[0]['email'],
+                'toko'              => $products['supplier']['name'],
+                'invoice'           => $products['invoice_id'],
+                'products'          => $products['products'],
+                'total_payment'     => $this->transactionRepository->totalPrice($products['products']),
+                'checkout_date'     => indonesianDateFormat($checkout_date),
+                'due_date'          => indonesianDateFormat($due_date)
+            ];
+        }
+
+        return view('emails.invoice-details', $data[0]);
     }
 
     public function saveUser($email)
