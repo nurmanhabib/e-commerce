@@ -26,7 +26,7 @@ class ConfigRepository extends Repository
 
     public function getAutoload()
     {
-        $this->where('autoload', true);
+        $this->pushCriteria(new Criterias\ConfigAutoloadCriteria);
 
         return $this->getAll();
     }

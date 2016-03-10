@@ -21,6 +21,11 @@ class ConfigController extends Controller
         return $this->configRepository->all();
     }
 
+    public function autoload()
+    {
+        return $this->configRepository->getAutoload();
+    }
+
     public function store(Request $request)
     {
         $this->validate($request, [
