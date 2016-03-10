@@ -11,7 +11,7 @@ module.exports = {
 	toDashboard(path) {
 		var path = path || '';
 
-		this.to('dashboard/' + path);
+		this.to(path);
 	},
 
 	login() {

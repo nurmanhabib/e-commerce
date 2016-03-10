@@ -54,6 +54,8 @@
 <script lang="es6">
     var cookie = require('./../helpers/cookie.js');
     var auth = require('./../helpers/auth.js');
+    var loading = require('./../helpers/loading.js');
+    var event = require('./../helpers/event.js');
     var redirect = require('./../helpers/redirect.js');
 
     module.exports = {
@@ -74,18 +76,32 @@
                 var credentials = this.credentials;
                 var remember = false;
 
-                auth.attempt(credentials, 'admin', remember).then(function (response) {
-                    auth.saveToken(response.data.token, remember);
+                loading.show();
+                event.fire('auth.authenticating', credentials);
+
+                auth.attempt(credentials, 'admin', remember).then(function (token, user, roles) {
+                    auth.saveToken(token);
+
+                    event.fire('auth.authenticated', {token: token, user: user, roles: roles});
                     
                     redirect.toDashboard();
-                }, function (response) {
-                    that.error = response.message;
+                }, function (message) {
+                    that.error = message;
+
+                    event.fire('auth.failed', message);
+
+                    loading.hide();
                 });
             },
 
             clearError() {
                 this.error = '';
             }
+        },
+
+        ready() {
+            loading.setApp(this.$root);
+            event.setApp(this.$root);
         }
     }
 </script>
