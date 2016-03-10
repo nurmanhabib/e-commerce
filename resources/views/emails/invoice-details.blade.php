@@ -41,16 +41,52 @@
 															Terima kasih sudah melakukan pemesanan.
 														</p>
 														<p>
-															Anda sudah melakukan check-out untuk pemesanan dari toko {{ $toko }} shop.
+															Anda sudah melakukan check-out untuk pemesanan dari toko {{ $toko }}.
 														</p>
 														<p>
 															<div style="margin:0 0 20px;padding:0">
 																<table style="width:100%;max-width:100%;border-collapse:collapse;border-spacing:0;background-color:transparent;margin:5px 0;padding:0" bgcolor="transparent">
 																	<tbody style="margin:0;padding:0">
+																		<tr>
+																			<td style="width:25%;font-size:13px;vertical-align:top;line-height:18px;margin:0;padding:0 10px 0 0" valign="top">
+																				Nomor Pembayaran
+																			</td>
+																			<td>:</td>
+																			<td> {{$invoice}}</td>
+																		</tr>
+																		<tr>
+																			<td style="width:25%;font-size:13px;vertical-align:top;line-height:18px;margin:0;padding:0 10px 0 0" valign="top">
+																				Nama Toko
+																			</td>
+																			<td>:</td>
+																			<td> {{$toko}}</td>
+																		</tr>
+																		<tr>
+																			<td style="width:25%;font-size:13px;vertical-align:top;line-height:18px;margin:0;padding:0 10px 0 0" valign="top">
+																				Total Nilai Pesanan
+																			</td>
+																			<td>:</td>
+																			<td> {{rupiahFormat($total_payment)}}</td>
+																		</tr>
+																		<tr>
+																			<td style="width:25%;font-size:13px;vertical-align:top;line-height:18px;margin:0;padding:0 10px 0 0" valign="top">
+																				Tanggal Transaksi
+																			</td>
+																			<td>:</td>
+																			<td> {{$checkout_date}}</td>
+																		</tr>
+																		<tr>
+																			<td style="width:25%;font-size:13px;vertical-align:top;line-height:18px;margin:0;padding:0 10px 0 0" valign="top">
+																				Batas Transaksi
+																			</td>
+																			<td>:</td>
+																			<td> {{$due_date}}</td>
+																		</tr>
 																		<tr style="margin:0;padding:0">
 																			<td style="width:25%;font-size:13px;vertical-align:top;line-height:18px;margin:0;padding:0 10px 0 0" valign="top">
-																				Status Pembayaran:
+																				Status Pembayaran
 																			</td>
+																			<td>:</td>
 																			<td style="font-size:13px;vertical-align:top;line-height:18px;margin:0;padding:0 10px 0 0" valign="top">
 																				<div style="margin:0 0 4px;padding:0">
 																					<span style="color:#ffffff;font-size:11px;text-decoration:none;outline:none;background-color:#ec7000!important;margin:0;padding:0 5px 1px;border:1px solid #ec7000!important">
@@ -64,10 +100,33 @@
 															</div>
 														</p>
 														<p>
-															Your link to complete registration: 
-															<a href="{{ $link }}">Click here</a>
+															<h5>Rincian Pemesanan :</h5>
 														</p>
-
+														<p>
+															<table style="border:#777 1px solid; width:100%;">
+																<thead>
+																	<tr style="background-color:#2ab27b;">
+																		<th colspan="4">Rincian Pemesanan</th>
+																	</tr>
+																	<tr>
+																		<td>Nama Barang</td>
+																		<td>Harga Barang</td>
+																		<td>Jumlah Barang</td>
+																		<td>Harga Jumlah Barang</td>
+																	</tr>
+																</thead>
+																<tbody>
+																	@foreach ($products as $product)
+																	<tr>
+																		<td>{{$product['name']}}</td>
+																		<td>{{rupiahFormat($product['price'])}}</td>
+																		<td>{{$product['quantity']}}</td>
+																		<td>{{rupiahFormat(($product['price']*$product['quantity']))}}</td>
+																	</tr>
+																	@endforeach
+																</tbody>
+															</table>
+														</p>
 													</div>
 												</div>
 											</td>
