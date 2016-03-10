@@ -3,8 +3,9 @@
 namespace App\Models;
 
 use App\Models\User;
-use App\Model\InvoiceDetails;
-use App\Model\TransactionShipping;
+use App\Models\InvoiceDetails;
+use App\Models\TransactionShipping;
+use App\Models\PaymentConfirmation;
 use Illuminate\Database\Eloquent\Model;
 
 class Invoice extends Model
@@ -21,8 +22,13 @@ class Invoice extends Model
     	return $this->hasMany(InvoiceDetails::class);
     }
 
-    public function transaction_address()
+    public function transaction_shipping()
     {
         return $this->hasOne(TransactionShipping::class);
     }
+
+    // public function payment_confirmation()
+    // {
+    //     return $this->hasMany();
+    // }
 }
