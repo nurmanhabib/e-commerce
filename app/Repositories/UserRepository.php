@@ -44,7 +44,7 @@ class UserRepository extends Repository
 
     public function registerAndActivate(array $credentials, array $profile = [], $role = 'member')
     {
-        $this->register($credentials, $profile, $role, true);
+        return $this->register($credentials, $profile, $role, true);
     }
 
     public function registerSocial($driver, $appid, array $credentials, array $profile = [], $role = 'member', $activated = false)
@@ -85,7 +85,7 @@ class UserRepository extends Repository
             $user->roles()->attach($role);
         }
 
-        return $user->load('suppliers');
+        return $user;
     }
 
     public function completeRegistration(array $credentials, array $address, array $profile = [], $role = 'member', $activated = true)
@@ -136,7 +136,7 @@ class UserRepository extends Repository
 
             $user->save();
 
-            return $user;
+            return $user->load('suppliers');
         } else {
             return ['message' => 'User not found', 'activation_code' => 'Activation code not found.'];
         }
