@@ -10,21 +10,22 @@ use Illuminate\Database\Eloquent\Model;
 
 class Invoice extends Model
 {
-	protected $guarder = [];
+	protected $guarded = [];
+    protected $with = ['details'];
 	
 	public function user()
     {
         return $this->belongsTo(User::class);
     }
 
-    public function detail_invoice()
+    public function details()
     {
     	return $this->hasMany(InvoiceDetails::class);
     }
 
     public function transaction_shipping()
     {
-        return $this->hasOne(TransactionShipping::class);
+        return $this->belongsTo(TransactionShipping::class);
     }
 
     // public function payment_confirmation()
