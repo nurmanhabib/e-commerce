@@ -58,10 +58,12 @@ $api->group(['middleware' => 'auth'], function ($api) {
 resource('users',       'Admin\UserController', $api);
 resource('suppliers',   'SupplierController', $api);
 resource('products',    'ProductController', $api);
+
+$api->get('configs/autoload', 'ConfigController@autoload');
 resource('configs',     'ConfigController', $api);
 
-resource('categories',  'CategoryController', $api);
 $api->get('categories/{id}/childs', 'CategoryController@childs');
+resource('categories',  'CategoryController', $api);
 
 // resource('discounts',   'DiscountController', $api);
 
