@@ -19,6 +19,7 @@ $api->post('auth/register',             'Auth\RegisterController@register');
 // Autentikasi
 $api->post('auth/credentials',      'Auth\LoginController@credentials');
 $api->post('auth/id',               'Auth\LoginController@id');
+$api->post('auth/remember',         'Auth\LoginController@viaRemember');
 // $api->post('auth/hashids',          'Auth\LoginController@hashids');
 $api->post('auth/refresh-token',    'Auth\LoginController@refreshToken');
 
@@ -57,7 +58,11 @@ $api->group(['middleware' => 'auth'], function ($api) {
 resource('users',       'Admin\UserController', $api);
 resource('suppliers',   'SupplierController', $api);
 resource('products',    'ProductController', $api);
+resource('configs',     'ConfigController', $api);
+
 resource('categories',  'CategoryController', $api);
+$api->get('categories/{id}/childs', 'CategoryController@childs');
+
 // resource('discounts',   'DiscountController', $api);
 
 /*******************************
@@ -67,3 +72,8 @@ $api->post('sendmail',          'Sendmail\SendmailController@send');
 $api->post('welcome-mail',      'Sendmail\SendmailController@welcome');
 $api->post('forgot-password',   'Sendmail\SendmailController@forgotPassword');
 $api->post('register',          'Sendmail\SendmailController@register');
+
+/*******************************
+ **       Transactions        **
+ *******************************/
+$api->post('checkout', 'TransactionController@checkout');

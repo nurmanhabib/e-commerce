@@ -262,3 +262,28 @@ if ( ! function_exists('cookie'))
         return $cookie->make($name, $value, $minutes, $path, $domain, $secure, $httpOnly);
     }
 }
+
+
+if ( ! function_exists('rupiahFormat'))
+{
+    /**
+     * Helper untuk membuat format mata uang rupiah
+     * @param  [type]  $value    [description]
+     * @param  integer $fragment [description]
+     * @return [type]            [description]
+     */
+    function rupiahFormat($value, $fragment = 0) {
+        return 'Rp. '.number_format($value, $fragment, ',', '.');
+    }
+}
+
+if ( ! function_exists('indonesianDateFormat'))
+{
+
+    function indonesianDateFormat($date)
+    {
+        setlocale(LC_TIME, 'IND');
+        
+        return $date->formatLocalized('%d %B %Y %H:%M:%S');
+    }
+}

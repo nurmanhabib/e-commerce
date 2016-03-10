@@ -24,6 +24,13 @@ class ConfigRepository extends Repository
         return Config::class;
     }
 
+    public function getAutoload()
+    {
+        $this->where('autoload', true);
+
+        return $this->getAll();
+    }
+
     public function getAll()
     {
         $config = $this->all();
@@ -46,7 +53,25 @@ class ConfigRepository extends Repository
         return $default;
     }
 
-    public function setForName($name, $value)
+    public function setForAll(array $configs)
+    {
+        $results = [];
+
+        foreach ($configs as $name => $value) {
+            $autoload = true;
+
+            if (is_array($value)) {
+                $autoload   = array_get($value, 'autoload', $autoload);
+                $value      = array_get($value, 'value', null);
+            }
+
+            $results[$name] = $this->setForName($name, $value, $autoload);
+        }
+
+        return $results;
+    }
+
+    public function setForName($name, $value, $autoload = true)
     {
         $config = $this->findByField('name', $name)->first();
 
@@ -57,7 +82,8 @@ class ConfigRepository extends Repository
             $config->name = $name;
         }
 
-        $config->forceFill(compact('value'));
+        $config->value      = $value;
+        $config->autoload   = $autoload;
 
         return $config->save();
     }

@@ -6,11 +6,19 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\Supplier;
 use App\Models\userSupplier;
+use App\Repositories\ProductRepository;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
+	protected $productRepository;
+
+    public function __construct(ProductRepository $productRepository)
+    {
+        $this->productRepository = $productRepository;
+    }
+
 	/**
 	 * Untuk menampilkan semua data product
 	 * 

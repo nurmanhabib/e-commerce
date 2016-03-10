@@ -44,7 +44,7 @@ class UserRepository extends Repository
 
     public function registerAndActivate(array $credentials, array $profile = [], $role = 'member')
     {
-        $this->register($credentials, $profile, $role, true);
+        return $this->register($credentials, $profile, $role, true);
     }
 
     public function registerSocial($driver, $appid, array $credentials, array $profile = [], $role = 'member', $activated = false)
@@ -85,7 +85,7 @@ class UserRepository extends Repository
             $user->roles()->attach($role);
         }
 
-        return $user->load('suppliers');
+        return $user;
     }
 
     public function completeRegistration(array $credentials, array $address, array $profile = [], $role = 'member', $activated = true)
@@ -136,10 +136,15 @@ class UserRepository extends Repository
 
             $user->save();
 
-            return $user;
+            return $user->load('suppliers');
         } else {
             return ['message' => 'User not found', 'activation_code' => 'Activation code not found.'];
         }
+    }
+
+    public function expectedRoles($expected_roles = [])
+    {
+        $this->expected_roles = $expected_roles;
     }
 
     public function authenticate(array $credentials, $expected_roles = [])
@@ -150,20 +155,21 @@ class UserRepository extends Repository
 
         if ($user) {
             if ($user->active) {
-                if ($user->hasRole($expected_roles)) {
-                    if (app('hash')->check($password, $user->password)) {
+                if (app('hash')->check($password, $user->password)) {
+                    if ($user->hasRole($expected_roles)) {
                         return [
                             'status'    => 'success',
                             'user'      => $user,
                             'token'     => $this->getToken($user),
                         ];
+                    } else {
+                        return [
+                            'status'    => 'not_role',
+                            'message'   => 'You do not have access rights.'
+                        ];
                     }
-                } else {
-                    return [
-                        'status'    => 'not_role',
-                        'message'   => 'You do not have access rights.'
-                    ];
                 }
+
             } else {
                 return [
                     'status'    => 'not_activated',
@@ -189,6 +195,21 @@ class UserRepository extends Repository
                 'token'     => $this->getToken($user),
             ];
         } catch (ModelNotFoundException $e) {
+            return null;
+        }
+    }
+
+    public function authenticateByRememberToken($remember_token)
+    {
+        $user = $this->findWhere('remember_token', $remember_token)->first();
+
+        if ($user) {
+            return [
+                'status'    => 'success',
+                'user'      => $user,
+                'token'     => $this->getToken($user),
+            ];
+        } else {
             return null;
         }
     }

@@ -69,6 +69,28 @@ class LoginController extends Controller
         }
     }
 
+    public function viaRemember(Request $request)
+    {
+        $this->validate($request, [
+            'remember_token' => 'required',
+        ]);
+
+        $authenticate = $this->userRepository->authenticateByRememberToken($request->get('id'));
+
+        if ($authenticate) {
+            return [
+                'status'    => 'success',
+                'user'      => $authenticate['user'],
+                'token'     => $authenticate['token'],
+            ];
+        } else {
+            return [
+                'status'    => 'failed',
+                'message'   => 'User not found.',
+            ];
+        }
+    }
+
     /**
      * Autentikasi dengan hashids
      * Digunakan untuk fitur remember me
