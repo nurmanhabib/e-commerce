@@ -67,3 +67,8 @@ $api->post('sendmail',          'Sendmail\SendmailController@send');
 $api->post('welcome-mail',      'Sendmail\SendmailController@welcome');
 $api->post('forgot-password',   'Sendmail\SendmailController@forgotPassword');
 $api->post('register',          'Sendmail\SendmailController@register');
+
+/*******************************
+ **       Transactions        **
+ *******************************/
+$api->post('checkout', 'TransactionController@checkout');
