@@ -33,6 +33,7 @@ class TransactionController extends Controller
 
         $productsBySupplier = $this->transactionRepository->splitProductsBySupplier($productIDs, $quantities);
 
+        // untuk menyimpan alamat pengiriman
         // $transactionShipping    = $this->transactionRepository->saveTransactionShipping($destination);
 
         $userStatus         = $this->transactionRepository->checkUser($email);
@@ -43,12 +44,6 @@ class TransactionController extends Controller
             $buyer = $this->transactionRepository->getUserByEmail($email);
         }
 
-        // return [
-        //  'status'                    => 'success',
-        //  'buyer'                     => $buyer,
-        //  'products'                  => $productsBySupplier,
-        //  'payment_code'              => $this->transactionRepository->generatePaymentCode(),
-        // ];
         $data = array();
         foreach ($productsBySupplier as $products) {
             $checkout_date  = new Carbon($products['checkout_date']);
