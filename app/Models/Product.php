@@ -22,6 +22,8 @@ class Product extends Model
         'supplier_id'
     ];
 
+    protected $with = ['category', 'tags'];
+
     /**
      * The attributes excluded from the model's JSON form.
      *
@@ -33,7 +35,12 @@ class Product extends Model
 
     public function supplier()
     {
-        return $this->hasOne(Supplier::class);
+        return $this->belongsTo(Supplier::class);
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
     }
 
     public function tags()
