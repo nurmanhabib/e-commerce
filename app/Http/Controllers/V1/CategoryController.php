@@ -71,7 +71,7 @@ class CategoryController extends Controller
     }
 
     public function childs($id) {
-        $category = Categ
+        // $category = Categ
     }
 
     /**
