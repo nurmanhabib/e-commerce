@@ -16,6 +16,8 @@ use App\Models\ShippingAddress;
 use App\Models\invoice;
 use App\Models\TransactionShipping;
 use Prettus\Repository\Criteria\RequestCriteria;
+use Tymon\JWTAuth\Facades\JWTAuth;
+use Illuminate\Support\Facades\Mail;
 
 class TransactionRepository extends Repository
 {
@@ -45,50 +47,70 @@ class TransactionRepository extends Repository
         return $transactionShipping;
     }
 
-    public function splitProductsBySupplier(array $products, array $quantity)
+    public function splitProductsBySupplier(array $carts)
     {
-        $products = collect($products);
+        $carts = collect($carts);
 
-        $products = $products->map(function ($product_id) {
-            return Product::find($product_id);
+        $carts = $carts->map(function ($cart) {
+            $product    = Product::find($cart['product_id']);
+
+            return [
+                'product'   => $product,
+                'quantity'  => $cart['quantity'],
+            ];
         });
 
-        foreach ($products as $index=>$product) {
-            $product['quantity'] = $quantity[$index];
-        }
-
-        $grouping = $products->groupBy(function ($product) {
-            return $product->supplier_id;
+        $grouping = $carts->groupBy(function ($cart) {
+            return $cart['product']->supplier_id;
         });
 
-        $groupProductBySupplier = [];
+        $splits = array();
 
-        foreach ($grouping as $supplier_id => $products) {
-            $supplier   = Supplier::find($supplier_id);
-            $groupProductBySupplier[] = [
-                'supplier'      => $supplier,
-                'products'      => $products,
-                'invoice_id'    => $this->generateInvoice($supplier),
-                'checkout_date' => date('Y-m-d H:i'),
-                'due_date'      => date('Y-m-d H:i', strtotime('+24 hours'))
+        foreach ($grouping as $supplier_id => $carts) {
+            $splits[] = [
+                'supplier'  => Supplier::find($supplier_id),
+                'carts'     => $carts
             ];
         }
 
-        return $groupProductBySupplier;
+        return $splits;
     }
 
-    public function setPaymentConfirmation(Invoice $invoice, array $paymentConfirmation)
+    public function setPaymentConfirmation(Invoice $invoice, $bank_name, $on_behalf, $nominal)
     {
 
     }
 
-    public function createInvoice(User $user, array $invoice, Product $products, TransactionShipping $transactionShipping)
-    {   
-        $invoice = $user->invoices()->create($invoice);
+    public function createInvoice(
+        User $user,
+        Supplier $supplier,
+        array $carts,
+        TransactionShipping $transactionShipping,
+        $note = null,
+        $status = 'unpaid'
+    )
+    {
+        $invoice = new Invoice;
+        $invoice->code = rand(100, 999);
+        $invoice->note = $note;
+        $invoice->status = $status;
+        $invoice->user()->associate($user);
+        $invoice->transaction_shipping()->associate($transactionShipping);
+        $invoice->save();
 
-        $invoice = $invoice->detail_invoice()->create($products);
+        foreach ($carts as $cart) {
+            $product = $cart['product'];
 
-        return $user->load('invoices');
+            $invoice->details()->create([
+                'name'          => $product->name,
+                'description'   => $product->description,
+                'quantity'      => $cart['quantity'],
+                'price'         => $product->price,
+                'product_id'    => $product->id,
+            ]);
+        }
+
+        return $invoice->load('details');
     }
 
     public function getInvoice($invoice_code)
@@ -110,26 +132,17 @@ class TransactionRepository extends Repository
 
     }
 
-    public function createTransferConfirmation(Invoice $invoice, $bank_name, $on_behalf, $nominal)
+    public function sendmailInvoice(array $invoiceData)
     {
+        $data               =  $invoiceData;
+        $data['subject']    = 'Invoice Pemesanan';
 
-    }
-
-    public function sendmailInvoice(User $user, Invoice $invoice)
-    {
-        $data   = [
-            'email'             => $email['to']['email'],
-            'invoice_id'        => $invoice['invoice'],
-            'invoice_item'      => $invoice['items'],
-            'total_transfer'    => $invoice['total_prices']
-        ];
-
-        Mail::send('emails.invoice', $data, function ($message) use ($email) {
-            $message->to($email['to']['email'], $email['to']['name']);
-            $message->subject($email['subject']);
+        Mail::send('emails.invoice-details', $data, function ($message) use ($data) {
+            $message->to($data['email'], $data['email']);
+            $message->subject($data['subject']);
         });
 
-        return $user;
+        // return $data;
     }
 
     public function setStatusInvoice(Invoice $invoice, $status)
@@ -156,9 +169,9 @@ class TransactionRepository extends Repository
 
     public function checkUser($email)
     {
-        $user   =   User::where('email', $email)->get();
+        $user   =   User::where('email', $email)->first();
 
-        if (count($user) > 0) {
+        if ($user) {
             return true;
         } else {
             return false;
@@ -167,7 +180,7 @@ class TransactionRepository extends Repository
 
     public function getUserByEmail($email)
     {
-        $user   =   User::where('email', $email)->get();
+        $user   =   User::where('email', $email)->first();
 
         return $user;
     }
@@ -196,5 +209,10 @@ class TransactionRepository extends Repository
         }
 
         return $totalPrice;
+    }
+
+    public function saveInvoiceDetails(Invoice $invoice, array $detailInvoice)
+    {
+
     }
 }
