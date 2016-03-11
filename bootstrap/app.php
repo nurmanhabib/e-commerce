@@ -95,6 +95,7 @@ $app->register(Dingo\Api\Provider\LumenServiceProvider::class);
 $app->register(Illuminate\Mail\MailServiceProvider::class);
 $app->register(Prettus\Repository\Providers\LumenRepositoryServiceProvider::class);
 $app->register(Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class);
+$app->register(App\Providers\SupplierServiceProvider::class);
 
 /*
 |--------------------------------------------------------------------------
