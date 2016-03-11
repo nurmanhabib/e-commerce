@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateInvoiceTable extends Migration
+class AddGuestsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,13 +12,11 @@ class CreateInvoiceTable extends Migration
      */
     public function up()
     {
-        Schema::create('invoices', function (Blueprint $table) {
+        Schema::create('guests', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('code', 45);
-            $table->string('note')->nullable();
-            $table->string('status', 10);
-            $table->morphs('buyerable');
-            $table->integer('transaction_shipping_id');
+            $table->string('email');
+            $table->string('first_name', 45)->nullable();
+            $table->string('last_name', 45)->nullable();
             $table->timestamps();
         });
     }
@@ -30,6 +28,6 @@ class CreateInvoiceTable extends Migration
      */
     public function down()
     {
-        Schema::drop('invoices');
+        Schema::drop('guests');
     }
 }

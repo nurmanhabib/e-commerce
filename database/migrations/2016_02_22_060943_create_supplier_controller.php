@@ -14,7 +14,8 @@ class CreateSupplierController extends Migration
     {
         Schema::create('suppliers', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('slug');
+            $table->string('code', 3)->unique();
+            $table->string('slug')->unique();
             $table->string('name');
             $table->text('address_line_1');
             $table->text('address_line_2')->nullable();
@@ -22,7 +23,6 @@ class CreateSupplierController extends Migration
             $table->string('phone_2', 14)->nullable();
             $table->string('email')->nullable();
             $table->string('website')->nullable();
-            $table->text('tags');
             $table->timestamps();
         });
 
