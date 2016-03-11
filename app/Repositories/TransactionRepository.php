@@ -16,7 +16,6 @@ use App\Models\ShippingAddress;
 use App\Models\invoice;
 use App\Models\TransactionShipping;
 use Prettus\Repository\Criteria\RequestCriteria;
-use Tymon\JWTAuth\Facades\JWTAuth;
 
 class TransactionRepository extends Repository
 {
@@ -96,7 +95,7 @@ class TransactionRepository extends Repository
     {
         $invoice = $this->findWhere('code', $invoice_code);
 
-        return $Invoice;
+        return $invoice;
     }
 
     public function getInvoiceByUser(User $user)
