@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\ServiceProvider;
+use App\Supports\Contracts\Supplierable;
 
 class SupplierServiceProvider extends ServiceProvider
 {
@@ -12,7 +13,7 @@ class SupplierServiceProvider extends ServiceProvider
         if ($user = Auth::user()) {
         	$supplier = $user->supplier;
 
-            app()->singleton(Supplierable::class, $supplier->first());
+            app()->instance(Supplierable::class, $supplier->first());
         }
 	}
 
