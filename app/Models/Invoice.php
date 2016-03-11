@@ -13,9 +13,9 @@ class Invoice extends Model
 	protected $guarded = [];
     protected $with = ['details'];
 	
-	public function user()
+	public function buyer()
     {
-        return $this->belongsTo(User::class);
+        return $this->morphTo('buyerable');
     }
 
     public function details()

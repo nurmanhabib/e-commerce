@@ -35,4 +35,9 @@ class Product extends Model
     {
         return $this->hasOne(Supplier::class);
     }
+
+    public function tags()
+    {
+        return $this->morphToMany(Tag::class, 'taggable');
+    }
 }
