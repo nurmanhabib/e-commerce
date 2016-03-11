@@ -4,6 +4,7 @@ var Login = require('./components/Login.vue');
 var Content = require('./components/Content.vue');
 var Dashboard = require('./components/Dashboard.vue');
 var Category = require('./components/Category.vue');
+var Sidebar = require('./components/Sidebar.vue');
 
 var config = require('./config.js');
 var auth = require('./helpers/auth.js');
@@ -18,7 +19,8 @@ module.exports = {
         'login': Login,
         'content': Content,
         'dashboard': Dashboard,
-        'category': Category
+        'category': Category,
+        'sidebar': Sidebar,
     },
     
     methods: {
