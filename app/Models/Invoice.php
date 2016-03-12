@@ -2,10 +2,6 @@
 
 namespace App\Models;
 
-use App\Models\User;
-use App\Models\InvoiceDetails;
-use App\Models\TransactionShipping;
-use App\Models\PaymentConfirmation;
 use Illuminate\Database\Eloquent\Model;
 
 class Invoice extends Model
