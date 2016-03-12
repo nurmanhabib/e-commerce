@@ -9,6 +9,11 @@ class Guest extends Model implements Buyerable
 {
 	protected $guarded = [];
 
+    public function getType()
+    {
+        return 'guest';
+    }
+
     public function getFirstName()
     {
     	return $this->first_name;

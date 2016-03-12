@@ -46,6 +46,11 @@ class User extends Model implements
         'roles',
     ];
 
+    public function getType()
+    {
+        return 'user';
+    }
+
     public function getFirstName()
     {
         return $this->profile->first_name;
