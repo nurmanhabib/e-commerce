@@ -26,6 +26,12 @@ class TransactionController extends Controller
 
     public function checkout(Request $request)
     {
+        $this->validate($request, [
+            'email'         => 'required|email',
+            'carts'         => 'required',
+            'destination'   => 'required',
+        ]);
+
         $email          = $request->get('email');
         $carts          = $request->get('carts');
         $destination    = $request->get('destination');
@@ -41,6 +47,7 @@ class TransactionController extends Controller
         $transactionShipping    = $this->transactionRepository->saveTransactionShipping($destination);
 
         $invoices = array();
+
         foreach ($supplierCarts as $carts) {
             $invoices[] = $this->transactionRepository->createInvoice(
                 $user,
@@ -50,7 +57,10 @@ class TransactionController extends Controller
             );
         }
 
-        return $invoices;
+        return [
+            'status'    => 'success',
+            'invoices'  => $invoices,
+        ];
     }
 
     public function saveUser($email)

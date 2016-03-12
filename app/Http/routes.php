@@ -33,7 +33,9 @@ $app->group(['namespace' => 'App\Http\Controllers\Frontend\Auth'], function () u
 
 $app->group(['namespace' => 'App\Http\Controllers\Frontend\Admin', 'prefix' => 'admin'], function () use ($app) {
     $app->get('/', 'DashboardController@index');
-    $app->get('category', 'DashboardController@category');
+    $app->get('category', 'CategoryController@index');
+    $app->get('product', 'ProductController@index');
+    $app->get('supplier', 'SupplierController@index');
 });
 
 $app->group(['namespace' => 'App\Http\Controllers\Frontend\Supplier', 'prefix' => 'supplier'], function () use ($app) {

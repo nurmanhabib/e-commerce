@@ -2,10 +2,6 @@
 
 namespace App\Models;
 
-use App\Models\User;
-use App\Models\InvoiceDetails;
-use App\Models\TransactionShipping;
-use App\Models\PaymentConfirmation;
 use Illuminate\Database\Eloquent\Model;
 
 class Invoice extends Model
@@ -13,9 +9,9 @@ class Invoice extends Model
 	protected $guarded = [];
     protected $with = ['details'];
 	
-	public function user()
+	public function buyer()
     {
-        return $this->belongsTo(User::class);
+        return $this->morphTo('buyerable');
     }
 
     public function details()

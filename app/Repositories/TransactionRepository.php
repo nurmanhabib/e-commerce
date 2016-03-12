@@ -8,13 +8,15 @@
 
 namespace App\Repositories;
 
+use App\Supports\Contracts\Buyerable;
 use App\Events\UserRegistered;
 use App\Models\Product;
 use App\Models\User;
 use App\Models\Supplier;
 use App\Models\ShippingAddress;
-use App\Models\invoice;
+use App\Models\Invoice;
 use App\Models\TransactionShipping;
+use Carbon\Carbon;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Tymon\JWTAuth\Facades\JWTAuth;
 use Illuminate\Support\Facades\Mail;
@@ -26,7 +28,7 @@ class TransactionRepository extends Repository
         return Invoice::class;
     }
 
-    public function saveTransactionShipping($destination)
+    public function saveTransactionShipping($destination, $name = 'home')
     {
         if (is_numeric($destination)) {
             $address            = ShippingAddress::find($destination);
@@ -39,7 +41,8 @@ class TransactionRepository extends Repository
                 'phone'             => $address->phone
             ];
         } else {
-            $shippingAddress = $destination;
+            $shippingAddress            = $destination;
+            $shippingAddress['name']    = $name;
         }
 
         $transactionShipping = TransactionShipping::create($shippingAddress);
@@ -81,8 +84,27 @@ class TransactionRepository extends Repository
 
     }
 
+    public function generateInvoiceNumber(Supplier $supplier, $unique_number = 1)
+    {
+        $format         = [
+            'marketplace_code'  => config('amtekcommerce.code'),
+            'date'              => Carbon::today()->format('Ymd'),
+            'supplier_code'     => $supplier->code,
+            'unique_number'     => str_pad($unique_number, 7, '0', STR_PAD_LEFT),
+        ];
+
+        $format_code    = implode('/', $format);
+        $already        = $this->findWhere(['code' => $format_code])->first();
+
+        if ($already) {
+            return $this->generateInvoiceNumber($supplier, $unique_number + 1);
+        }
+
+        return $format_code;
+    }
+
     public function createInvoice(
-        User $user,
+        Buyerable $buyer,
         Supplier $supplier,
         array $carts,
         TransactionShipping $transactionShipping,
@@ -91,10 +113,10 @@ class TransactionRepository extends Repository
     )
     {
         $invoice = new Invoice;
-        $invoice->code = rand(100, 999);
+        $invoice->code = $this->generateInvoiceNumber($supplier);
         $invoice->note = $note;
         $invoice->status = $status;
-        $invoice->user()->associate($user);
+        $invoice->buyer()->associate($buyer);
         $invoice->transaction_shipping()->associate($transactionShipping);
         $invoice->save();
 
@@ -115,16 +137,14 @@ class TransactionRepository extends Repository
 
     public function getInvoice($invoice_code)
     {
-        $invoice = $this->findWhere('code', $invoice_code);
+        $invoice = $this->findWhere(['code' => $invoice_code])->first();
 
-        return $Invoice;
+        return $invoice;
     }
 
     public function getInvoiceByUser(User $user)
     {
-        $invoice = $this->findWhere('user_id', $user->id);
-
-        return $invoice;
+        return $user->invoices;
     }
 
     public function checkBalance(User $user, int $nominal)

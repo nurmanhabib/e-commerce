@@ -2,9 +2,10 @@
 
 namespace App\Models;
 
+use App\Supports\Contracts\Supplierable;
 use Illuminate\Database\Eloquent\Model;
 
-class Supplier extends Model
+class Supplier extends Model implements Supplierable
 {
     /**
      * The attributes that are mass assignable.
@@ -36,6 +37,7 @@ class Supplier extends Model
         parent::boot();
 
         Supplier::creating(function (Supplier $supplier) {
+            $supplier->generateCode();
             $supplier->generateSlug();
         });
     }
@@ -48,6 +50,23 @@ class Supplier extends Model
     public function scopeFindBySlug($query, $slug)
     {
         return $query->where('slug', $slug)->first();
+    }
+
+    public function generateCode()
+    {
+        $this->code = $this->createCode($this->name);
+
+        return $this;
+    }
+
+    public function createCode($name, $numb = 0)
+    {
+        $code       = substr($name, $numb, 3);
+        $already    = Supplier::where('code', $code)->first();
+
+        if ($already)
+            return $this->createCode($name, $numb+1);
+            return $code;
     }
 
     public function generateSlug()

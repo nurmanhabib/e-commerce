@@ -19,7 +19,7 @@ class CreateTransactionShippingsTable extends Migration
             $table->string('address_line_2', 200)->nullable();
             $table->string('postal_code', 5)->nullable();
             $table->string('city', 100)->nullable();
-            $table->string('phone', 14)->nullable();
+            $table->string('phone_number', 14)->nullable();
             $table->timestamps();
         });
     }
