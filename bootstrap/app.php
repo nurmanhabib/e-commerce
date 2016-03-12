@@ -24,11 +24,11 @@ $app = new Laravel\Lumen\Application(
 );
 
 $app->withFacades();
-
 $app->withEloquent();
 
 $app->configure('jwt');
 $app->configure('mail');
+$app->configure('amtekcommerce');
 
 class_alias(Tymon\JWTAuth\Facades\JWTAuth::class, 'JWTAuth');
 class_alias(Illuminate\Support\Facades\Mail::class, 'Mail');
