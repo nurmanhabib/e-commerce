@@ -16,6 +16,7 @@ use App\Models\Supplier;
 use App\Models\ShippingAddress;
 use App\Models\Invoice;
 use App\Models\TransactionShipping;
+use Carbon\Carbon;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Tymon\JWTAuth\Facades\JWTAuth;
 use Illuminate\Support\Facades\Mail;
@@ -27,7 +28,7 @@ class TransactionRepository extends Repository
         return Invoice::class;
     }
 
-    public function saveTransactionShipping($destination)
+    public function saveTransactionShipping($destination, $name = 'home')
     {
         if (is_numeric($destination)) {
             $address            = ShippingAddress::find($destination);
@@ -40,7 +41,8 @@ class TransactionRepository extends Repository
                 'phone'             => $address->phone
             ];
         } else {
-            $shippingAddress = $destination;
+            $shippingAddress            = $destination;
+            $shippingAddress['name']    = $name;
         }
 
         $transactionShipping = TransactionShipping::create($shippingAddress);
@@ -92,7 +94,7 @@ class TransactionRepository extends Repository
         ];
 
         $format_code    = implode('/', $format);
-        $already        = $this->findWhere('code', $format_code)->first();
+        $already        = $this->findWhere(['code' => $format_code])->first();
 
         if ($already) {
             return $this->generateInvoiceNumber($supplier, $unique_number + 1);
@@ -135,16 +137,14 @@ class TransactionRepository extends Repository
 
     public function getInvoice($invoice_code)
     {
-        $invoice = $this->findWhere('code', $invoice_code);
+        $invoice = $this->findWhere(['code' => $invoice_code])->first();
 
         return $invoice;
     }
 
     public function getInvoiceByUser(User $user)
     {
-        $invoice = $this->findWhere('user_id', $user->id);
-
-        return $invoice;
+        return $user->invoices;
     }
 
     public function checkBalance(User $user, int $nominal)
