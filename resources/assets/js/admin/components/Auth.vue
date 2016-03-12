@@ -60,6 +60,8 @@
             auth.check(['admin']).then(function (user, roles) {
                 event.fire('auth.checked', {user: user, roles: roles});
                 event.fire('loading.hide');
+
+                auth.refreshToken();
             }, function (message) {
                 that.error = message;
                 event.fire('auth.failed', message);

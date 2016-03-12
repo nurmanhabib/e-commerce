@@ -1,95 +1,120 @@
 <style>
-	
+    
 </style>
 
 <template>
-	<slot></slot>
-	<ul class="navigation navigation-main navigation-accordion">
+    <slot></slot>
+    <ul class="navigation navigation-main navigation-accordion">
         <li class="navigation-header"><span>Dashboard</span> <i class="icon-menu" title="Main pages"></i></li>
 
-        <li v-for="item in items">
-        	<a href="{{ item.link }}">
-        		<span>{{ item.text }}</span> <i class="{{ item.icon }}" title="{{ item.text }}"></i>
-        	</a>
-        	<ul v-if="item.childs">
-        		<li v-for="child in item.childs">
-        			<a href="{{ url('child.link') }}">
-        				<span>{{ child.text }}</span> <i class="{{ child.icon }}" title="{{ child.text }}"></i>
-        			</a>
-        		</li>
-        	</ul>
-        </li>
-
-        <!-- Main -->
-        <!-- <li class="active"><a href="{{ url('/') }}"><i class="icon-home4"></i> <span>Dashboard</span></a></li> -->
-        <!-- /main -->
-
-        <!-- Forms -->
-        <!-- <li>
-            <a href="#"><i class="icon-pencil3"></i> <span>Category</span></a>
-            <ul>
-                <li><a href="form_inputs_basic.html">Basic inputs</a></li>
-                <li><a href="form_checkboxes_radios.html">Checkboxes &amp; radios</a></li>
-                <li><a href="form_input_groups.html">Input groups</a></li>
-                <li><a href="form_controls_extended.html">Extended controls</a></li>
-                <li>
-                    <a href="#">Selects</a>
-                    <ul>
-                        <li><a href="form_select2.html">Select2 selects</a></li>
-                        <li><a href="form_multiselect.html">Bootstrap multiselect</a></li>
-                        <li><a href="form_select_box_it.html">SelectBoxIt selects</a></li>
-                        <li><a href="form_bootstrap_select.html">Bootstrap selects</a></li>
-                    </ul>
+        <li v-for="item in items" v-bind:class="{ 'active': isActive(item) }">
+            <a href="{{ url(item.link) }}">
+                <span>{{ item.text }}</span> <i class="{{ item.icon }}" title="{{ item.text }}"></i>
+            </a>
+            <ul v-if="item.childs">
+                <li v-for="child in item.childs" v-bind:class="{ 'active': isActive(child) }">
+                    <a href="{{ url(child.link) }}">
+                        <span>{{ child.text }}</span> <i class="{{ child.icon }}" title="{{ child.text }}"></i>
+                    </a>
                 </li>
             </ul>
         </li>
-        <li>
-            <a href="#"><i class="icon-footprint"></i> <span>Supplier</span></a>
-            <ul>
-                <li><a href="wizard_steps.html">Barang</a></li>
-                <li><a href="wizard_form.html">Order</a></li>
-            </ul>
-        </li> -->
-        <!-- /forms -->
     </ul>
 </template>
 
 <script lang="es6">
-	module.exports = {
-		props: {
-			active: null
-		},
+    var _ = require('underscore');
+    var url = require('./../helpers/url.js');
 
-		data() {
-			return {
-				items: [
-					{
-						'text'	: 'Dashboard',
-						'link' 	: '/admin',
-						'icon' 	: 'icon-home4',
-						'active': false,
-					},
-					{
-						'text'	: 'Category',
-						'link' 	: 'category',
-						'icon' 	: 'icon-pencil3',
-						'active': false,
-					},
-					{
-						'text'	: 'Supplier',
-						'link'	: 'supplier',
-						'icon' 	: 'icon-users',
-						'active': false,
-					}
-				],
-				active: ''
-			}
-		},
-		methods: {
+    module.exports = {
+        props: {
+            active: {
+                type: String,
+                default: '/'
+            }
+        },
 
-		},
-		ready() {
-			console.log(this.items)
-		}
-	}
+        data() {
+            return {
+                items: [
+                    {
+                        text: 'Dashboard',
+                        link: '/',
+                        icon: 'icon-home4'
+                    },
+                    {
+                        text: 'Category',
+                        link: 'category',
+                        icon: 'icon-pencil3'
+                    },
+                    {
+                        text: 'Supplier',
+                        link: 'supplier',
+                        icon: 'icon-users'
+                    }
+                ]
+            }
+        },
+
+        methods: {
+            setActive(path) {
+                this.active = path;
+            },
+
+            url(path) {
+                return url.to(path);
+            },
+
+            hasChilds(item) {
+                var item = item || [];
+
+                if (_.isUndefined(item.childs) === false) {
+                    return _.isEmpty(item.childs) === false;
+                } else {
+                    return false;
+                }
+            },
+
+            checkActive(items, active) {
+                var that = this;
+                var active = active || this.active;
+
+                var hasActive = _.filter(items, function (item) {
+                    if (that.hasChilds(item)) {
+                        var hasChildActive = that.checkActive(item.childs, active);
+
+                        if (hasChildActive) {
+                            that.setItemActive(item, active);
+
+                            return true;
+                        }
+                    }
+                    
+                    return that.isActive(item, active);
+                });
+
+                return _.size(hasActive) > 0;
+            },
+
+            isActive(item, active) {
+                var active = active || this.active;
+
+                if (url.to(item.link) == url.to(active)) {
+                    this.setItemActive(item);
+
+                    return true;
+                } else {
+                    return false;
+                }
+            },
+
+            setItemActive(item) {
+                item.active = true;
+            }
+        },
+
+        ready() {
+            // 
+        }
+    }
 </script>

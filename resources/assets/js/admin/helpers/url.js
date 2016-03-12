@@ -4,25 +4,29 @@ module.exports = {
 	to(path) {
 		var path = path || '';
 
-		path = path.replace(/^\/|\/$/g, '');
+		path = this.removeTrailingSlash(path);
 
 		if (/:\/\//.test(path)) {
 			return path;
 		} else {
-			return config.SITE_URL + '/' + path;
+			return this.removeTrailingSlash(config.SITE_URL + '/' + path);
 		}
 	},
 
 	asset(path) {
 		var path = path || '';
 
-		path = path.replace(/^\/|\/$/g, '');
+		path = this.removeTrailingSlash(path);
 
 		if (/:\/\//.test(path)) {
 			return path;
 		} else {
-			return config.BASE_URL + '/' + path;
+			return this.removeTrailingSlash(config.BASE_URL + '/' + path);
 		}
+	},
+
+	removeTrailingSlash(path) {
+		return path.replace(/^\/|\/$/g, '');
 	},
 
 	node_modules(path) {

@@ -101,6 +101,24 @@ module.exports = {
         }
     },
 
+    refreshToken() {
+        var that = this;
+
+        return new Promise(function (resolve, reject) {
+            app.http().post('auth/refresh-token').then(function (response) {
+                var data = response.data;
+                var user = data.user;
+                var token = data.token;
+
+                that.saveToken(token);
+
+                resolve(user, token);
+            }, function (response) {
+                reject(response.data.message);
+            });
+        });
+    },
+
     check(expected_roles) {
         var that = this;
         var user = this.user();
