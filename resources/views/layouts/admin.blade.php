@@ -295,7 +295,7 @@
                             <!-- Main navigation -->
                             <div class="sidebar-category sidebar-category-visible">
                                 <div class="category-content no-padding">
-                                    <sidebar></sidebar>
+                                    <sidebar active="{{ app(Illuminate\Http\Request::class)->url() }}"></sidebar>
                                 </div>
                             </div>
                             <!-- /main navigation -->
