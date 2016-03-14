@@ -45,22 +45,37 @@ $padding-left: 5px;
 // Start: 320px
 @media (min-width: 320px) and (max-width: 360px) {
 
+	.form-search {
+		width: 100% !important;
+		margin-bottom: $margin-bottom;
+	}
+
 }
 // End: 360px
 
 // Start: 360px
 @media (min-width: 360px) and (max-width: 640px) {
+
+	.form-search {
+		width: 100% !important;
+		margin-bottom: $margin-bottom;
+	}
 	
 }
 // End: 640px
 
 // Start: 640px
 @media (min-width: 640px) and (max-width: 992px) {
+
+	.form-search {
+		width: 100% !important;
+		margin-bottom: $margin-bottom;
+	}
 	
 }
 // End: 992px
 
-// 1280
+// 1280 >
 // Start: 992px
 @media (min-width: 992px) and (max-width: 1500px) {
 	
