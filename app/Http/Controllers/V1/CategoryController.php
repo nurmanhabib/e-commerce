@@ -39,13 +39,14 @@ class CategoryController extends Controller
         if ($category) { // if category successfully save
             return [
                 'status'    => 'success',
-                'message'   => 'Category '.$category->name.' successfully added.',
+                'message'   => 'Kategori '.$category->name.' berhasil ditambahkan.',
                 'category'  => $category,
             ];
         } else {        // if category failed to be save
             return [
                 'status'    => 'failed',
-                'message'   => 'Category failed to be added.'
+                'message'   => 'Kategori gagal ditambahkan.',
+                'category'  => null
             ];
         }
     }
@@ -65,7 +66,8 @@ class CategoryController extends Controller
         } else {            // if the category is not found
             return [
                 'status'    => 'failed',
-                'message'   => 'Sorry, category you are looking for is does not exist.'
+                'message'   => 'Maaf, kategori yang anda cari tidak ditemukan.'
+                'category'  => null
             ];
         }
     }
@@ -93,19 +95,21 @@ class CategoryController extends Controller
             if ($category->save()) {    // if category has been successfully updated
                 return [
                     'status'    => 'success',
-                    'message'   => 'Category has been successfully updated.',
+                    'message'   => 'Kategori berhasil diperbarui.',
                     'category'  => $category
                 ];
             } else {                    // if category has failed to be update
                 return [
                     'status'    => 'failed',
-                    'message'   => 'Category has failed to be update.'
+                    'message'   => 'Kategori gagal diperbarui.',
+                    'category'  => null
                 ];
             }
         } else {            // if category is not found in database
             return [
                 'status'    => 'failed',
-                'message'   => 'Category is not found.'
+                'message'   => 'Kategori tidak ditemukan.',
+                'category'  => null
             ];
         }
     }
@@ -123,18 +127,18 @@ class CategoryController extends Controller
             if ($category->delete()) {  // if category has been successfully deleted
                 return [
                     'status'    => 'success',
-                    'message'   => 'Category has been successfully deleted.'
+                    'message'   => 'Kategori berhasil dihapus.'
                 ];
             } else {                    // if category has failed to be delete
                 return [
                     'status'    => 'failed',
-                    'message'   => 'Category has failed to be delete.'
+                    'message'   => 'Kateogri tidak berhasil dihapus.'
                 ];
             }
         } else {            // if category is not found in database
             return [
                 'status'    => 'failed',
-                'message'   => 'Category is not found.'
+                'message'   => 'Kategori tidak ditemukan.'
             ];
         }
     }
