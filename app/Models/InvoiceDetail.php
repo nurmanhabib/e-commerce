@@ -5,7 +5,7 @@ namespace App\Models;
 use App\Models\Invoice;
 use Illuminate\Database\Eloquent\Model;
 
-class InvoiceDetails extends Model
+class InvoiceDetail extends Model
 {
 	protected $guarded = [];
 
