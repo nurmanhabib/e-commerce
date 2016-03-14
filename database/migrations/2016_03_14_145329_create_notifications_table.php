@@ -17,7 +17,7 @@ class CreateNotificationsTable extends Migration
             $table->string('subject', 45);
             $table->text('text');
             $table->string('link');
-            $table->morphs('notifiable');
+            $table->string('notification_type_id');
             $table->integer('user_id');
             $table->dateTime('read_at');
             $table->timestamps();
