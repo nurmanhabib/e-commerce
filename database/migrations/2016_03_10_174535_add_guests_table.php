@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCuriersTable extends Migration
+class AddGuestsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,11 +12,11 @@ class CreateCuriersTable extends Migration
      */
     public function up()
     {
-        Schema::create('curiers', function (Blueprint $table) {
+        Schema::create('guests', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name', 100);
-            $table->string('api_url');
-            $table->string('api_token');
+            $table->string('email');
+            $table->string('first_name', 45)->nullable();
+            $table->string('last_name', 45)->nullable();
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreateCuriersTable extends Migration
      */
     public function down()
     {
-        Schema::drop('curiers');
+        Schema::drop('guests');
     }
 }

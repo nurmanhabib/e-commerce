@@ -26,40 +26,41 @@ class TransactionController extends Controller
 
     public function checkout(Request $request)
     {
+        $this->validate($request, [
+            'email'         => 'required|email',
+            'carts'         => 'required',
+            'destination'   => 'required',
+        ]);
+
         $email          = $request->get('email');
-        $quantities     = $request->get('quantity');
-        $productIDs     = $request->get('product_id');
+        $carts          = $request->get('carts');
         $destination    = $request->get('destination');
 
-        $productsBySupplier = $this->transactionRepository->splitProductsBySupplier($productIDs, $quantities);
-
-        // untuk menyimpan alamat pengiriman
-        // $transactionShipping    = $this->transactionRepository->saveTransactionShipping($destination);
-
         $userStatus         = $this->transactionRepository->checkUser($email);
-
         if ($userStatus === false) {
-            $buyer = $this->saveUser($email);
+            $user = $this->saveUser($email);
         } else {
-            $buyer = $this->transactionRepository->getUserByEmail($email);
+            $user = $this->transactionRepository->getUserByEmail($email);
         }
 
-        $data = array();
-        foreach ($productsBySupplier as $products) {
-            $checkout_date  = new Carbon($products['checkout_date']);
-            $due_date       = new Carbon($products['due_date']);
-            $data[] = [
-                'email'             => $buyer[0]['email'],
-                'toko'              => $products['supplier']['name'],
-                'invoice'           => $products['invoice_id'],
-                'products'          => $products['products'],
-                'total_payment'     => $this->transactionRepository->totalPrice($products['products']),
-                'checkout_date'     => indonesianDateFormat($checkout_date),
-                'due_date'          => indonesianDateFormat($due_date)
-            ];
+        $supplierCarts          = $this->transactionRepository->splitProductsBySupplier($carts);
+        $transactionShipping    = $this->transactionRepository->saveTransactionShipping($destination);
+
+        $invoices = array();
+
+        foreach ($supplierCarts as $carts) {
+            $invoices[] = $this->transactionRepository->createInvoice(
+                $user,
+                $carts['supplier'],
+                $carts['carts']->toArray(),
+                $transactionShipping
+            );
         }
 
-        return view('emails.invoice-details', $data[0]);
+        return [
+            'status'    => 'success',
+            'invoices'  => $invoices,
+        ];
     }
 
     public function saveUser($email)

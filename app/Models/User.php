@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Supports\Contracts\Buyerable;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
@@ -13,7 +14,8 @@ use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 class User extends Model implements
     AuthenticatableContract,
     AuthorizableContract,
-    CanResetPasswordContract
+    CanResetPasswordContract,
+    Buyerable
 {
     use Authenticatable, Authorizable, CanResetPassword;
 
@@ -43,6 +45,31 @@ class User extends Model implements
         'profile',
         'roles',
     ];
+
+    public function getType()
+    {
+        return 'user';
+    }
+
+    public function getFirstName()
+    {
+        return $this->profile->first_name;
+    }
+
+    public function getLastName()
+    {
+        return $this->profile->last_name;
+    }
+
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    public function getInvoiceRelation()
+    {
+        return $this->invoices();
+    }
 
     public function createPassword($plain)
     {
@@ -136,6 +163,6 @@ class User extends Model implements
 
     public function invoices()
     {
-        return $this->hasMany(Invoice::class);
+        return $this->morphMany(Invoice::class, 'buyerable');
     }
 }

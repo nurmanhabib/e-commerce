@@ -7,9 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class InvoiceDetails extends Model
 {
-	protected $guarder = [];
+	protected $guarded = [];
 
-    public function detail_invoice()
+    public function invoice()
     {
     	return $this->hasOne(Invoice::class);
     }

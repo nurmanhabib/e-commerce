@@ -26,7 +26,7 @@ class ConfigRepository extends Repository
 
     public function getAutoload()
     {
-        $this->where('autoload', true);
+        $this->pushCriteria(new Criterias\ConfigAutoloadCriteria);
 
         return $this->getAll();
     }
@@ -38,10 +38,20 @@ class ConfigRepository extends Repository
         return $config->pluck('value', 'name');
     }
 
+    public function getAllFromFile()
+    {
+        return config('amtekcommerce');
+    }
+
     public function getByName($name, $default = '')
     {
         if (config()->has($name)) {
-            return config($name);
+            $config = config($name);
+
+            if (is_array($config) && array_key_exists('value', $config))
+                return $config['value'];
+            else
+                return $config;
         } else {
             $config = $this->findByField('name', $name)->first();
 

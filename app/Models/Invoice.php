@@ -2,29 +2,26 @@
 
 namespace App\Models;
 
-use App\Models\User;
-use App\Models\InvoiceDetails;
-use App\Models\TransactionShipping;
-use App\Models\PaymentConfirmation;
 use Illuminate\Database\Eloquent\Model;
 
 class Invoice extends Model
 {
-	protected $guarder = [];
+	protected $guarded = [];
+    protected $with = ['details'];
 	
-	public function user()
+	public function buyer()
     {
-        return $this->belongsTo(User::class);
+        return $this->morphTo('buyerable');
     }
 
-    public function detail_invoice()
+    public function details()
     {
     	return $this->hasMany(InvoiceDetails::class);
     }
 
     public function transaction_shipping()
     {
-        return $this->hasOne(TransactionShipping::class);
+        return $this->belongsTo(TransactionShipping::class);
     }
 
     // public function payment_confirmation()

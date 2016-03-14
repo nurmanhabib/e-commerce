@@ -17,8 +17,8 @@ class CreateInvoiceTable extends Migration
             $table->string('code', 45);
             $table->string('note')->nullable();
             $table->string('status', 10);
+            $table->morphs('buyerable');
             $table->integer('transaction_shipping_id');
-            $table->integer('user_id');
             $table->timestamps();
         });
     }

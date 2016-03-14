@@ -295,42 +295,7 @@
                             <!-- Main navigation -->
                             <div class="sidebar-category sidebar-category-visible">
                                 <div class="category-content no-padding">
-                                    <ul class="navigation navigation-main navigation-accordion">
-
-                                        <!-- Main -->
-                                        <li class="navigation-header"><span>Dashboard</span> <i class="icon-menu" title="Main pages"></i></li>
-                                        <li class="active"><a href="{{ url('/') }}"><i class="icon-home4"></i> <span>Dashboard</span></a></li>
-                                        <!-- /main -->
-
-                                        <!-- Forms -->
-                                        <li>
-                                            <a href="#"><i class="icon-pencil3"></i> <span>Category</span></a>
-                                            <ul>
-                                                <li><a href="form_inputs_basic.html">Basic inputs</a></li>
-                                                <li><a href="form_checkboxes_radios.html">Checkboxes &amp; radios</a></li>
-                                                <li><a href="form_input_groups.html">Input groups</a></li>
-                                                <li><a href="form_controls_extended.html">Extended controls</a></li>
-                                                <li>
-                                                    <a href="#">Selects</a>
-                                                    <ul>
-                                                        <li><a href="form_select2.html">Select2 selects</a></li>
-                                                        <li><a href="form_multiselect.html">Bootstrap multiselect</a></li>
-                                                        <li><a href="form_select_box_it.html">SelectBoxIt selects</a></li>
-                                                        <li><a href="form_bootstrap_select.html">Bootstrap selects</a></li>
-                                                    </ul>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li>
-                                            <a href="#"><i class="icon-footprint"></i> <span>Supplier</span></a>
-                                            <ul>
-                                                <li><a href="wizard_steps.html">Barang</a></li>
-                                                <li><a href="wizard_form.html">Order</a></li>
-                                            </ul>
-                                        </li>
-                                        <!-- /forms -->
-
-                                    </ul>
+                                    <sidebar active="{{ app(Illuminate\Http\Request::class)->url() }}"></sidebar>
                                 </div>
                             </div>
                             <!-- /main navigation -->

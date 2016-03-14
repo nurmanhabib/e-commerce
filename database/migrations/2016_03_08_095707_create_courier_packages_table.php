@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCurierPackagesTable extends Migration
+class CreateCourierPackagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,15 +12,15 @@ class CreateCurierPackagesTable extends Migration
      */
     public function up()
     {
-        Schema::create('curier_packages', function (Blueprint $table) {
+        Schema::create('courier_packages', function (Blueprint $table) {
             $table->increments('id');
             $table->string('code', 45);
             $table->string('name', 45);
-            $table->integer('curier_id');
+            $table->integer('courier_id');
             $table->timestamps();
 
-            $table->foreign('curier_id')
-                ->references('id')->on('curiers')
+            $table->foreign('courier_id')
+                ->references('id')->on('couriers')
                 ->onDelete('cascade');
         });
     }
@@ -32,6 +32,6 @@ class CreateCurierPackagesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('curier_packages');
+        Schema::drop('courier_packages');
     }
 }
