@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\V1;
 
 use App\Http\Controllers\Controller;
-use App\Models\AccountBanks;
+use App\Models\AccountBank;
 use Illuminate\Http\Request;
 
 class AccountBankController extends Controller
@@ -14,7 +14,7 @@ class AccountBankController extends Controller
 	 */
 	public function index()
 	{
-		$account_banks = AccountBanks::all();
+		$account_banks = AccountBank::all();
 
 		return [
 			'status' 		=> 'success',
@@ -43,7 +43,7 @@ class AccountBankController extends Controller
             'supplier_id'
         );
 
-        $account_bank = AccountBanks::create($account_bank);
+        $account_bank = AccountBank::create($account_bank);
 
         if ($account_bank) {
         	return [
@@ -67,7 +67,7 @@ class AccountBankController extends Controller
 	 */
 	public function show($id)
 	{
-		$account_bank = AccountBanks::find($id);
+		$account_bank = AccountBank::find($id);
 
 		if ($account_bank) {
 			return [
@@ -99,7 +99,7 @@ class AccountBankController extends Controller
             'supplier_id'		=> 'required'
         ]);
 
-        $account_bank = AccountBanks::find($id);
+        $account_bank = AccountBank::find($id);
 
         if ($account_bank) {
         	$account_bank->account_name 	= $request->input('account_name');
@@ -136,7 +136,7 @@ class AccountBankController extends Controller
 	 */
 	public function destroy($id)
 	{
-		$account_bank 	= AccountBanks::find($id);
+		$account_bank 	= AccountBank::find($id);
 
 		if ($account_bank) {
 			if ($account_bank->delete()) {

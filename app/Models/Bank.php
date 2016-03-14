@@ -3,9 +3,9 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\AccountBanks;
+use App\Models\AccountBank;
 
-class Banks extends Model 
+class Bank extends Model 
 {
 
     /**
@@ -29,6 +29,6 @@ class Banks extends Model
 
     public function account_banks()
     {
-        return $this->hasMany(AccountBanks::class);
+        return $this->hasMany(AccountBank::class);
     }
 }
