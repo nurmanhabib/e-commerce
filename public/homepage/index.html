@@ -10,6 +10,7 @@
 		<link rel="stylesheet" href="../node_modules/owl-carousel-2/assets/owl.carousel.min.css">
 		<link rel="stylesheet" href="../node_modules/owl-carousel-2/assets/owl.theme.default.min.css">
 		<link rel="stylesheet" href="../stylesheets/app.css">
+		<link rel="stylesheet" href="../stylesheets/responsive.css">
 		<!-- end:/stylesheet -->
 	</head>
 	<body>
@@ -18,40 +19,31 @@
 			<!-- start:navbar-main -->
 			<section id="navbar-main">
 				<nav class="navbar">
-					<div class="container">		
-                        <div class="navbar-top">
-	                        <div class="navbar-left">
-		                        <div class="navbar-brand">
-		                        	<a href="#" type="button">
-										<img src="../assets/images/icon/logo.png" alt="">
-									</a>
-		                        </div>	                        	
-								<i class="navbar-text fa fa-bars"></i>
-	                        </div>
+					<div class="container">
+						<div class="navbar-header">
+							<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+								<i class="fa fa-bars"></i>
+							</button>
+							<a class="navbar-brand" href="#">
+								<img src="../assets/images/icon/logo.png" alt="">
+							</a>
+						</div>
+						<div class="collapse navbar-collapse" id="myNavbar">
 							<div class="navbar-right">
-								<ul class="nav navbar-nav pull-right">
-	                                <div class="dropdown avatar">
-	                                    <a id="dropdownMenu" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-	                                        <img src="../assets/images/avatar.png" alt="">
-	                                     	<span class="caret"></span>
-	                                    </a>	                                    
-	                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu">
-											<li><a href="#">Profil</a></li>
-											<li><a href="#">Another action</a></li>
-											<li><a href="#">Something else here</a></li>
-											<li role="separator" class="divider"></li>
-											<li><a href="#">Logout</a></li>
-										</ul>
-	                                </div>
-	                            </ul>
-	                            <div class="cart">
-	                            	<a href="#collapseChart" role="button" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-										<img src="../assets/images/icon/chart.svg" class="navbar-text pull-right" alt="">	
+								<div class="dropdown avatar pull-right">
+                                    <a class="dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <img src="../assets/images/avatar.png" alt="">
+                                    </a>
+                                </div>
+                                <div class="cart pull-right">
+									<a href="#collapseChart" data-toggle="collapse">
+										<img src="../assets/images/icon/chart.svg" alt="">
+										<p>3</p>
 									</a>
-									<p>3</p>
-	                            </div>
+									
+								</div>
 							</div>
-                        </div>
+						</div>
 					</div>
 				</nav>
 			</section>
@@ -59,38 +51,142 @@
 
 			<!-- start:navbar-content -->
 			<section id="navbar-content">
-				<div class="container">
-					<form class="form-horizontal">
-						<div class="form-group">
-							<div class="col-lg-8">
-								<input type="email" class="form-control form-search" id="inputEmail3" placeholder="Type Something ...">
-							</div>
-							<div class="col-lg-2">
-								<div class="select">
-									<select class="form-control form-search" name="" id="">
-										<option value="">All Category</option>
-										<option value="">All Category</option>
-										<option value="">All Category</option>
-									</select>
+				<nav class="navbar">
+					<div class="container">
+						<div class="row">
+							<form class="form-horizontal">
+								<div class="form-group">
+									<div class="col-lg-8">
+										<input type="email" class="form-control form-search" id="inputEmail3" placeholder="Type Something ...">
+									</div>
+									<div class="col-lg-2">
+										<div class="select">
+											<select class="form-control form-search" name="" id="">
+												<option value="">All Category</option>
+												<option value="">All Category</option>
+												<option value="">All Category</option>
+											</select>
+										</div>
+									</div>
+									<div class="col-lg-2">
+										<button type="submit" class="btn btn-search btn-block">Search</button>
+									</div>
 								</div>
-							</div>
-							<div class="col-lg-2">
-								<button type="submit" class="btn btn-search btn-block">Search</button>
-							</div>
-						</div>
 
-						<div class="collapse" id="collapseChart">
-							<div class="well">
-								<div class="cart-content">
-									<img src="../assets/images/icon/logo.png" alt="">
+								<div class="collapse" id="collapseChart">
+									<div class="well">
+										<div class="cart-content">
+											<div class="row">
+												<div class="col-lg-12">
+													<div class="col-sm-2">
+														<div class="cart-img">
+															<img src="../assets/images/popular.jpg" alt="">
+														</div>
+													</div>
+													<div class="col-sm-3">
+														<div class="cart-title">
+															<a href="#">
+																<h4>Popular</h4>
+															</a>
+															<p>Batik popular masa kini dan untuk menengah keatas</p>
+														</div>
+													</div>
+													<div class="col-sm-3">
+														<div class="cart-item">
+															<a href="#" class="btn btn-sm">
+																<i class="fa fa-minus"></i>
+															</a>
+															<h4>2</h4>
+															<a href="#" class="btn btn-sm">
+																<i class="fa fa-plus"></i>
+															</a>
+														</div>
+													</div>
+													<div class="col-sm-3">
+														<div class="cart-price">
+															<h4>IDR 300.000,-</h4>
+														</div>
+													</div>
+													<div class="col-sm-1">
+														<div class="cart-action">
+															<a href="#">
+																<i class="fa fa-trash"></i>
+															</a>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="cart-content">
+											<div class="row">
+												<div class="col-lg-12">
+													<div class="col-sm-2">
+														<div class="cart-img">
+															<img src="../assets/images/1.jpg" alt="">
+														</div>
+													</div>
+													<div class="col-sm-3">
+														<div class="cart-title">
+															<a href="#">
+																<h4>Popular</h4>
+															</a>
+															<p>Ini adalah anu</p>
+														</div>
+													</div>
+													<div class="col-sm-3">
+														<div class="cart-item">
+															<a href="#" class="btn btn-sm">
+																<i class="fa fa-minus"></i>
+															</a>
+															<h4>1</h4>
+															<a href="#" class="btn btn-sm">
+																<i class="fa fa-plus"></i>
+															</a>
+														</div>
+													</div>
+													<div class="col-sm-3">
+														<div class="cart-price">
+															<h4>IDR 300.000,-</h4>
+														</div>
+													</div>
+													<div class="col-sm-1">
+														<div class="cart-action">
+															<a href="#">
+																<i class="fa fa-trash"></i>
+															</a>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="content-checkout">
+											<div class="row">
+												<div class="col-lg-12">
+													<div class="col-sm-4">
+														<a href="#" class="btn btn-cart btn-block">
+															<i class="fa fa-arrow-circle-left"></i> Continue Shopping
+														</a>
+													</div>
+													<div class="col-sm-5">
+														<div class="cart-total">
+															<h4>TOTAL</h4>
+															<h3>IDR 600,000,-</h3>
+														</div>
+													</div>
+													<div class="col-sm-3">
+														<a href="#" class="btn btn-checkout btn-block">
+															Checkout
+														</a>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
 								</div>
-								<div class="cart-content">
-									<img src="../assets/images/icon/logo.png" alt="">
-								</div>
-							</div>
+							</form>	
 						</div>
-					</form>	
-				</div>
+					</div>
+				</nav>
 			</section>
 			<!-- end:/navbar-content -->
 
@@ -186,7 +282,8 @@
 								<a href="#" class="thumbnail">
 									<img src="../assets/images/1.jpg" alt="">
 									<div class="price">
-										<h4>Batik</h4>
+										<p>IDR 300.000,-</p>
+										<h4>Batik popular masa kini dan masa akan datang</h4>
 									</div>
 								</a>
 							</div>
@@ -196,7 +293,8 @@
 								<a href="#" class="thumbnail">
 									<img src="../assets/images/1.jpg" alt="">
 									<div class="price">
-										<h4>Batik</h4>
+										<p>IDR 300.000,-</p>
+										<h4>Batik popular masa kini dan masa akan datang</h4>
 									</div>
 								</a>
 							</div>
@@ -206,7 +304,8 @@
 								<a href="#" class="thumbnail">
 									<img src="../assets/images/1.jpg" alt="">
 									<div class="price">
-										<h4>Price</h4>
+										<p>IDR 300.000,-</p>
+										<h4>Batik popular masa kini dan masa akan datang</h4>
 									</div>
 								</a>
 							</div>
@@ -216,7 +315,8 @@
 								<a href="#" class="thumbnail">
 									<img src="../assets/images/1.jpg" alt="">
 									<div class="price">
-										<h4>Batik</h4>
+										<p>IDR 300.000,-</p>
+										<h4>Batik popular masa kini dan masa akan datang</h4>
 									</div>
 								</a>
 							</div>
