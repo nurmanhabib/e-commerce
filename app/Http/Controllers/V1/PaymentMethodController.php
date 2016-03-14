@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\V1;
 
 use App\Http\Controllers\Controller;
-use App\Models\PaymentMethods;
+use App\Models\PaymentMethod;
 use Illuminate\Http\Request;
 
 class PaymentMethodController extends Controller
@@ -14,7 +14,7 @@ class PaymentMethodController extends Controller
 	 */
 	public function index()
     {
-        $payment_methods     = PaymentMethods::orderBy('id', 'desc')->get();
+        $payment_methods     = PaymentMethod::orderBy('id', 'desc')->get();
         return [
             'status'        	=> 'success',
             'payment_methods'   => $payment_methods
@@ -38,7 +38,7 @@ class PaymentMethodController extends Controller
             'description'
         );
 
-		$payment_method = PaymentMethods::create($payment_method);     
+		$payment_method = PaymentMethod::create($payment_method);     
 		
 		if ($payment_method) {
 			return [
@@ -62,7 +62,7 @@ class PaymentMethodController extends Controller
      */
     public function show($id)
     {
-    	$payment_method 	= PaymentMethods::find($id);
+    	$payment_method 	= PaymentMethod::find($id);
 
     	if ($payment_method) {
     		return [
@@ -92,7 +92,7 @@ class PaymentMethodController extends Controller
             'description'	=> 'required'
         ]);
 
-        $payment_method = PaymentMethods::find($id);
+        $payment_method = PaymentMethod::find($id);
 
         if ($payment_method) {
         	$payment_method->name 			= $request->input('name');
@@ -127,7 +127,7 @@ class PaymentMethodController extends Controller
      */
     public function destroy($id)
     {
-    	$payment_method = PaymentMethods::find($id);
+    	$payment_method = PaymentMethod::find($id);
 
     	if ($payment_method) {
     		if ($payment_method->delete()) {
