@@ -1,3 +1,15 @@
 @import url("../../fonts/opensans/style.css");
+@media (min-width: 320px) and (max-width: 360px) {
+  .form-search {
+    width: 100% !important;
+    margin-bottom: 5px; } }
+@media (min-width: 360px) and (max-width: 640px) {
+  .form-search {
+    width: 100% !important;
+    margin-bottom: 5px; } }
+@media (min-width: 640px) and (max-width: 992px) {
+  .form-search {
+    width: 100% !important;
+    margin-bottom: 5px; } }
 
 /*# sourceMappingURL=responsive.css.map */
