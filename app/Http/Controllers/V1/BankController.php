@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\V1;
 
 use App\Http\Controllers\Controller;
-use App\Models\Banks;
+use App\Models\Bank;
 use Illuminate\Http\Request;
 
 class BankController extends Controller
@@ -14,7 +14,7 @@ class BankController extends Controller
 	 */
     public function index()
     {
-        $banks     = Banks::orderBy('id', 'desc')->get();
+        $banks     = Bank::orderBy('id', 'desc')->get();
         return [
             'status'   => 'success',
             'banks'    => $banks
@@ -38,7 +38,7 @@ class BankController extends Controller
             'logo'
         );
 
-        $bank = Banks::create($bank);
+        $bank = Bank::create($bank);
 
         if ($bank) {
         	return [
@@ -62,7 +62,7 @@ class BankController extends Controller
      */
     public function show($id)
     {
-    	$bank 	= Banks::find($id);
+    	$bank 	= Bank::find($id);
 
     	if ($bank) {
     		return [
@@ -92,7 +92,7 @@ class BankController extends Controller
             'logo'	=> 'required'
         ]);
 
-        $bank 	= Banks::find($id);
+        $bank 	= Bank::find($id);
 
         if ($bank) {
         	$bank->name = $request->input('name');
@@ -127,7 +127,7 @@ class BankController extends Controller
      */
     public function destroy($id)
     {
-    	$bank =	Banks::find($id);
+    	$bank =	Bank::find($id);
 
     	if ($bank) {
     		if ($bank->delete()) {
