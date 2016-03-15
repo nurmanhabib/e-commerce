@@ -10,6 +10,7 @@
 		<link rel="stylesheet" href="../node_modules/owl-carousel-2/assets/owl.carousel.min.css">
 		<link rel="stylesheet" href="../node_modules/owl-carousel-2/assets/owl.theme.default.min.css">
 		<link rel="stylesheet" href="../stylesheets/app.css">
+		<link rel="stylesheet" href="../stylesheets/responsive.css">
 		<!-- end:/stylesheet -->
 	</head>
 	<body>
@@ -26,22 +27,6 @@
 							<a class="navbar-brand" href="#">
 								<img src="../assets/images/icon/logo.png" alt="">
 							</a>
-						</div>
-						<div class="collapse navbar-collapse" id="myNavbar">
-							<div class="navbar-right">
-								<div class="dropdown avatar pull-right">
-                                    <a class="dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <img src="../assets/images/avatar.png" alt="">
-                                    </a>
-                                </div>
-                                <div class="cart pull-right">
-									<a href="#collapseChart" data-toggle="collapse">
-										<img src="../assets/images/icon/chart.svg" alt="">
-										<p>3</p>
-									</a>
-									
-								</div>
-							</div>
 						</div>
 					</div>
 				</nav>
@@ -124,13 +109,40 @@
 									</div>
 									<div class="col-sm-6">
 										<div class="content-right">
-											<img src="../assets/images/1.jpg" alt="">
-											<input type="file" class="form-control">
+											<div id="overlay-box">
+											<label>Photo Profile :</label>
+												<a href="#" type="button" data-toggle="modal" data-target="#uploadImages">
+													<img src="../assets/images/icon/user.png">
+													<div id="content-overlay">
+														<i class="fa fa-camera"></i>
+													</div>
+												</a>
+											</div>
 										</div>
 									</div>
 									<div class="col-sm-12">
 										<button class="btn btn-block btn-login">APPLY</button>
 									</div>
+									<!-- start:modal upload images -->
+									<div class="modal fade" tabindex="-1" id="uploadImages">
+										<div class="modal-dialog">
+											<div class="modal-content">
+												<div class="modal-header">
+													<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+													<h4 class="modal-title">Upload Images</h4>
+												</div>
+												<div class="modal-body">
+													<img src="../assets/images/icon/user.png">
+													<input type="file" class="form-control" placeholder="Upload your profile images">
+												</div>
+												<div class="modal-footer">
+													<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+													<button type="button" class="btn btn-primary">Upload images</button>
+												</div>
+											</div><!-- /.modal-content -->
+										</div><!-- /.modal-dialog -->
+									</div><!-- /.modal -->
+									<!-- end:/modal upload images -->
 								</div>
 							</div>
 						</div>
