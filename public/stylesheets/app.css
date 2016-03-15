@@ -16,6 +16,25 @@ body {
 .container {
   max-width: 980px; }
 
+.btn-basic {
+  background-color: #FF7D5D;
+  color: #FFF;
+  height: 40px;
+  font-weight: 600;
+  margin-top: 20px;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out; }
+  .btn-basic:hover, .btn-basic:focus, .btn-basic:active {
+    background-color: #FF4415;
+    color: #FFF;
+    font-weight: 600;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out; }
+
 .form-control {
   width: 100%;
   height: 40px;
@@ -531,6 +550,9 @@ header {
       background-color: #FFF;
       padding: 35px;
       margin-bottom: 10px; }
+      #content-login .login-box .box .box-content ul {
+        margin-bottom: 30px;
+        text-align: center; }
       #content-login .login-box .box .title {
         text-align: center;
         margin-bottom: 30px; }
@@ -540,7 +562,8 @@ header {
           color: #1489AC;
           font-weight: 600; }
       #content-login .login-box .box .content-right {
-        margin-bottom: 20%; }
+        margin-bottom: 20%;
+        text-align: center; }
     #content-login .login-box .login-left {
       border: 2px solid #DDDDDD;
       background-color: #E7E7E7;
