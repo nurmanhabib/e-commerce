@@ -66,6 +66,21 @@ body
 .container
 	max-width: 980px
 
+.btn-basic
+	background-color: $orange-light
+	color: $white
+	height: 40px
+	font-weight: 600
+	margin-top: $margin-top + 15
+	+transition(0.3s)
+	&:hover,
+	&:focus,
+	&:active
+		background-color: $orange
+		color: $white
+		font-weight: 600
+		+transition(0.3s)
+
 .form-control
 	width: 100%
 	height: 40px
@@ -566,6 +581,7 @@ header
 // CONTENT-LOGIN
 #content-login
 	background: url(../../assets/images/lil_fiber.png)
+
 	ul
 		list-style: none
 		padding-left: $padding-left - 5
@@ -582,6 +598,11 @@ header
 			padding: $padding + 30
 			margin-bottom: $margin-bottom + 5
 
+			.box-content
+				ul
+					margin-bottom: $margin-bottom + 25
+					text-align: center
+
 			.title
 				text-align: center
 				margin-bottom: $margin-bottom + 25
@@ -593,6 +614,7 @@ header
 
 			.content-right
 				margin-bottom: 20%
+				text-align: center
 
 		.login-left
 			border: 2px solid $grey-black
@@ -624,6 +646,7 @@ header
 				margin-top: $margin-top + 10
 				p
 					font-weight: 600
+
 				li
 					i.fa-facebook
 						padding-top: $padding-top +3
@@ -715,6 +738,7 @@ header
 				p
 					font-weight: 600
 					margin-right: $margin-right + 35
+
 				li
 					i.fa-facebook
 						padding-top: $padding-top + 5
