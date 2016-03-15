@@ -58,14 +58,22 @@ $api->group(['middleware' => 'auth'], function ($api) {
 resource('users',           'Admin\UserController', $api);
 resource('suppliers',       'SupplierController', $api);
 
-$api->post('products/image',    'ProductImageController@store');
-$api->post('products/inc/{id}',  'ProductController@incrementStock');
-$api->post('products/dec/{id}',  'ProductController@decrementStock');
+$api->get('products/images',        'ProductImageController@index');
+$api->get('products/image/{id}',    'ProductImageController@show');
+$api->get('products/images/{id}',    'ProductImageController@showProductImages');
+$api->post('products/image',        'ProductImageController@store');
+$api->post('products/image/{id}',    'ProductImageController@update');
+$api->delete('products/image/{id}',  'ProductImageController@destroy');
+$api->delete('products/images/{id}',  'ProductImageController@destroyByProduct');
+
+$api->post('products/inc/{id}',     'ProductController@incrementStock');
+$api->post('products/dec/{id}',     'ProductController@decrementStock');
 resource('products',        'ProductController', $api);
 
 resource('banks',           'BankController', $api);
 resource('payment-method',  'PaymentMethodController', $api);
 resource('account-bank',    'AccountBankController', $api);
+resource('testimonial',    'TestimonialController', $api);
 
 $api->get('configs/autoload', 'ConfigController@autoload');
 resource('configs',     'ConfigController', $api);
