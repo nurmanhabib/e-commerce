@@ -3,8 +3,9 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\AccountBank;
 
-class PaymentMethods extends Model 
+class Bank extends Model 
 {
 
     /**
@@ -14,7 +15,7 @@ class PaymentMethods extends Model
      */
     protected $fillable = [
         'name',
-        'description'
+        'logo'
     ];
 
     /**
@@ -25,4 +26,9 @@ class PaymentMethods extends Model
     protected $hidden = [
         
     ];
+
+    public function account_banks()
+    {
+        return $this->hasMany(AccountBank::class);
+    }
 }

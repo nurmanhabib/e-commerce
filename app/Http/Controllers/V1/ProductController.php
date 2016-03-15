@@ -183,4 +183,82 @@ class ProductController extends Controller
             ];
         }
     }
+
+    public function incrementStock(Request $request, $id)
+    {
+        $this->validate($request, [
+            'count'          => 'required', 
+        ]);
+
+        $product    = Product::find($id);
+
+        if ($product) {
+            
+                $product->stock     = $product->stock + $request->input('count');
+
+                if ($product->save()) {
+                    return [
+                        'status'    => 'success',
+                        'message'   => 'Stock barang berhasil ditambah.',
+                        'product'   => $product
+                    ];
+                } else {
+                    return [
+                        'status'    => 'failed',
+                        'message'   => 'Proses penambahan stock barang tidak berhasil.',
+                        'product'   => $product
+                    ];
+                }
+
+        } else {
+            return [
+                'status'    => 'failed',
+                'message'   => 'Produk tidak tersedia.',
+                'product'   => null
+            ];
+        }
+    }
+
+    public function decrementStock(Request $request, $id)
+    {
+        $this->validate($request, [
+            'count'          => 'required', 
+        ]);
+
+        $product    = Product::find($id);
+
+        if ($product) {
+            if ($product->stock > 0) {
+                $product->stock     = $product->stock - $request->input('count');
+
+                if ($product->save()) {
+                    return [
+                        'status'    => 'success',
+                        'message'   => 'Stock barang berhasil dikurangi.',
+                        'product'   => $product
+                    ];
+                } else {
+                    return [
+                        'status'    => 'failed',
+                        'message'   => 'Proses pengurangan stock barang tidak berhasil.',
+                        'product'   => $product
+                    ];
+                }
+
+            } else {
+                return [
+                    'status'    => 'failed',
+                    'message'   => 'Maaf, stock untuk barang ini sudah habis.',
+                    'product'   => $product
+                ];
+            }
+
+        } else {
+            return [
+                'status'    => 'failed',
+                'message'   => 'Produk tidak tersedia.',
+                'product'   => null
+            ];
+        }
+    }
 }

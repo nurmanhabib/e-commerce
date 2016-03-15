@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateBanksTable extends Migration
+class CreateNotificationTypesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,10 +12,10 @@ class CreateBanksTable extends Migration
      */
     public function up()
     {
-        Schema::create('banks', function (Blueprint $table) {
+        Schema::create('notification_types', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name', 45)->unique();
-            $table->string('logo', 45);
+            $table->string('name', 45);
+            $table->string('logo');
             $table->timestamps();
         });
     }
@@ -27,6 +27,6 @@ class CreateBanksTable extends Migration
      */
     public function down()
     {
-        Schema::drop('banks');
+        Schema::drop('notification_types');
     }
 }

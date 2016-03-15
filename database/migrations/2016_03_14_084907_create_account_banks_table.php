@@ -14,8 +14,8 @@ class CreateAccountBanksTable extends Migration
     {
         Schema::create('account_banks', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('account_name', 45)->unique();
-            $table->string('account_number', 45)->unique();
+            $table->string('account_name', 45);
+            $table->string('account_number', 45);
             $table->integer('bank_id');
             $table->integer('supplier_id');
             $table->timestamps();

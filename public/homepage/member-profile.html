@@ -10,6 +10,7 @@
 		<link rel="stylesheet" href="../node_modules/owl-carousel-2/assets/owl.carousel.min.css">
 		<link rel="stylesheet" href="../node_modules/owl-carousel-2/assets/owl.theme.default.min.css">
 		<link rel="stylesheet" href="../stylesheets/app.css">
+		<link rel="stylesheet" href="../stylesheets/responsive.css">
 		<!-- end:/stylesheet -->
 	</head>
 	<body>
@@ -41,70 +42,107 @@
 				<div class="login-box">
 					<div class="row">
 						<div class="col-md-12">
-							<div class="register">
+							<div class="box">
 								<div class="row">
-									<div class="col-12">
-										<div class="register-title">
-											<h3>Register AmtekCommerce</h3>
-											<p>Complete your data for register</p>
+									<div class="col-sm-12">
+										<div class="title">
+											<h3>Member Profile</h3>
+											<p>Complete your profile data</p>
 										</div>
 									</div>
-									<div class="col-lg-6">
-										<div class="register-left">
+									<div class="col-sm-6">
+										<div class="content-left">
 											<form action="#">
 												<div class="form-group">
-													<label for="Full Name">Full Name :</label>
+													<label>Full Name :</label>
 													<input type="text" class="form-control" placeholder="Full Name">
 												</div>
 												<div class="form-group">
-													<label for="Email">Email :</label>
-													<input type="email" class="form-control" placeholder="Email addres">
+													<label for="Email">Gender :</label>
 												</div>
 												<div class="form-group">
-													<label for="Password">Password :</label>
-													<input type="password" class="form-control" placeholder="Password">
+													<label class="radio-inline">
+														<input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> Male
+													</label>
+													<label class="radio-inline">
+														<input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> Female
+													</label>
 												</div>
 												<div class="form-group">
-													<label for="Re-enter Password">Re-enter Password :</label>
-													<input type="password" class="form-control" placeholder="Re-enter Password">
+													<label>Email :</label>
+													<input type="email" class="form-control" placeholder="Email Address">
 												</div>
 												<div class="form-group">
-													<label for="Phone">Phone Number :</label>
-													<input type="text" class="form-control" placeholder="Phone Number">
+													<label>Alternative Email :</label>
+													<input type="email" class="form-control" placeholder="Alternative Email Address">
+												</div>
+												<div class="form-group">
+													<label>Address :</label>
+													<textarea class="form-control" cols="5" rows="5" placeholder="Address"></textarea>
+												</div>
+												<div class="form-group">
+													<label>Zip/Postal Code :</label>
+													<input type="text" class="form-control" placeholder="Postal Code">
+												</div>
+												<div class="form-group">
+													<label>Telephone :</label>
+													<input type="text" class="form-control" placeholder="Enter Telehone Number">
+												</div>
+												<div class="form-group">
+													<label>Phone Number :</label>
+													<input type="text" class="form-control" placeholder="Enter Phone Number">
+												</div>
+												<div class="form-group">
+													<label>Fax :</label>
+													<input type="text" class="form-control" placeholder="Enter Fax Number">
+												</div>
+												<div class="form-group">
+													<label>Departement :</label>
+													<input type="text" class="form-control" placeholder="Departement">
+												</div>
+												<div class="form-group">
+													<label>Job Title :</label>
+													<input type="text" class="form-control" placeholder="Position">
 												</div>
 											</form>
 										</div>
 									</div>
-									<div class="col-lg-6">
-										<div class="register-right">
-											<p>Register with Social Media :</p>
-											<ul>
-												<li>
-													<a href="#">
-														<i class="fa fa-facebook"></i>
-													</a>
-												</li>
-												<li>
-													<a href="#">
-														<i class="fa fa-twitter"></i>
-													</a>
-												</li>
-												<li>
-													<a href="#">
-														<i class="fa fa-instagram"></i>
-													</a>
-												</li>
-												<li>
-													<a href="#">
-														<i class="fa fa-google-plus-square"></i>
-													</a>
-												</li>
-											</ul>
+									<div class="col-sm-6">
+										<div class="content-right">
+											<div id="overlay-box">
+											<label>Photo Profile :</label>
+												<a href="#" type="button" data-toggle="modal" data-target="#uploadImages">
+													<img src="../assets/images/icon/user.png">
+													<div id="content-overlay">
+														<i class="fa fa-camera"></i>
+													</div>
+												</a>
+											</div>
 										</div>
 									</div>
-									<div class="col-lg-12">
-										<button class="btn btn-block btn-login">REGISTER</button>
+									<div class="col-sm-12">
+										<button class="btn btn-block btn-login">APPLY</button>
 									</div>
+									<!-- start:modal upload images -->
+									<div class="modal fade" tabindex="-1" id="uploadImages">
+										<div class="modal-dialog">
+											<div class="modal-content">
+												<div class="modal-header">
+													<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+													<h4 class="modal-title">Upload Images</h4>
+												</div>
+												<div class="modal-body">
+													<img src="../assets/images/icon/user.png">
+													<input type="file" class="form-control" placeholder="Upload your profile images">
+												</div>
+												<div class="modal-footer">
+													<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+													<button type="button" class="btn btn-primary">Upload images</button>
+												</div>
+											</div><!-- /.modal-content -->
+										</div><!-- /.modal-dialog -->
+									</div><!-- /.modal -->
+									<!-- end:/modal upload images -->
 								</div>
 							</div>
 						</div>

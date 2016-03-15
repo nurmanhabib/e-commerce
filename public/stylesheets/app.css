@@ -44,6 +44,16 @@ body {
   background-color: #F8F8F8;
   border: 2px solid #FFF; }
 
+.btn {
+  outline: none; }
+  .btn:focus, .btn:active {
+    outline: none; }
+
+a {
+  outline: none; }
+  a:focus, a:active {
+    outline: none; }
+
 .btn-search {
   border-radius: 0px;
   background-color: #FF7D5D;
@@ -95,39 +105,91 @@ body {
   padding: 2px 30px 2px 2px;
   cursor: pointer; }
 
+#overlay-box {
+  width: 250px;
+  height: 250px;
+  display: block;
+  position: relative;
+  margin-right: 25%;
+  margin-left: 25%;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out; }
+  #overlay-box:hover #content-overlay {
+    opacity: 0.3;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out; }
+  #overlay-box img {
+    width: 250px;
+    height: 250px;
+    object-fit: cover; }
+  #overlay-box #content-overlay {
+    background: #293648;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    top: 10%;
+    left: 0;
+    position: absolute;
+    padding: 0;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out; }
+    #overlay-box #content-overlay .fa {
+      font-size: 46px;
+      color: #FFF;
+      position: absolute;
+      bottom: 10px;
+      left: 15px; }
+
+.modal-dialog .modal-body img {
+  width: 250px;
+  height: 250px;
+  object-fit: cover; }
+
 /* #2.HEADER */
 header {
   background-color: #FFF;
   height: auto; }
-  header .navbar {
-    margin-bottom: 0px;
-    background-color: #FFF;
-    height: 80px;
-    border-bottom: 1px solid #DDDDDD; }
   header #navbar-main {
-    height: 80px; }
-    header #navbar-main .navbar-top {
-      height: 80px; }
-      header #navbar-main .navbar-top .navbar-left .navbar-brand {
+    height: 100%; }
+    header #navbar-main .navbar {
+      margin-bottom: 0px;
+      background-color: #FFF;
+      height: 100%;
+      border-bottom: 1px solid #DDDDDD; }
+    header #navbar-main .navbar-header {
+      height: 100%;
+      border-bottom: 1px solid #DDDDDD; }
+      header #navbar-main .navbar-header .navbar-toggle {
+        padding: 18px; }
+        header #navbar-main .navbar-header .navbar-toggle i {
+          font-size: 24px;
+          color: #A6A6A6; }
+      header #navbar-main .navbar-header .navbar-brand {
         border-right: 2px solid #A6A6A6;
         height: 78px;
-        padding: 25px; }
-        header #navbar-main .navbar-top .navbar-left .navbar-brand img {
-          width: 200px; }
-      header #navbar-main .navbar-top .navbar-left i {
-        font-size: 25px;
-        padding: 11px;
-        color: #A6A6A6; }
-      header #navbar-main .navbar-top .navbar-right {
-        height: 80px;
-        padding: 22px; }
-        header #navbar-main .navbar-top .navbar-right .cart {
-          width: 100%;
-          height: 100%;
-          margin-right: 125px; }
-          header #navbar-main .navbar-top .navbar-right .cart a, header #navbar-main .navbar-top .navbar-right .cart p {
+        padding-top: 25px;
+        padding-right: 35px;
+        padding-bottom: 25px;
+        padding-left: 25px; }
+        header #navbar-main .navbar-header .navbar-brand img {
+          width: 165px; }
+    header #navbar-main .navbar-right {
+      height: 80px;
+      padding: 22px; }
+      header #navbar-main .navbar-right .cart {
+        margin-right: 0px; }
+        header #navbar-main .navbar-right .cart a {
+          background-color: #FFF; }
+          header #navbar-main .navbar-right .cart a p {
             color: #FFF;
-            margin-left: 39px;
+            margin-left: 25px;
+            margin-top: -35px;
             position: absolute;
             background-color: #FF4415;
             width: 20px;
@@ -136,21 +198,24 @@ header {
             border-radius: 100%;
             font-size: 14px;
             font-weight: 600; }
-          header #navbar-main .navbar-top .navbar-right .cart img {
+          header #navbar-main .navbar-right .cart a img {
             width: 35px;
             margin-top: 0px;
-            margin-right: 15px; }
-        header #navbar-main .navbar-top .navbar-right .dropdown {
-          cursor: pointer; }
-        header #navbar-main .navbar-top .navbar-right .avatar img {
-          width: 35px;
-          height: 35px;
-          border-radius: 100%; }
+            margin-right: 35px; }
+      header #navbar-main .navbar-right .dropdown {
+        cursor: pointer; }
+      header #navbar-main .navbar-right .avatar img {
+        width: 35px;
+        height: 35px;
+        border-radius: 100%; }
   header #navbar-content {
     background-color: #243143;
     color: #FFF; }
+    header #navbar-content .navbar {
+      margin-bottom: 0px;
+      background-color: #243143; }
     header #navbar-content form {
-      padding: 7px; }
+      padding: 10px; }
       header #navbar-content form .form-group {
         margin-bottom: 0px; }
       header #navbar-content form .well {
@@ -163,9 +228,142 @@ header {
           border: 4px solid #1B2A3F;
           background-color: #293648;
           margin-bottom: 20px;
-          padding: 20px; }
-          header #navbar-content form .well .cart-content img {
-            width: 200px; }
+          padding: 8px;
+          text-align: center; }
+          header #navbar-content form .well .cart-content .cart-img img {
+            width: 85px;
+            height: 95px;
+            object-fit: cover;
+            border: 4px solid #1B2A3F; }
+          header #navbar-content form .well .cart-content .cart-title {
+            padding: 6%;
+            text-align: left; }
+            header #navbar-content form .well .cart-content .cart-title a {
+              text-decoration: none; }
+              header #navbar-content form .well .cart-content .cart-title a h4 {
+                color: #FF7D5D;
+                font-weight: 600;
+                font-size: 18px; }
+                header #navbar-content form .well .cart-content .cart-title a h4:hover {
+                  -webkit-transition: all 0.3s ease-in-out;
+                  -moz-transition: all 0.3s ease-in-out;
+                  -o-transition: all 0.3s ease-in-out;
+                  transition: all 0.3s ease-in-out;
+                  color: #FF4415; }
+          header #navbar-content form .well .cart-content .cart-item {
+            display: inline-flex;
+            text-align: center;
+            padding: 14%; }
+            header #navbar-content form .well .cart-content .cart-item h4 {
+              font-size: 22px;
+              color: #F8F8F8;
+              margin-top: 5px;
+              margin-left: 10px;
+              margin-bottom: 5px;
+              margin-right: 10px; }
+            header #navbar-content form .well .cart-content .cart-item a {
+              padding: 5px 10px;
+              -webkit-border-radius: 100%;
+              -moz-border-radius: 100%;
+              -o-border-radius: 100%;
+              border-radius: 100%;
+              background-color: #243143;
+              color: #F8F8F8;
+              font-size: 14px;
+              border: 2px solid #1B2A3F;
+              height: 35px;
+              -webkit-transition: all 0.3s ease-in-out;
+              -moz-transition: all 0.3s ease-in-out;
+              -o-transition: all 0.3s ease-in-out;
+              transition: all 0.3s ease-in-out; }
+              header #navbar-content form .well .cart-content .cart-item a:hover {
+                -webkit-transition: all 0.3s ease-in-out;
+                -moz-transition: all 0.3s ease-in-out;
+                -o-transition: all 0.3s ease-in-out;
+                transition: all 0.3s ease-in-out;
+                background-color: #FF7D5D;
+                color: #1B2A3F; }
+              header #navbar-content form .well .cart-content .cart-item a i {
+                color: #F8F8F8;
+                font-size: 12px; }
+                header #navbar-content form .well .cart-content .cart-item a i:hover {
+                  -webkit-transition: all 0.3s ease-in-out;
+                  -moz-transition: all 0.3s ease-in-out;
+                  -o-transition: all 0.3s ease-in-out;
+                  transition: all 0.3s ease-in-out;
+                  color: #1B2A3F; }
+          header #navbar-content form .well .cart-content .cart-price {
+            padding: 14%; }
+            header #navbar-content form .well .cart-content .cart-price h4 {
+              color: #FF7D5D;
+              font-weight: 600; }
+          header #navbar-content form .well .cart-content .cart-action {
+            padding: 14%; }
+            header #navbar-content form .well .cart-content .cart-action .fa {
+              font-size: 26px;
+              margin-top: 26px;
+              color: #F8F8F8; }
+              header #navbar-content form .well .cart-content .cart-action .fa:hover {
+                -webkit-transition: all 0.3s ease-in-out;
+                -moz-transition: all 0.3s ease-in-out;
+                -o-transition: all 0.3s ease-in-out;
+                transition: all 0.3s ease-in-out;
+                color: #FF7D5D; }
+        header #navbar-content form .well .content-checkout {
+          margin-bottom: 20px;
+          padding: 8px;
+          text-align: center; }
+          header #navbar-content form .well .content-checkout .cart-total {
+            display: inline-flex; }
+            header #navbar-content form .well .content-checkout .cart-total h3 {
+              margin-top: 8px;
+              margin-bottom: 10px;
+              font-size: 24px; }
+            header #navbar-content form .well .content-checkout .cart-total h4 {
+              margin-right: 10px;
+              color: #FF7D5D;
+              font-size: 18px; }
+          header #navbar-content form .well .content-checkout .btn-cart {
+            -webkit-border-radius: 0px;
+            -moz-border-radius: 0px;
+            -o-border-radius: 0px;
+            border-radius: 0px;
+            background-color: #293648;
+            height: 50px;
+            color: #FFF;
+            padding: 10px;
+            font-size: 18px;
+            -webkit-transition: all 0.3s ease-in-out;
+            -moz-transition: all 0.3s ease-in-out;
+            -o-transition: all 0.3s ease-in-out;
+            transition: all 0.3s ease-in-out; }
+            header #navbar-content form .well .content-checkout .btn-cart:hover {
+              -webkit-transition: all 0.3s ease-in-out;
+              -moz-transition: all 0.3s ease-in-out;
+              -o-transition: all 0.3s ease-in-out;
+              transition: all 0.3s ease-in-out;
+              background-color: #1B2A3F; }
+          header #navbar-content form .well .content-checkout .btn-checkout {
+            -webkit-border-radius: 0px;
+            -moz-border-radius: 0px;
+            -o-border-radius: 0px;
+            border-radius: 0px;
+            background-color: #FF7D5D;
+            font-weight: 600;
+            height: 50px;
+            color: #FFF;
+            padding: 10px;
+            font-size: 18px;
+            -webkit-transition: all 0.3s ease-in-out;
+            -moz-transition: all 0.3s ease-in-out;
+            -o-transition: all 0.3s ease-in-out;
+            transition: all 0.3s ease-in-out; }
+            header #navbar-content form .well .content-checkout .btn-checkout:hover {
+              -webkit-transition: all 0.3s ease-in-out;
+              -moz-transition: all 0.3s ease-in-out;
+              -o-transition: all 0.3s ease-in-out;
+              transition: all 0.3s ease-in-out;
+              background-color: #FF4415; }
   header #header-main .carousel .carousel-inner {
     position: relative;
     width: 100%;
@@ -233,7 +431,7 @@ header {
         width: 45px;
         height: 50px; }
       header #header-content .header-content h4 {
-        font-size: 20px; }
+        font-size: 18px; }
 
 /* #3.CONTENT */
 #content {
@@ -250,7 +448,7 @@ header {
         border-bottom: 2px solid #DDDDDD;
         display: inline-block;
         padding-bottom: 10px;
-        font-size: 22px;
+        font-size: 20px;
         margin-left: 15px; }
     #content .popular-supplier .content-popular-supplier {
       max-width: 100%;
@@ -276,6 +474,23 @@ header {
           -moz-transition: all 0.3s ease-in-out;
           -o-transition: all 0.3s ease-in-out;
           transition: all 0.3s ease-in-out; }
+        #content .popular-supplier .content-popular-supplier .thumbnail .price p {
+          padding: 5px;
+          margin-bottom: 0px;
+          font-size: 16px;
+          font-weight: 600;
+          width: 100%;
+          height: 30px;
+          text-align: center;
+          background-color: #F8F8F8;
+          color: #293648; }
+        #content .popular-supplier .content-popular-supplier .thumbnail .price h4 {
+          padding: 8px;
+          font-size: 14px;
+          margin-top: 5px;
+          margin-bottom: 5px;
+          color: #293648;
+          line-height: 1.5em; }
   #content .hot-product {
     background-color: #F8F8F8;
     padding-bottom: 40px; }
@@ -286,7 +501,7 @@ header {
         border-bottom: 2px solid #DDDDDD;
         display: inline-block;
         padding-bottom: 10px;
-        font-size: 22px;
+        font-size: 20px;
         margin-left: 15px; }
   #content .popular-product {
     background-color: #FFF;
@@ -298,7 +513,7 @@ header {
         border-bottom: 2px solid #DDDDDD;
         display: inline-block;
         padding-bottom: 10px;
-        font-size: 22px;
+        font-size: 20px;
         margin-left: 15px; }
 
 #content-login {
@@ -311,6 +526,21 @@ header {
   #content-login .login-box {
     margin-top: 70px;
     margin-bottom: 70px; }
+    #content-login .login-box .box {
+      border: 2px solid #DDDDDD;
+      background-color: #FFF;
+      padding: 35px;
+      margin-bottom: 10px; }
+      #content-login .login-box .box .title {
+        text-align: center;
+        margin-bottom: 30px; }
+        #content-login .login-box .box .title h3 {
+          font-size: 22px;
+          margin-bottom: 5px;
+          color: #1489AC;
+          font-weight: 600; }
+      #content-login .login-box .box .content-right {
+        margin-bottom: 20%; }
     #content-login .login-box .login-left {
       border: 2px solid #DDDDDD;
       background-color: #E7E7E7;

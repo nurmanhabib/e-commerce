@@ -3,10 +3,10 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Banks;
+use App\Models\Bank;
 use App\Models\Supplier;
 
-class AccountBanks extends Model 
+class AccountBank extends Model 
 {
 
     /**
@@ -37,7 +37,7 @@ class AccountBanks extends Model
 
     public function bank()
     {
-        return $this->belongsTo(Banks::class);
+        return $this->belongsTo(Bank::class);
     }
 
     public function supplier()

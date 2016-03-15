@@ -86,6 +86,18 @@ body
 	background-color: $grey
 	border: 2px solid $white
 
+.btn
+	outline: none
+	&:focus,
+	&:active
+		outline: none
+
+a
+	outline: none
+	&:focus,
+	&:active
+		outline: none
+
 .btn-search
 	border-radius: 0px
 	background-color: $orange-light
@@ -133,43 +145,94 @@ body
 		padding: 2px 30px 2px 2px
 		cursor: pointer
 
+#overlay-box 
+	width: 250px
+	height: 250px
+	display: block
+	position: relative
+	margin-right: 25%
+	margin-left: 25%
+	+transition(0.3s)
+	&:hover
+		#content-overlay
+			opacity: 0.3
+			+transition(0.3s)
+	img 
+		width: 250px
+		height: 250px
+		object-fit: cover
+
+	#content-overlay
+		background: $aspalt-light
+		height: 100%
+		width: 100%
+		opacity: 0
+		top: 10%
+		left: 0
+		position: absolute
+		padding: 0
+		+transition(0.3s)
+
+		.fa
+			font-size: 46px
+			color: $white
+			position: absolute
+			bottom: 10px
+			left: 15px
+
+.modal-dialog
+	.modal-body
+		img
+			width: 250px
+			height: 250px
+			object-fit: cover
+
 /* #2.HEADER */
 header
 	background-color: $white
 	height: auto
 
-	.navbar
-		margin-bottom: $margin-bottom - 5
-		background-color: $white
-		height: 80px
-		border-bottom: 1px solid $grey-black
-
 	#navbar-main
-		height: 80px
+		height: 100%
+
+		.navbar
+			margin-bottom: $margin-bottom - 5
+			background-color: $white
+			height: 100%
+			border-bottom: 1px solid $grey-black
 		
-		.navbar-top
-			height: 80px
-			.navbar-left
-				.navbar-brand
-					border-right: 2px solid #A6A6A6
-					height: 78px
-					padding: $padding + 20
-					img
-						width: 200px
-				i
-					font-size: 25px
-					padding: $padding + 6
+		.navbar-header
+			height: 100%
+			border-bottom: 1px solid $grey-black
+
+			.navbar-toggle
+				padding: $padding + 13
+				i 
+					font-size: 24px
 					color: #A6A6A6
-			.navbar-right
-				height: 80px
-				padding: $padding + 17
-				.cart
-					width: 100%
-					height: 100%
-					margin-right: 125px
-					a,p
+
+			.navbar-brand
+				border-right: 2px solid #A6A6A6
+				height: 78px
+				padding-top: $padding-top + 20
+				padding-right: $padding-right + 30
+				padding-bottom: $padding-bottom + 20
+				padding-left: $padding-left + 20
+				img
+					width: 165px
+
+		.navbar-right
+			height: 80px
+			padding: $padding + 17
+
+			.cart
+				margin-right: $margin-right - 5
+				a
+					background-color: $white
+					p
 						color: $white
-						margin-left: $margin-left + 34
+						margin-left: $margin-left + 20
+						margin-top: $margin-top - 40
 						position: absolute
 						background-color: $orange
 						width: 20px
@@ -181,35 +244,153 @@ header
 					img
 						width: 35px
 						margin-top: $margin-top - 5
-						margin-right: $margin-right + 10
-				.dropdown
-					cursor: pointer
-				.avatar
-					img
-						width: 35px
-						height: 35px
-						border-radius: 100%
+						margin-right: $margin-right + 30
+
+			.dropdown
+				cursor: pointer
+
+			.avatar
+				img
+					width: 35px
+					height: 35px
+					border-radius: 100%
 
 	#navbar-content
 		background-color: $aspalt
 		color: $white
+		
+		.navbar
+			margin-bottom: $margin-bottom - 5
+			background-color: $aspalt
+
 		form
-			padding: $padding + 2
+			padding: $padding + 5
+
 			.form-group
 				margin-bottom: $margin-bottom - 5
+
 			.well
 				margin-top: $margin-top + 20
 				border-radius: 0px
 				background-color: transparent
 				padding: $padding - 5
 				border: 0px
+
 				.cart-content
 					border: 4px solid $aspalt-dark
 					background-color: $aspalt-light
 					margin-bottom: $margin-bottom + 15
-					padding: $padding + 15
-					img
-						width: 200px
+					padding: $padding + 3
+					text-align: center
+
+					.cart-img
+						img
+							width: 85px
+							height: 95px
+							object-fit: cover
+							border: 4px solid $aspalt-dark
+
+					.cart-title
+						padding: 6%
+						text-align: left
+						a
+							text-decoration: none
+							h4
+								color: $orange-light
+								font-weight: 600
+								font-size: 18px
+								&:hover
+									+transition(0.3s)
+									color: $orange
+
+					.cart-item
+						display: inline-flex
+						text-align: center
+						padding: 14%
+						h4
+							font-size: 22px
+							color: $grey
+							margin-top: $margin-top
+							margin-left: $margin-left + 5
+							margin-bottom: $margin-bottom
+							margin-right: $margin-right + 5
+						a
+							padding: 5px 10px
+							+border-radius(100%)
+							background-color: $aspalt
+							color: $grey
+							font-size: 14px
+							border: 2px solid $aspalt-dark
+							height: 35px
+							+transition(0.3s)
+							&:hover
+								+transition(0.3s)
+								background-color: $orange-light
+								color: $aspalt-dark		
+							i
+								color: $grey
+								font-size: 12px
+								&:hover
+									+transition(0.3s)
+									color: $aspalt-dark
+
+					.cart-price
+						padding: 14%
+						h4
+							color: $orange-light
+							font-weight: 600
+
+					.cart-action
+						padding: 14%
+
+						.fa
+							font-size: 26px
+							margin-top: $margin-top + 21
+							color: $grey
+							&:hover
+								+transition(0.3s)
+								color: $orange-light
+
+				.content-checkout
+					margin-bottom: $margin-bottom + 15
+					padding: $padding + 3
+					text-align: center
+
+					.cart-total
+						display: inline-flex
+						h3
+							margin-top: $margin-top + 3
+							margin-bottom: $margin-bottom + 5
+							font-size: 24px
+						h4
+							margin-right: $margin-right + 5
+							color: $orange-light
+							font-size: 18px
+
+					.btn-cart
+						+border-radius(0px)
+						background-color: $aspalt-light
+						height: 50px
+						color: $white
+						padding: $padding + 5
+						font-size: 18px
+						+transition(0.3s)
+						&:hover
+							+transition(0.3s)
+							background-color: $aspalt-dark
+
+					.btn-checkout
+						+border-radius(0px)
+						background-color: $orange-light
+						font-weight: 600
+						height: 50px
+						color: $white
+						padding: $padding + 5
+						font-size: 18px
+						+transition(0.3s)
+						&:hover
+							+transition(0.3s)
+							background-color: $orange
 
 	#header-main
 		.carousel
@@ -221,9 +402,11 @@ header
 					width: 100%
 					height: 380px
 					object-fit: cover
+
 			.carousel-caption
 				text-align: left
 				margin-left: $margin-left - 67
+
 				.content-caption
 					padding-bottom: $padding-bottom + 50
 					h1
@@ -231,12 +414,14 @@ header
 						text-shadow: none
 						font-weight: 600
 						line-height: 50px
+
 					.btn-caption
 						border-radius: 0px
 						background-color: $orange-light
 						border-color: $orange-light
 						color: $white
 						font-weight: 600
+
 			.carousel-indicators
 				text-align: right
 				li
@@ -245,12 +430,15 @@ header
 					margin: $margin - 4
 					border: 1px solid $aspalt
 					background-color: $white
+
 				.active
 					background-color: $aspalt
+
 			.carousel-control
 				text-shadow: none
 				opacity: 1
 				background-image: none
+
 				.fa-angle-left
 					width: 80px
 					height: 80px
@@ -260,6 +448,7 @@ header
 					font-size: 80px
 					color: $aspalt
 					margin-left: $margin-left - 25
+
 				.fa-angle-right
 					width: 80px
 					height: 80px
@@ -272,6 +461,7 @@ header
 
 	#header-content
 		background-color: $grey
+
 		.header-content
 			padding: $padding + 15
 			width: 100%
@@ -281,7 +471,7 @@ header
 				width: 45px
 				height: 50px
 			h4
-				font-size: 20px
+				font-size: 18px
 
 /* #3.CONTENT */
 #content
@@ -292,6 +482,7 @@ header
 		padding-top: $padding-top + 20
 		padding-bottom: $padding-bottom + 35
 		background-color: $white
+
 		.popular-supplier-title
 			margin-bottom: $margin-bottom + 20
 			padding-bottom: $padding-bottom + 5
@@ -299,13 +490,14 @@ header
 				border-bottom: 2px solid $grey-black
 				display: inline-block
 				padding-bottom: $padding-bottom + 5
-				font-size: 22px
+				font-size: 20px
 				margin-left: $margin-left + 10
 
 		.content-popular-supplier
 			max-width: 100%
 			box-shadow: 0 1px 2px $shadow
 			border-radius: 8px
+
 			.thumbnail
 				padding: $padding - 5
 				border-radius: 8px
@@ -323,10 +515,30 @@ header
 					max-width: 100%
 					+transition(0.3s)
 
+				.price
+					p
+						padding: $padding
+						margin-bottom: $margin-bottom - 5
+						font-size: 16px
+						font-weight: 600
+						width: 100%
+						height: 30px
+						text-align: center
+						background-color: $grey
+						color: $aspalt-light
+					h4
+						padding: $padding + 3
+						font-size: 14px
+						margin-top: $margin-top
+						margin-bottom: $margin-bottom
+						color: $aspalt-light
+						line-height: 1.5em
+
 
 	.hot-product
 		background-color: $grey
 		padding-bottom: $padding-bottom + 35
+
 		.hot-product-title
 			padding-top: $padding-top + 20
 			padding-bottom: $padding-bottom + 20
@@ -334,12 +546,13 @@ header
 				border-bottom: 2px solid $grey-black
 				display: inline-block
 				padding-bottom: $padding-bottom + 5
-				font-size: 22px
+				font-size: 20px
 				margin-left: $margin-left + 10
 
 	.popular-product
 		background-color: $white
 		padding-bottom: $padding-bottom + 35
+
 		.popular-product-title
 			padding-top: $padding-top + 20
 			padding-bottom: $padding-bottom + 20
@@ -347,7 +560,7 @@ header
 				border-bottom: 2px solid $grey-black
 				display: inline-block
 				padding-bottom: $padding-bottom + 5
-				font-size: 22px
+				font-size: 20px
 				margin-left: $margin-left + 10
 
 // CONTENT-LOGIN
@@ -358,31 +571,55 @@ header
 		padding-left: $padding-left - 5
 		li
 			display: inline-block
+
 	.login-box
 		margin-top: $margin-top + 65
 		margin-bottom: $margin-bottom + 65
+
+		.box
+			border: 2px solid $grey-black
+			background-color: $white
+			padding: $padding + 30
+			margin-bottom: $margin-bottom + 5
+
+			.title
+				text-align: center
+				margin-bottom: $margin-bottom + 25
+				h3
+					font-size: 22px
+					margin-bottom: $margin-bottom
+					color: $blue
+					font-weight: 600
+
+			.content-right
+				margin-bottom: 20%
+
 		.login-left
 			border: 2px solid $grey-black
 			background-color: $dark
 			border-radius: 4px
 			height: 446px
 			margin-bottom: $margin-bottom + 5
+
 			.login-left-content
 				text-align: center
 				font-weight: 600
 				margin-top: 50%
+
 		.login-right
 			border: 2px solid $grey-black
 			background-color: $white
 			border-radius: 4px
 			padding: $padding + 30
 			margin-bottom: $margin-bottom + 5
+
 			.login-top-right
 				border-bottom: 2px solid $grey-black
 				p
 					margin-top: $margin-top + 15
 					margin-bottom: $margin-bottom + 15
 					font-weight: 600
+
 			.login-bottom-right
 				margin-top: $margin-top + 10
 				p
@@ -404,6 +641,7 @@ header
 							background-color: #39579A
 							color: $white
 							+transition(0.3s)
+
 					i.fa-twitter
 						padding-top: $padding-top +3
 						padding-bottom: $padding-bottom + 3
@@ -420,6 +658,7 @@ header
 							background-color: #00A6E3
 							color: $white
 							+transition(0.3s)
+
 					i.fa-instagram
 						padding-top: $padding-top +3
 						padding-bottom: $padding-bottom + 3
@@ -436,6 +675,7 @@ header
 							background-color: #406FA5
 							color: $white
 							+transition(0.3s)
+
 					i.fa-google-plus-square
 						padding-top: $padding-top +3
 						padding-bottom: $padding-bottom + 3
@@ -452,11 +692,13 @@ header
 							background-color: #D33E23
 							color: $white
 							+transition(0.3s)
+
 		.register
 			border: 2px solid $grey-black
 			background-color: $white
 			padding: $padding + 30
 			margin-bottom: $margin-bottom + 5
+
 			.register-title
 				text-align: center
 				margin-bottom: $margin-bottom + 25
@@ -465,6 +707,7 @@ header
 					margin-bottom: $margin-bottom
 					color: $blue
 					font-weight: 600
+
 			.register-right
 				margin-top: 35%
 				margin-bottom: 35%
@@ -489,6 +732,7 @@ header
 							background-color: #39579A
 							color: $white
 							+transition(0.3s)
+
 					i.fa-twitter
 						padding-top: $padding-top + 5
 						padding-bottom: $padding-bottom + 5
@@ -505,6 +749,7 @@ header
 							background-color: #00A6E3
 							color: $white
 							+transition(0.3s)
+
 					i.fa-instagram
 						padding-top: $padding-top + 5
 						padding-bottom: $padding-bottom + 5
@@ -521,6 +766,7 @@ header
 							background-color: #406FA5
 							color: $white
 							+transition(0.3s)
+
 					i.fa-google-plus-square
 						padding-top: $padding-top + 5
 						padding-bottom: $padding-bottom + 5
@@ -545,6 +791,7 @@ header
 	width: 100%
 	height: 100%
 	background-color: $dark
+
 	.footer-top
 		padding-bottom: $padding-bottom + 20
 		border-bottom: 2px solid $grey-black
@@ -553,11 +800,13 @@ header
 			font-weight: 600
 			margin-top: $margin-top + 30
 			margin-bottom: $margin-bottom + 20
+
 		.payment-card
 			img
 				height: 45px
 				margin-right: $margin-right + 5
 				margin-bottom: $margin-bottom + 5
+
 	.footer-content
 		padding-bottom: $padding-bottom + 10
 		border-bottom: 2px solid $grey-black
@@ -572,6 +821,7 @@ header
 				a
 					text-decoration: none
 					color: $aspalt
+
 	.footer-bottom
 		padding: $padding + 5
 		p
