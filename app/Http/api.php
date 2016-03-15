@@ -58,6 +58,7 @@ $api->group(['middleware' => 'auth'], function ($api) {
 resource('users',           'Admin\UserController', $api);
 resource('suppliers',       'SupplierController', $api);
 
+$api->post('products/image',    'ProductImageController@store');
 $api->post('products/inc/{id}',  'ProductController@incrementStock');
 $api->post('products/dec/{id}',  'ProductController@decrementStock');
 resource('products',        'ProductController', $api);

@@ -13,6 +13,11 @@ return [
             'link'  => null,
         ],
     ],
+
+    'product_image'	=> [
+    	'dir'		=> storage_path('app/product_images'),
+    	'resize'	=> [300, 300]
+    ],
     
     'email'     => [
         'from'  => [
