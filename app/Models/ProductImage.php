@@ -7,6 +7,8 @@ use Intervention\Image\ImageManager;
 
 class ProductImage extends Model
 {
+	protected $guarded = [];
+	
     public function filepath()
     {
         $location   = __DIR__.'/../../storage/app/product_images/';
