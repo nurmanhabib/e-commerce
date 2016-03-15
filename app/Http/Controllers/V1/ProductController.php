@@ -146,7 +146,7 @@ class ProductController extends Controller
                     'message'   => 'Product has failed to be update.'
                 ];
             }
-        }else{d
+        }else{
             return [
                 'status'    => 'failed',
                 'message'   => 'Product not found.'
