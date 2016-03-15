@@ -14,7 +14,7 @@ class ProductImageController extends Controller
     {
         $this->validate($request, [
             'product_id'    => 'required|exists:products,id',
-            'base64_image'  => 'require'
+            'base64_image'  => 'required'
         ]);
 
         $product_id     = $request->get('product_id');
@@ -27,7 +27,12 @@ class ProductImageController extends Controller
         $image          = $manager->make($base64_image);
 
         $config         = config('amtekcommerce.product_image');
-        $filename       = date('YmdHis', time()) . '.jpg';
+
+        $supplierCode   = $supplier->code;
+        $productCode    = $product->code;
+        $fileType       = $base64_image->guessExtension();
+        $filename       = $supplierCode . '_' . $productCode . '_' . date('YmdHis', time()) . '.' . $fileType;
+
         $upload_dir     = $config['dir'] . '/sup_' . $supplier->id;
         $upload_file    = $upload_dir . '/' . $filename;
 
@@ -41,10 +46,17 @@ class ProductImageController extends Controller
         $image->resize($resize['w'], $resize['h']);
         $image->save($upload_file);
 
-        $filesize   = $image->filesize();
-        $filetype   = $image->mime();
+        $filesize       = $image->filesize();
+        $fileMimeType   = $image->mime();
 
-        $image_product = ProductImage::create(compact('filename', 'filetype', 'filesize', 'product_id'));
+        $image_product = [
+            'name'          => $filename,
+            'filetype'      => $fileType,
+            'filesize'      => $filesize,
+            'product_id'    => $product_id
+        ];
+
+        $image_product = ProductImage::create($image_product);
 
         return $image_product;
     }
