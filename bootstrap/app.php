@@ -54,6 +54,10 @@ $app->singleton(
     App\Console\Kernel::class
 );
 
+$app->singleton('notification', function () {
+    return new Notification;
+});
+
 /*
 |--------------------------------------------------------------------------
 | Register Middleware
@@ -96,6 +100,7 @@ $app->register(Illuminate\Mail\MailServiceProvider::class);
 $app->register(Prettus\Repository\Providers\LumenRepositoryServiceProvider::class);
 $app->register(Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class);
 $app->register(App\Providers\SupplierServiceProvider::class);
+$app->register(Nurmanhabib\Kewilayahan\KewilayahanLumenServiceProvider::class);
 
 /*
 |--------------------------------------------------------------------------
