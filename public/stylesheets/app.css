@@ -170,6 +170,20 @@ a {
   height: 250px;
   object-fit: cover; }
 
+.slick-slider .slick-slide img {
+  display: block;
+  border: 5px solid #FFF;
+  width: 95%; }
+.slick-slider .slick-prev,
+.slick-slider .slick-next {
+  width: 30px;
+  height: 30px;
+  background: #DDDDDD; }
+.slick-slider .slick-prev {
+  left: -40px; }
+.slick-slider .slick-next {
+  right: -40px; }
+
 /* #2.HEADER */
 header {
   background-color: #FFF;
