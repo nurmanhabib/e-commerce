@@ -32,6 +32,7 @@ $app->configure('amtekcommerce');
 
 class_alias(Tymon\JWTAuth\Facades\JWTAuth::class, 'JWTAuth');
 class_alias(Illuminate\Support\Facades\Mail::class, 'Mail');
+class_alias(App\Repositories\Notification\NotificationFacade::class, 'Notification');
 
 /*
 |--------------------------------------------------------------------------
@@ -100,6 +101,7 @@ $app->register(Illuminate\Mail\MailServiceProvider::class);
 $app->register(Prettus\Repository\Providers\LumenRepositoryServiceProvider::class);
 $app->register(Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class);
 $app->register(App\Providers\SupplierServiceProvider::class);
+$app->register(App\Providers\NotificationServiceProvider::class);
 $app->register(Nurmanhabib\Kewilayahan\KewilayahanLumenServiceProvider::class);
 
 /*
