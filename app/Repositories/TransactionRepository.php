@@ -8,92 +8,231 @@
 
 namespace App\Repositories;
 
+use App\Supports\Contracts\Buyerable;
 use App\Events\UserRegistered;
 use App\Models\Product;
 use App\Models\User;
 use App\Models\Supplier;
 use App\Models\ShippingAddress;
-use App\Models\invoice;
+use App\Models\Invoice;
+use App\Models\TransactionShipping;
+use Carbon\Carbon;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Tymon\JWTAuth\Facades\JWTAuth;
+use Illuminate\Support\Facades\Mail;
 
 class TransactionRepository extends Repository
 {
-	public function createInvoice(User $user, array $product)
-	{
-		$user->invoices()->create($product);
+    public function model()
+    {
+        return Invoice::class;
+    }
 
-        return $user->load('invoices');
-	}
+    public function saveTransactionShipping($destination, $name = 'home')
+    {
+        if (is_numeric($destination)) {
+            $address            = ShippingAddress::find($destination);
+            $shippingAddress    = [
+                'name'              => $address->name,
+                'address_line_1'    => $address->address_line_1,
+                'address_line_2'    => $address->address_line_2,
+                'postal_code'       => $address->postal_code,
+                'city'              => $address->city,
+                'phone'             => $address->phone
+            ];
+        } else {
+            $shippingAddress            = $destination;
+            $shippingAddress['name']    = $name;
+        }
 
-	public function getInvoice($invoice_code)
-	{
-		$invoice = Invoice::where('code', $invoice_code)->first();
+        $transactionShipping = TransactionShipping::create($shippingAddress);
 
-		return $Invoice;
-	}
+        return $transactionShipping;
+    }
 
-	public function getInvoiceByUser(User $user)
-	{
-		$invoice = Invoice::where('user_id', $user->id)->get();
+    public function splitProductsBySupplier(array $carts)
+    {
+        $carts = collect($carts);
 
-		return $invoice;
-	}
+        $carts = $carts->map(function ($cart) {
+            $product    = Product::find($cart['product_id']);
 
-	public function addFund(User $user, int $nominal)
-	{
-
-	}
-
-	public function checkBalance(User $user, int $nominal)
-	{
-
-	}
-
-	public function createTransferConfirmation(Invoice $invoice, $bank_name, $on_behalf, $nominal)
-	{
-
-	}
-
-	public function sendmailInvoice(User $user, Invoice $invoice)
-	{
-        $data   = [
-        	'email' 			=> $email['to']['email'],
-            'invoice_id'  		=> $invoice['invoice'],
-            'invoice_item' 		=> $invoice['items'],
-            'total_transfer'	=> $invoice['total_prices']
-        ];
-
-        Mail::send('emails.invoice', $data, function ($message) use ($email) {
-            $message->to($email['to']['email'], $email['to']['name']);
-            $message->subject($email['subject']);
+            return [
+                'product'   => $product,
+                'quantity'  => $cart['quantity'],
+            ];
         });
 
-        return [
-            'status'    => 'success',
-            'message'   => 'Mail has been send.'
+        $grouping = $carts->groupBy(function ($cart) {
+            return $cart['product']->supplier_id;
+        });
+
+        $splits = array();
+
+        foreach ($grouping as $supplier_id => $carts) {
+            $splits[] = [
+                'supplier'  => Supplier::find($supplier_id),
+                'carts'     => $carts
+            ];
+        }
+
+        return $splits;
+    }
+
+    public function setPaymentConfirmation(Invoice $invoice, $bank_name, $on_behalf, $nominal)
+    {
+
+    }
+
+    public function generateInvoiceNumber(Supplier $supplier, $unique_number = 1)
+    {
+        $format         = [
+            'marketplace_code'  => config('amtekcommerce.code'),
+            'date'              => Carbon::today()->format('Ymd'),
+            'supplier_code'     => $supplier->code,
+            'unique_number'     => str_pad($unique_number, 7, '0', STR_PAD_LEFT),
         ];
-	}
 
-	public function setStatusInvoice(Invoice $invoice, $status)
-	{
-		$invoice->status 	= $status;
-		$invoice->save();
+        $format_code    = implode('/', $format);
+        $already        = $this->findWhere(['code' => $format_code])->first();
 
-		return $invoice;
-	}
+        if ($already) {
+            return $this->generateInvoiceNumber($supplier, $unique_number + 1);
+        }
 
-	public function getAllInvoice()
-	{
-		$invoice = Invoice::all();
+        return $format_code;
+    }
 
-		return $invoice;
-	}
+    public function createInvoice(
+        Buyerable $buyer,
+        Supplier $supplier,
+        array $carts,
+        TransactionShipping $transactionShipping,
+        $note = null,
+        $status = 'unpaid'
+    )
+    {
+        $invoice = new Invoice;
+        $invoice->code = $this->generateInvoiceNumber($supplier);
+        $invoice->note = $note;
+        $invoice->status = $status;
+        $invoice->buyer()->associate($buyer);
+        $invoice->transaction_shipping()->associate($transactionShipping);
+        $invoice->save();
 
-	public function getInvoiceByStatus($status)
-	{
-		$invoice = Invoice::where('status', $status)->get();
+        foreach ($carts as $cart) {
+            $product = $cart['product'];
 
-		return $invoice;
-	}
+            $invoice->details()->create([
+                'name'          => $product->name,
+                'description'   => $product->description,
+                'quantity'      => $cart['quantity'],
+                'price'         => $product->price,
+                'product_id'    => $product->id,
+            ]);
+        }
+
+        return $invoice->load('details');
+    }
+
+    public function getInvoice($invoice_code)
+    {
+        $invoice = $this->findWhere(['code' => $invoice_code])->first();
+
+        return $invoice;
+    }
+
+    public function getInvoiceByUser(User $user)
+    {
+        return $user->invoices;
+    }
+
+    public function checkBalance(User $user, int $nominal)
+    {
+
+    }
+
+    public function sendmailInvoice(array $invoiceData)
+    {
+        $data               =  $invoiceData;
+        $data['subject']    = 'Invoice Pemesanan';
+
+        Mail::send('emails.invoice-details', $data, function ($message) use ($data) {
+            $message->to($data['email'], $data['email']);
+            $message->subject($data['subject']);
+        });
+
+        // return $data;
+    }
+
+    public function setStatusInvoice(Invoice $invoice, $status)
+    {
+        $invoice->status    = $status;
+        $invoice->save();
+
+        return $invoice;
+    }
+
+    public function getAllInvoice()
+    {
+        $invoice = $this->all();
+
+        return $invoice;
+    }
+
+    public function getInvoiceByStatus($status)
+    {
+        $invoice = $this->findWhere('status', $status);
+
+        return $invoice;
+    }
+
+    public function checkUser($email)
+    {
+        $user   =   User::where('email', $email)->first();
+
+        if ($user) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function getUserByEmail($email)
+    {
+        $user   =   User::where('email', $email)->first();
+
+        return $user;
+    }
+
+    public function generateInvoice(Supplier $supplier)
+    {
+        $slug           = $supplier->slug;
+        $date           = date('Ymd');
+        $randomNumber   = rand(00000, 99999);
+
+        $invoice    = 'INV/AMC/' . $slug . '/' . $date . '/' . $randomNumber;
+
+        return $invoice;
+    }
+
+    public function generatePaymentCode()
+    {
+        return rand(001,999);
+    }
+
+    public function totalPrice($products)
+    {
+        $totalPrice = 0;
+        foreach ($products as $product) {
+            $totalPrice = $totalPrice + ($product['price']*$product['quantity']);
+        }
+
+        return $totalPrice;
+    }
+
+    public function saveInvoiceDetails(Invoice $invoice, array $detailInvoice)
+    {
+
+    }
 }

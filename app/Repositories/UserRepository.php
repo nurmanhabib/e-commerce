@@ -11,8 +11,8 @@ namespace App\Repositories;
 use App\Events\UserRegistered;
 use App\Models\Role;
 use App\Models\User;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use App\Models\Supplier;
-use App\Models\ShippingAddress;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
@@ -35,15 +35,36 @@ class UserRepository extends Repository
         return User::class;
     }
 
+    public function registerEmail($email, $role = 'member')
+    {
+        $credentials = compact('email');
+
+        return $this->register($credentials);
+    }
+
     public function registerAndActivate(array $credentials, array $profile = [], $role = 'member')
     {
-        $this->register($credentials, $profile, $role, true);
+        return $this->register($credentials, $profile, $role, true);
+    }
+
+    public function registerSocial($driver, $appid, array $credentials, array $profile = [], $role = 'member', $activated = false)
+    {
+        $user = $this->register($credentials, $profile, $role, $activated);
+
+        $user->socialite()->forceFill([
+            'name'  => $driver,
+            'appid' => $appid
+        ]);
     }
 
     public function register(array $credentials, array $profile = [], $role = 'member', $activated = false)
     {
         if (array_key_exists('password', $credentials)) {
-            $credentials['password'] = $this->createPassword($credentials['password']);
+            if (!empty($credentials['email'])) {
+                $credentials['password'] = $this->createPassword($credentials['password']);
+            } else {
+                unset($credentials['password']);
+            }
         }
 
         $user = $this->create($credentials);
@@ -52,8 +73,10 @@ class UserRepository extends Repository
             $this->generateActivationCode($user);
         }
 
-        if (!empty($profile) && !$user->hasProfile()) {
+        if (!$user->hasProfile()) {
             $user->profile()->create($profile);
+        } else {
+            $user->profile()->update($profile);
         }
 
         $role = Role::where('slug', $role)->first();
@@ -113,24 +136,44 @@ class UserRepository extends Repository
 
             $user->save();
 
-            return $user;
+            return $user->load('suppliers');
         } else {
             return ['message' => 'User not found', 'activation_code' => 'Activation code not found.'];
         }
     }
 
-    public function authenticate(array $credentials)
+    public function expectedRoles($expected_roles = [])
+    {
+        $this->expected_roles = $expected_roles;
+    }
+
+    public function authenticate(array $credentials, $expected_roles = [])
     {
         $credentials    = collect($credentials);
         $password       = $credentials->pull('password');
         $user           = $this->findWhere($credentials->toArray())->first();
 
         if ($user) {
-            if (app('hash')->check($password, $user->password)) {
+            if ($user->active) {
+                if (app('hash')->check($password, $user->password)) {
+                    if ($user->hasRole($expected_roles)) {
+                        return [
+                            'status'    => 'success',
+                            'user'      => $user,
+                            'token'     => $this->getToken($user),
+                        ];
+                    } else {
+                        return [
+                            'status'    => 'not_role',
+                            'message'   => 'You do not have access rights.'
+                        ];
+                    }
+                }
+
+            } else {
                 return [
-                    'status'    => 'success',
-                    'user'      => $user,
-                    'token'     => $this->getToken($user),
+                    'status'    => 'not_activated',
+                    'message'   => 'User not activated.'
                 ];
             }
         }
@@ -143,12 +186,28 @@ class UserRepository extends Repository
 
     public function authenticateById($id)
     {
-        $user = $this->find($id);
+        try {
+            $user = $this->find($id);
+
+            return [
+                'status'    => 'success',
+                'user'      => $user,
+                'token'     => $this->getToken($user),
+            ];
+        } catch (ModelNotFoundException $e) {
+            return null;
+        }
+    }
+
+    public function authenticateByRememberToken($remember_token)
+    {
+        $user = $this->findWhere('remember_token', $remember_token)->first();
 
         if ($user) {
             return [
-                'user'  => $user,
-                'token' => $this->getToken($user),
+                'status'    => 'success',
+                'user'      => $user,
+                'token'     => $this->getToken($user),
             ];
         } else {
             return null;

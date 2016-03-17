@@ -1,0 +1,59 @@
+@import url("../../fonts/opensans/style.css");
+@media (min-width: 320px) and (max-width: 360px) {
+  .form-search {
+    width: 100% !important;
+    margin-bottom: 5px; } }
+@media (min-width: 360px) and (max-width: 640px) {
+  .form-search {
+    width: 100% !important;
+    margin-bottom: 5px; }
+
+  #overlay-box {
+    width: 250px;
+    height: 250px;
+    display: block;
+    position: relative;
+    margin-right: 1% !important;
+    margin-left: 1% !important;
+    transition: all 0.3s ease-in-out;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out; }
+    #overlay-box:hover #content-overlay {
+      opacity: 0.3;
+      transition: all 0.3s ease-in-out;
+      -webkit-transition: all 0.3s ease-in-out;
+      -moz-transition: all 0.3s ease-in-out;
+      -o-transition: all 0.3s ease-in-out; }
+    #overlay-box img {
+      width: 250px;
+      height: 250px;
+      object-fit: cover; } }
+@media (min-width: 640px) and (max-width: 992px) {
+  .form-search {
+    width: 100% !important;
+    margin-bottom: 5px; }
+
+  #overlay-box {
+    width: 250px;
+    height: 250px;
+    display: block;
+    position: relative;
+    margin-right: 10% !important;
+    margin-left: 10% !important;
+    transition: all 0.3s ease-in-out;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out; }
+    #overlay-box:hover #content-overlay {
+      opacity: 0.3;
+      transition: all 0.3s ease-in-out;
+      -webkit-transition: all 0.3s ease-in-out;
+      -moz-transition: all 0.3s ease-in-out;
+      -o-transition: all 0.3s ease-in-out; }
+    #overlay-box img {
+      width: 250px;
+      height: 250px;
+      object-fit: cover; } }
+
+/*# sourceMappingURL=responsive.css.map */

@@ -19,6 +19,7 @@ $api->post('auth/register',             'Auth\RegisterController@register');
 // Autentikasi
 $api->post('auth/credentials',      'Auth\LoginController@credentials');
 $api->post('auth/id',               'Auth\LoginController@id');
+$api->post('auth/remember',         'Auth\LoginController@viaRemember');
 // $api->post('auth/hashids',          'Auth\LoginController@hashids');
 $api->post('auth/refresh-token',    'Auth\LoginController@refreshToken');
 
@@ -30,7 +31,8 @@ $api->post('auth/reset-password',   'Auth\ResetPasswordController@resetPassword'
  **  User Profile (Logged In) **
  *******************************/
 $api->group(['middleware' => 'auth'], function ($api) {
-    // $api->get('user',                   'User\UserController@show');
+    $api->get('user',                   'User\UserController@show');
+    $api->get('user/roles',             'User\UserController@roles');
     // $api->put('user',                   'User\UserController@update');
     $api->get('user/profile',           'User\ProfileController@show');
     $api->put('user/profile',           'User\ProfileController@update');
@@ -53,10 +55,32 @@ $api->group(['middleware' => 'auth'], function ($api) {
 /*******************************
  **  Resource Route (or CRUD) **
  *******************************/
-// resource('users',       'UserController', $api);
-resource('suppliers',   'SupplierController', $api);
-resource('products',    'ProductController', $api);
+resource('users',           'Admin\UserController', $api);
+resource('suppliers',       'SupplierController', $api);
+
+$api->get('products/images',        'ProductImageController@index');
+$api->get('products/image/{id}',    'ProductImageController@show');
+$api->get('products/images/{id}',    'ProductImageController@showProductImages');
+$api->post('products/image',        'ProductImageController@store');
+$api->post('products/image/{id}',    'ProductImageController@update');
+$api->delete('products/image/{id}',  'ProductImageController@destroy');
+$api->delete('products/images/{id}',  'ProductImageController@destroyByProduct');
+
+$api->post('products/inc/{id}',     'ProductController@incrementStock');
+$api->post('products/dec/{id}',     'ProductController@decrementStock');
+resource('products',        'ProductController', $api);
+
+resource('banks',           'BankController', $api);
+resource('payment-method',  'PaymentMethodController', $api);
+resource('account-bank',    'AccountBankController', $api);
+resource('testimonial',    'TestimonialController', $api);
+
+$api->get('configs/autoload', 'ConfigController@autoload');
+resource('configs',     'ConfigController', $api);
+
+$api->get('categories/{id}/childs', 'CategoryController@childs');
 resource('categories',  'CategoryController', $api);
+
 // resource('discounts',   'DiscountController', $api);
 
 /*******************************
@@ -66,3 +90,8 @@ $api->post('sendmail',          'Sendmail\SendmailController@send');
 $api->post('welcome-mail',      'Sendmail\SendmailController@welcome');
 $api->post('forgot-password',   'Sendmail\SendmailController@forgotPassword');
 $api->post('register',          'Sendmail\SendmailController@register');
+
+/*******************************
+ **       Transactions        **
+ *******************************/
+$api->post('checkout', 'TransactionController@checkout');

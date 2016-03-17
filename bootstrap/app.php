@@ -24,11 +24,11 @@ $app = new Laravel\Lumen\Application(
 );
 
 $app->withFacades();
-
 $app->withEloquent();
 
 $app->configure('jwt');
 $app->configure('mail');
+$app->configure('amtekcommerce');
 
 class_alias(Tymon\JWTAuth\Facades\JWTAuth::class, 'JWTAuth');
 class_alias(Illuminate\Support\Facades\Mail::class, 'Mail');
@@ -72,6 +72,7 @@ $app->middleware([
 $app->routeMiddleware([
     'cors' => App\Http\Middleware\CorsMiddleware::class,
     'auth' => App\Http\Middleware\Authenticate::class,
+    'auth.web' => App\Http\Middleware\AuthenticateWeb::class,
 ]);
 
 /*
@@ -94,6 +95,7 @@ $app->register(Dingo\Api\Provider\LumenServiceProvider::class);
 $app->register(Illuminate\Mail\MailServiceProvider::class);
 $app->register(Prettus\Repository\Providers\LumenRepositoryServiceProvider::class);
 $app->register(Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class);
+$app->register(App\Providers\SupplierServiceProvider::class);
 
 /*
 |--------------------------------------------------------------------------

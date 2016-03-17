@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<title>AmetkCommerce</title>
+		<!-- start:stylesheet -->
+		<link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../node_modules/font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="../stylesheets/app.css">
+		<link rel="stylesheet" href="../stylesheets/responsive.css">
+		<!-- end:/stylesheet -->
+	</head>
+	<body>
+		<!-- start:header -->
+		<header id="header">
+			<!-- start:navbar-main -->
+			<section id="navbar-main">
+				<nav class="navbar">
+					<div class="container">
+						<div class="navbar-header">
+							<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+								<i class="fa fa-bars"></i>
+							</button>
+							<a class="navbar-brand" href="#">
+								<img src="../assets/images/icon/logo.png" alt="">
+							</a>
+						</div>
+					</div>
+				</nav>
+			</section>
+			<!-- end:/navbar-main -->
+		</header>
+		<!-- end:/header -->
+
+		<!-- start:main content -->
+		<section id="content-login">
+			<!-- start:content-login -->
+			<div class="container">
+				<div class="login-box">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="box">
+								<div class="row">
+									<div class="col-sm-12">
+										<div class="title">
+											<h3>Member Profile</h3>
+											<p>Complete your profile data</p>
+										</div>
+									</div>
+									<div class="col-sm-6">
+										<div class="content-left">
+											<form action="#">
+												<div class="form-group">
+													<label>Full Name :</label>
+													<input type="text" class="form-control" placeholder="Full Name">
+												</div>
+												<div class="form-group">
+													<label for="Email">Gender :</label>
+												</div>
+												<div class="form-group">
+													<label class="radio-inline">
+														<input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> Male
+													</label>
+													<label class="radio-inline">
+														<input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> Female
+													</label>
+												</div>
+												<div class="form-group">
+													<label>Email :</label>
+													<input type="email" class="form-control" placeholder="Email Address">
+												</div>
+												<div class="form-group">
+													<label>Alternative Email :</label>
+													<input type="email" class="form-control" placeholder="Alternative Email Address">
+												</div>
+												<div class="form-group">
+													<label>Address :</label>
+													<textarea class="form-control" cols="5" rows="5" placeholder="Address"></textarea>
+												</div>
+												<div class="form-group">
+													<label>Zip/Postal Code :</label>
+													<input type="text" class="form-control" placeholder="Postal Code">
+												</div>
+												<div class="form-group">
+													<label>Telephone :</label>
+													<input type="text" class="form-control" placeholder="Enter Telehone Number">
+												</div>
+												<div class="form-group">
+													<label>Phone Number :</label>
+													<input type="text" class="form-control" placeholder="Enter Phone Number">
+												</div>
+												<div class="form-group">
+													<label>Fax :</label>
+													<input type="text" class="form-control" placeholder="Enter Fax Number">
+												</div>
+												<div class="form-group">
+													<label>Departement :</label>
+													<input type="text" class="form-control" placeholder="Departement">
+												</div>
+												<div class="form-group">
+													<label>Job Title :</label>
+													<input type="text" class="form-control" placeholder="Position">
+												</div>
+											</form>
+										</div>
+									</div>
+									<div class="col-sm-6">
+										<div class="content-right">
+											<div id="overlay-box">
+											<label>Photo Profile :</label>
+												<a href="#" type="button" data-toggle="modal" data-target="#uploadImages">
+													<img src="../assets/images/icon/user.png">
+													<div id="content-overlay">
+														<i class="fa fa-camera"></i>
+													</div>
+												</a>
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-12">
+										<button class="btn btn-block btn-login">APPLY</button>
+									</div>
+									<!-- start:modal upload images -->
+									<div class="modal fade" tabindex="-1" id="uploadImages">
+										<div class="modal-dialog">
+											<div class="modal-content">
+												<div class="modal-header">
+													<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+													<h4 class="modal-title">Upload Images</h4>
+												</div>
+												<div class="modal-body">
+													<img src="../assets/images/icon/user.png">
+													<input type="file" class="form-control" placeholder="Upload your profile images">
+												</div>
+												<div class="modal-footer">
+													<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+													<button type="button" class="btn btn-primary">Upload images</button>
+												</div>
+											</div><!-- /.modal-content -->
+										</div><!-- /.modal-dialog -->
+									</div><!-- /.modal -->
+									<!-- end:/modal upload images -->
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- end:/content-login -->
+		</section>
+		<!-- end:/main content -->
+
+		<!-- start:footer -->
+		<footer class="footer">
+			<div class="container">
+					<!-- start:footer-content -->
+					<div class="footer-content">
+						<div class="row">
+							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+								<div class="col-sm-3">
+									<h4>About Us</h4>
+									<ul>
+										<li><a href="#">About AmtekCommerce</a></li>
+										<li><a href="#">Sitemap</a></li>
+									</ul>
+								</div>
+								<div class="col-sm-3">
+									<h4>Customer Service</h4>
+									<ul>
+										<li><a href="#">Help center</a></li>
+										<li><a href="#">Contact Us</a></li>
+										<li><a href="#">Submit & Complaint</a></li>
+										<li><a href="#">Policies & Rules</a></li>
+									</ul>
+								</div>
+								<div class="col-sm-3">
+									<h4>Buy on AmtekCommerce</h4>
+									<ul>
+										<li><a href="#">By Category</a></li>
+										<li><a href="#">Get Quotations</a></li>
+										<li><a href="#">Wholesaler</a></li>
+										<li><a href="#">Popular Products Trends</a></li>
+									</ul>
+								</div>
+								<div class="col-sm-3">
+									<h4>Sell on AmtekCommerce</h4>
+									<ul>
+										<li><a href="#">Supplier Memberships</a></li>
+										<li><a href="#">Learning Center</a></li>
+										<li><a href="#">Training Center</a></li>
+										<li><a href="#">AmtekCommerce Source</a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- end:/footer-content -->
+					<!-- start:footer-bottom -->
+					<div class="footer-bottom">					
+						<p><i class="fa fa-copyright"></i> Copyright 2016 - <a href="#">Amteklab</a> E-Commerce System.</p>
+					</div>
+					<!-- end:/footer-bottom -->
+			</div>
+		</footer>
+		<!-- end:/footer -->
+
+		<!-- start:javascript -->
+		<script src="../node_modules/jquery/dist/jquery.min.js"></script>
+		<script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+		
+		<!-- end:/javascript -->
+	</body>
+</html>

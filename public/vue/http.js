@@ -1,6 +1,6 @@
 // URL and endpoint constants
-const API_URL = 'http://localhost:8000/api/v1'
-const SITE_URL = 'http://localhost:8000'
+const API_URL = 'http://192.168.1.17:8000/api/v1'
+const SITE_URL = 'http://192.168.1.17:8000'
 
 // API Endpoint
 const LOGIN_URL = API_URL + '/auth/credentials'

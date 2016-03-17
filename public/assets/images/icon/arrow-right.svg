@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="40px" height="40px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.4 (15575) - http://www.bohemiancoding.com/sketch -->
+    <title>Fill 49</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="Group" sketch:type="MSLayerGroup" transform="translate(-1241.000000, -1493.000000)" fill="#243143">
+            <g id="hot-products" transform="translate(1.000000, 1249.000000)" sketch:type="MSShapeGroup">
+                <path d="M1277.5,279 C1277.5,280.375 1276.38,281.5 1275,281.5 L1245,281.5 C1243.62,281.5 1242.5,280.375 1242.5,279 L1242.5,249 C1242.5,247.62 1243.62,246.5 1245,246.5 L1275,246.5 C1276.38,246.5 1277.5,247.62 1277.5,249 L1277.5,279 L1277.5,279 Z M1275,244 L1245,244 C1242.23875,244 1240,246.23875 1240,249 L1240,279 C1240,281.7625 1242.23875,284 1245,284 L1275,284 C1277.76125,284 1280,281.7625 1280,279 L1280,249 C1280,246.23875 1277.76125,244 1275,244 L1275,244 Z M1254.68,251.89125 C1254.1875,251.40125 1253.3875,251.40125 1252.89375,251.89125 C1252.4,252.38375 1252.4,253.18 1252.89375,253.67 L1263.28,264.02 L1252.89375,274.3625 C1252.4,274.8625 1252.4,275.6625 1252.89375,276.15 C1253.3875,276.6375 1254.1875,276.6375 1254.68,276.15 L1265.895,264.97125 C1266.15875,264.71 1266.27125,264.3625 1266.2525,264.02 C1266.27125,263.67625 1266.15875,263.33 1265.895,263.0675 L1254.68,251.89125 L1254.68,251.89125 Z" id="Fill-49"></path>
+            </g>
+        </g>
+    </g>
+</svg>

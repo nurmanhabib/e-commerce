@@ -14,20 +14,28 @@
 $app->get('/', 'HomeController@index');
 
 $app->group(['namespace' => 'App\Http\Controllers\Frontend\Auth'], function () use ($app) {
+    // Login
     $app->get('login', 'LoginController@user');
-    $app->get('admin', 'LoginController@admin');
-    $app->get('supplier', 'LoginController@supplier');
+    $app->get('admin/login', 'LoginController@admin');
+    $app->get('supplier/login', 'LoginController@supplier');
+    $app->get('login/social/{driver}', 'Social\SocialController@login');
+
+    // Register
     $app->get('supplier/register', 'RegisterController@registerSupplier');
     $app->get('supplier/register/{activation_code}', 'RegisterController@activateSupplier');
     $app->get('register', 'RegisterController@registerMember');
     $app->get('register/{activation_code}', 'RegisterController@activate');
+
+    // Forgot Password
     $app->get('reset-password/{token}', 'ReminderController@reset');
     $app->get('forgot-password', 'ReminderController@forgotPassword');
 });
 
 $app->group(['namespace' => 'App\Http\Controllers\Frontend\Admin', 'prefix' => 'admin'], function () use ($app) {
-    $app->get('dashboard', 'DashboardController@index');
-    $app->get('category', 'DashboardController@category');
+    $app->get('/', 'DashboardController@index');
+    $app->get('category', 'CategoryController@index');
+    $app->get('product', 'ProductController@index');
+    $app->get('supplier', 'SupplierController@index');
 });
 
 $app->group(['namespace' => 'App\Http\Controllers\Frontend\Supplier', 'prefix' => 'supplier'], function () use ($app) {

@@ -10,14 +10,4 @@ class DashboardController extends Controller
     {
         return view('admin.dashboard');
     }
-    
-    public function category()
-    {
-    	return view('admin.category.category');
-    }
-
-    public function products()
-    {
-    	return view('admin.products.products');
-    }
 }

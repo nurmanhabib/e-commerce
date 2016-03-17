@@ -34,8 +34,9 @@ class LoginController extends Controller
             'password'  => 'required',
         ]);
 
-        $credentials    = $request->all();
-        $authenticate   = $this->userRepository->authenticate($credentials);
+        $credentials    = $request->except('expected_roles');
+        $expected_roles = $request->get('expected_roles');
+        $authenticate   = $this->userRepository->authenticate($credentials, $expected_roles);
 
         return $authenticate;
     }
@@ -53,6 +54,28 @@ class LoginController extends Controller
         ]);
 
         $authenticate = $this->userRepository->authenticateById($request->get('id'));
+
+        if ($authenticate) {
+            return [
+                'status'    => 'success',
+                'user'      => $authenticate['user'],
+                'token'     => $authenticate['token'],
+            ];
+        } else {
+            return [
+                'status'    => 'failed',
+                'message'   => 'User not found.',
+            ];
+        }
+    }
+
+    public function viaRemember(Request $request)
+    {
+        $this->validate($request, [
+            'remember_token' => 'required',
+        ]);
+
+        $authenticate = $this->userRepository->authenticateByRememberToken($request->get('id'));
 
         if ($authenticate) {
             return [
