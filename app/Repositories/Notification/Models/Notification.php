@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Notification extends NotificationEloquent
 {
+    protected $isSuperType = true;
     protected $table = 'notifications';
     protected $guarded = [];
     protected $with = ['users'];
@@ -40,7 +41,7 @@ class Notification extends NotificationEloquent
 
     protected function getClass($type)
     {
-        return (new \App\Repositories\Notification\Notification)->getClass($type);
+        return app('notification')->getClass($type);
     }
 
     protected function getType()
