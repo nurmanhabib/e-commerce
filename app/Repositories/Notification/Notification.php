@@ -44,5 +44,4 @@ class Notification
 
         return $notification->load('users');
     }
-
 }
