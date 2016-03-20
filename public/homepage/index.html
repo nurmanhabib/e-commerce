@@ -7,8 +7,9 @@
 		<!-- start:stylesheet -->
 		<link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
 		<link rel="stylesheet" href="../node_modules/font-awesome/css/font-awesome.min.css">
-		<link rel="stylesheet" href="../node_modules/owl-carousel-2/assets/owl.carousel.min.css">
-		<link rel="stylesheet" href="../node_modules/owl-carousel-2/assets/owl.theme.default.min.css">
+		<link rel="stylesheet" href="../node_modules/slick-carousel/slick/slick.css">
+		<link rel="stylesheet" href="../node_modules/slick-carousel/slick/slick-theme.css">
+		<link rel="stylesheet" href="../stylesheets/slick-custom.css">
 		<link rel="stylesheet" href="../stylesheets/app.css">
 		<link rel="stylesheet" href="../stylesheets/responsive.css">
 		<!-- end:/stylesheet -->
@@ -51,7 +52,7 @@
 
 			<!-- start:navbar-content -->
 			<section id="navbar-content">
-				<nav class="navbar">
+				<nav id="navbar" class="navbar">
 					<div class="container">
 						<div class="row">
 							<form class="form-horizontal">
@@ -336,44 +337,26 @@
                 		<img src="../assets/images/icon/bookmark.svg" alt="">
                 		<h4>Hot Products</h4>
                 	</div>
-	                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-	                	<div class="owl-carousel owl-theme">
-						    <div class="item">
-						    	<a href="#">
-						    		<img src="../assets/images/popular.jpg" alt="">
-						    	</a>
-						    </div>
-						    <div class="item">
-						    	<a href="#">
-						    		<img src="../assets/images/popular.jpg" alt="">
-						    	</a>
-						    </div>
-						    <div class="item">
-						    	<a href="#">
-						    		<img src="../assets/images/popular.jpg" alt="">
-						    	</a>
-						    </div>
-						    <div class="item">
-						    	<a href="#">
-						    		<img src="../assets/images/popular.jpg" alt="">
-						    	</a>
-						    </div>
-						    <div class="item">
-						    	<a href="#">
-						    		<img src="../assets/images/popular.jpg" alt="">
-						    	</a>
-						    </div>
-						    <div class="item">
-						    	<a href="#">
-						    		<img src="../assets/images/popular.jpg" alt="">
-						    	</a>
-						    </div>
-						    <div class="item">
-						    	<a href="#">
-						    		<img src="../assets/images/popular.jpg" alt="">
-						    	</a>
-						    </div>
-						</div>
+
+                	<div class="slick-hot-product">
+					    <div>
+						    <h3><a href="#"><img src="../assets/images/hijab.jpg" alt=""></a></h3>
+					    </div>
+					    <div>
+						    <h3><a href="#"><img src="../assets/images/hijab.jpg" alt=""></a></h3>
+					    </div>
+					    <div>
+						    <h3><a href="#"><img src="../assets/images/hijab.jpg" alt=""></a></h3>
+					    </div>
+					    <div>
+						    <h3><a href="#"><img src="../assets/images/hijab.jpg" alt=""></a></h3>
+					    </div>
+					    <div>
+						    <h3><a href="#"><img src="../assets/images/hijab.jpg" alt=""></a></h3>
+					    </div>
+					    <div>
+						    <h3><a href="#"><img src="../assets/images/hijab.jpg" alt=""></a></h3>
+					    </div>
 					</div>
                 </div>
 			</div>
@@ -386,45 +369,27 @@
 						<img src="../assets/images/icon/bookmark.svg" alt="">
 		            	<h4>Popular Products</h4>
 		            </div>
-		            <div class="container">
-		            	<div class="owl-carousel owl-theme">
-						    <div class="item">
-						    	<a href="#">
-						    		<img src="../assets/images/popular.jpg" alt="">
-						    	</a>
-						    </div>
-						    <div class="item">
-						    	<a href="#">
-						    		<img src="../assets/images/popular.jpg" alt="">
-						    	</a>
-						    </div>
-						    <div class="item">
-						    	<a href="#">
-						    		<img src="../assets/images/popular.jpg" alt="">
-						    	</a>
-						    </div>
-						    <div class="item">
-						    	<a href="#">
-						    		<img src="../assets/images/popular.jpg" alt="">
-						    	</a>
-						    </div>
-						    <div class="item">
-						    	<a href="#">
-						    		<img src="../assets/images/popular.jpg" alt="">
-						    	</a>
-						    </div>
-						    <div class="item">
-						    	<a href="#">
-						    		<img src="../assets/images/popular.jpg" alt="">
-						    	</a>
-						    </div>
-						    <div class="item">
-						    	<a href="#">
-						    		<img src="../assets/images/popular.jpg" alt="">
-						    	</a>
-						    </div>
-						</div>
-		            </div>
+
+	            	<div class="slick-popular-product">
+					    <div>
+						    <h3><a href="#"><img src="../assets/images/hijab2.jpg" alt=""></a></h3>
+					    </div>
+					    <div>
+						    <h3><a href="#"><img src="../assets/images/hijab2.jpg" alt=""></a></h3>
+					    </div>
+					    <div>
+						    <h3><a href="#"><img src="../assets/images/hijab2.jpg" alt=""></a></h3>
+					    </div>
+					    <div>
+						    <h3><a href="#"><img src="../assets/images/hijab2.jpg" alt=""></a></h3>
+					    </div>
+					    <div>
+						    <h3><a href="#"><img src="../assets/images/hijab2.jpg" alt=""></a></h3>
+					    </div>
+					    <div>
+						    <h3><a href="#"><img src="../assets/images/hijab2.jpg" alt=""></a></h3>
+					    </div>
+					</div>
 		        </div>
 			</div>
 			<!-- end:/popular-product -->
@@ -507,31 +472,10 @@
 
 		<!-- start:javascript -->
 		<script src="../node_modules/jquery/dist/jquery.min.js"></script>
-		<script src="../node_modules/owl-carousel-2/owl.carousel.min.js"></script>
+		<script src="../node_modules/slick-carousel/slick/slick.min.js"></script>
 		<script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-		
+		<script src="../javascript/slick-homepage.js"></script>
+		<script src="../javascript/scrolling-nav.js"></script>
 		<!-- end:/javascript -->
-		<script>
-			$('.owl-carousel').owlCarousel({
-			    loop:true,
-			    items:3,
-			    margin:10,
-			    nav:true,
-			    autoplay:true,
-   				autoplayTimeout:5000,
-   				autoplayHoverPause:true,
-			    responsive:{
-			        0:{
-			            items:1
-			        },
-			        600:{
-			            items:3
-			        },
-			        1000:{
-			            items:5
-			        }
-			    }
-			})
-		</script>
 	</body>
 </html>
