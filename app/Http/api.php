@@ -68,6 +68,7 @@ $api->delete('products/images/{id}',  'ProductImageController@destroyByProduct')
 
 $api->post('products/inc/{id}',     'ProductController@incrementStock');
 $api->post('products/dec/{id}',     'ProductController@decrementStock');
+$api->get('products/supplier', 'ProductController@showBySupplier');
 resource('products',        'ProductController', $api);
 
 resource('banks',           'BankController', $api);
