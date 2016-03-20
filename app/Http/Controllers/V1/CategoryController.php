@@ -66,7 +66,7 @@ class CategoryController extends Controller
         } else {            // if the category is not found
             return [
                 'status'    => 'failed',
-                'message'   => 'Maaf, kategori yang anda cari tidak ditemukan.'
+                'message'   => 'Maaf, kategori yang anda cari tidak ditemukan.',
                 'category'  => null
             ];
         }
