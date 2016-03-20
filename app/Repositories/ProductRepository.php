@@ -42,7 +42,7 @@ class ProductRepository extends Repository
 
 		foreach ($tags as $tag) {
 			$tag 	= trim($tag);
-			$find	= Tag::where('name', $tag)->first();
+			$find	= Tag::where('name', 'ilike', '%'.$tag.'%')->first();
 
 			if (!$find) {
 				$find	= Tag::create(['name' => $tag]);
@@ -53,8 +53,15 @@ class ProductRepository extends Repository
 
 		$product_ids	= collect($results)->pluck('id');
 
-		$product->tags()->attach($product_ids->toArray());
+		$product->tags()->sync($product_ids->toArray());
 
 		return $results;
+	}
+
+	public function clearTags(Product $product)
+	{
+	     $product->tags()->sync([]);
+
+	     return $this;
 	}
 }
