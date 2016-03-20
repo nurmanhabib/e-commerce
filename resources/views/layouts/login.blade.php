@@ -101,7 +101,9 @@
 	<!-- /theme JS files -->
 	
     <!-- Build Core -->
-    <script src="{{ asset('app/admin/build.js') }}"></script>
+    <!-- <script src="{{ asset('app/admin/build.js') }}"></script>
+    <script src="{{ asset('app/supplier/build.js') }}"></script> -->
+    @yield('build_core')
     <!-- /Build Core -->
 
 	<!-- Vue JS -->
