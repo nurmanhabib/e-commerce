@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Supports\Contracts\Buyerable;
+use App\Models\Traits\Notifiable;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
@@ -18,6 +19,7 @@ class User extends Model implements
     Buyerable
 {
     use Authenticatable, Authorizable, CanResetPassword;
+    use Notifiable;
 
     /**
      * The attributes that are mass assignable.

@@ -58,12 +58,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dingo/api.git",
-                "reference": "132226cef2ffb822abb7a0bf7c0ee8802df9a175"
+                "reference": "90d4e4e60e5d460c8135fca611f0ac44a037df89"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dingo/api/zipball/b9ff594eedea42d5cd78f09b20cbb66dd46b1204",
-                "reference": "132226cef2ffb822abb7a0bf7c0ee8802df9a175",
+                "url": "https://api.github.com/repos/dingo/api/zipball/90d4e4e60e5d460c8135fca611f0ac44a037df89",
+                "reference": "90d4e4e60e5d460c8135fca611f0ac44a037df89",
                 "shasum": ""
             },
             "require": {
@@ -126,7 +126,7 @@
                 "laravel",
                 "restful"
             ],
-            "time": "2016-03-10 14:26:13"
+            "time": "2016-03-15 03:39:49"
         },
         {
             "name": "dingo/blueprint",
@@ -2023,16 +2023,16 @@
         },
         {
             "name": "league/flysystem",
-            "version": "1.0.18",
+            "version": "1.0.20",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/flysystem.git",
-                "reference": "b334d6c5f95364948e06d2f620ab93d084074c6e"
+                "reference": "e87a786e3ae12a25cf78a71bb07b4b384bfaa83a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/b334d6c5f95364948e06d2f620ab93d084074c6e",
-                "reference": "b334d6c5f95364948e06d2f620ab93d084074c6e",
+                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/e87a786e3ae12a25cf78a71bb07b4b384bfaa83a",
+                "reference": "e87a786e3ae12a25cf78a71bb07b4b384bfaa83a",
                 "shasum": ""
             },
             "require": {
@@ -2102,7 +2102,7 @@
                 "sftp",
                 "storage"
             ],
-            "time": "2016-03-07 21:01:43"
+            "time": "2016-03-14 21:54:11"
         },
         {
             "name": "league/fractal",
@@ -2169,16 +2169,16 @@
         },
         {
             "name": "monolog/monolog",
-            "version": "1.18.0",
+            "version": "1.18.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Seldaek/monolog.git",
-                "reference": "e19b764b5c855580e8ffa7e615f72c10fd2f99cc"
+                "reference": "a5f2734e8c16f3aa21b3da09715d10e15b4d2d45"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/e19b764b5c855580e8ffa7e615f72c10fd2f99cc",
-                "reference": "e19b764b5c855580e8ffa7e615f72c10fd2f99cc",
+                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/a5f2734e8c16f3aa21b3da09715d10e15b4d2d45",
+                "reference": "a5f2734e8c16f3aa21b3da09715d10e15b4d2d45",
                 "shasum": ""
             },
             "require": {
@@ -2243,7 +2243,7 @@
                 "logging",
                 "psr-3"
             ],
-            "time": "2016-03-01 18:00:40"
+            "time": "2016-03-13 16:08:35"
         },
         {
             "name": "mtdowling/cron-expression",
@@ -2431,16 +2431,16 @@
         },
         {
             "name": "nurmanhabib/kewilayahan",
-            "version": "1.0.0",
+            "version": "1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nurmanhabib/kewilayahan.git",
-                "reference": "dd5c8a131a136323ee39034bd010689a817a0ee8"
+                "reference": "ca2e9cbd757906ddeeb60b7b3289fc37aed64c9f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nurmanhabib/kewilayahan/zipball/dd5c8a131a136323ee39034bd010689a817a0ee8",
-                "reference": "dd5c8a131a136323ee39034bd010689a817a0ee8",
+                "url": "https://api.github.com/repos/nurmanhabib/kewilayahan/zipball/ca2e9cbd757906ddeeb60b7b3289fc37aed64c9f",
+                "reference": "ca2e9cbd757906ddeeb60b7b3289fc37aed64c9f",
                 "shasum": ""
             },
             "require": {
@@ -2450,7 +2450,7 @@
             "type": "library",
             "autoload": {
                 "files": [
-                    "database/migrations/seeds/KewilayahanSeeder.php"
+                    "database/seeds/KewilayahanSeeder.php"
                 ],
                 "psr-4": {
                     "Nurmanhabib\\Kewilayahan\\": "src/"
@@ -2467,20 +2467,20 @@
                 }
             ],
             "description": "API Data Wilayah Provinsi, Kota/Kab, Kecamatan, Kel/Desa di Indonesia dengan data dari BPS Tahun 2013.",
-            "time": "2016-03-15 01:46:42"
+            "time": "2016-03-15 10:28:00"
         },
         {
             "name": "paragonie/random_compat",
-            "version": "v1.2.1",
+            "version": "v1.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/paragonie/random_compat.git",
-                "reference": "f078eba3bcf140fd69b5fcc3ea5ac809abf729dc"
+                "reference": "b3313b618f4edd76523572531d5d7e22fe747430"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/paragonie/random_compat/zipball/f078eba3bcf140fd69b5fcc3ea5ac809abf729dc",
-                "reference": "f078eba3bcf140fd69b5fcc3ea5ac809abf729dc",
+                "url": "https://api.github.com/repos/paragonie/random_compat/zipball/b3313b618f4edd76523572531d5d7e22fe747430",
+                "reference": "b3313b618f4edd76523572531d5d7e22fe747430",
                 "shasum": ""
             },
             "require": {
@@ -2515,7 +2515,7 @@
                 "pseudorandom",
                 "random"
             ],
-            "time": "2016-02-29 17:25:04"
+            "time": "2016-03-11 19:54:08"
         },
         {
             "name": "phpdocumentor/reflection-docblock",
@@ -3696,56 +3696,6 @@
     ],
     "packages-dev": [
         {
-            "name": "anahkiasen/underscore-php",
-            "version": "2.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Anahkiasen/underscore-php.git",
-                "reference": "48f97b295c82d99c1fe10d8b0684c43f051b5580"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Anahkiasen/underscore-php/zipball/48f97b295c82d99c1fe10d8b0684c43f051b5580",
-                "reference": "48f97b295c82d99c1fe10d8b0684c43f051b5580",
-                "shasum": ""
-            },
-            "require": {
-                "doctrine/inflector": "^1.0",
-                "patchwork/utf8": "^1.2",
-                "php": ">=5.4.0"
-            },
-            "require-dev": {
-                "fabpot/php-cs-fixer": "2.0.*@dev",
-                "phpunit/phpunit": "^4.6"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Underscore\\": [
-                        "src",
-                        "tests"
-                    ]
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Maxime Fabre",
-                    "email": "ehtnam6@gmail.com"
-                }
-            ],
-            "description": "A redacted port of Underscore.js for PHP",
-            "keywords": [
-                "internals",
-                "laravel",
-                "toolkit"
-            ],
-            "time": "2015-05-16 19:24:58"
-        },
-        {
             "name": "doctrine/instantiator",
             "version": "1.0.5",
             "source": {
@@ -3852,68 +3802,6 @@
             "time": "2015-05-29 06:29:14"
         },
         {
-            "name": "league/glide",
-            "version": "0.3.6",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/thephpleague/glide.git",
-                "reference": "e45a4b536924956e1b20f5d023800557d466eda7"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/glide/zipball/e45a4b536924956e1b20f5d023800557d466eda7",
-                "reference": "e45a4b536924956e1b20f5d023800557d466eda7",
-                "shasum": ""
-            },
-            "require": {
-                "intervention/image": "~2.1",
-                "league/flysystem": "~1.0",
-                "php": ">=5.4",
-                "symfony/http-foundation": "~2.3|~3.0",
-                "symfony/http-kernel": "~2.3|~3.0"
-            },
-            "require-dev": {
-                "mockery/mockery": "~0.9",
-                "phpunit/php-token-stream": ">=1.3.0",
-                "phpunit/phpunit": "~4.4"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "0.3-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "League\\Glide\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Jonathan Reinink",
-                    "email": "jonathan@reinink.ca",
-                    "homepage": "http://reinink.ca"
-                }
-            ],
-            "description": "Wonderfully easy on-demand image manipulation library with an HTTP based API.",
-            "homepage": "https://github.com/thephpleague/glide",
-            "keywords": [
-                "ImageMagick",
-                "editing",
-                "gd",
-                "image",
-                "imagick",
-                "league",
-                "manipulation",
-                "processing"
-            ],
-            "time": "2016-01-25 13:35:12"
-        },
-        {
             "name": "mlntn/lumen-artisan-serve",
             "version": "1.1",
             "source": {
@@ -3950,65 +3838,6 @@
                 "lumen"
             ],
             "time": "2016-02-11 15:31:31"
-        },
-        {
-            "name": "patchwork/utf8",
-            "version": "v1.3.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/tchwork/utf8.git",
-                "reference": "3bd61bc162ed5c5f4a11e40a0106acc255b451d9"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/tchwork/utf8/zipball/3bd61bc162ed5c5f4a11e40a0106acc255b451d9",
-                "reference": "3bd61bc162ed5c5f4a11e40a0106acc255b451d9",
-                "shasum": ""
-            },
-            "require": {
-                "lib-pcre": ">=7.3",
-                "php": ">=5.3.0"
-            },
-            "suggest": {
-                "ext-iconv": "Use iconv for best performance",
-                "ext-intl": "Use Intl for best performance",
-                "ext-mbstring": "Use Mbstring for best performance",
-                "ext-wfio": "Use WFIO for UTF-8 filesystem access on Windows"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.3-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Patchwork\\": "src/Patchwork/"
-                },
-                "classmap": [
-                    "src/Normalizer.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "(Apache-2.0 or GPL-2.0)"
-            ],
-            "authors": [
-                {
-                    "name": "Nicolas Grekas",
-                    "email": "p@tchwork.com"
-                }
-            ],
-            "description": "Portable and performant UTF-8, Unicode and Grapheme Clusters for PHP",
-            "homepage": "https://github.com/tchwork/utf8",
-            "keywords": [
-                "grapheme",
-                "i18n",
-                "unicode",
-                "utf-8",
-                "utf8"
-            ],
-            "time": "2015-12-15 15:34:15"
         },
         {
             "name": "phpspec/prophecy",
@@ -4314,16 +4143,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "4.8.23",
+            "version": "4.8.24",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "6e351261f9cd33daf205a131a1ba61c6d33bd483"
+                "reference": "a1066c562c52900a142a0e2bbf0582994671385e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/6e351261f9cd33daf205a131a1ba61c6d33bd483",
-                "reference": "6e351261f9cd33daf205a131a1ba61c6d33bd483",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/a1066c562c52900a142a0e2bbf0582994671385e",
+                "reference": "a1066c562c52900a142a0e2bbf0582994671385e",
                 "shasum": ""
             },
             "require": {
@@ -4382,7 +4211,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2016-02-11 14:56:33"
+            "time": "2016-03-14 06:16:08"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
@@ -4810,152 +4639,6 @@
             "description": "Library that helps with managing the version number of Git-hosted PHP projects",
             "homepage": "https://github.com/sebastianbergmann/version",
             "time": "2015-06-21 13:59:46"
-        },
-        {
-            "name": "spatie/laravel-glide",
-            "version": "2.2.8",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/spatie/laravel-glide.git",
-                "reference": "b2cf5eff4717155cbbf157f3c8eb6ad971e848b7"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-glide/zipball/b2cf5eff4717155cbbf157f3c8eb6ad971e848b7",
-                "reference": "b2cf5eff4717155cbbf157f3c8eb6ad971e848b7",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/support": "5.*",
-                "league/glide": "0.3.*",
-                "php": ">=5.4.0"
-            },
-            "require-dev": {
-                "codeception/codeception": "2.*",
-                "mockery/mockery": "~0.9.3"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "Spatie\\Glide": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Freek Van der Herten",
-                    "email": "freek@spatie.be"
-                }
-            ],
-            "description": "A Glide Service Provider for Laravel",
-            "homepage": "https://github.com/spatie/laravel-glide",
-            "time": "2015-12-18 16:04:32"
-        },
-        {
-            "name": "spatie/pdf-to-image",
-            "version": "1.0.3",
-            "source": {
-                "type": "git",
-                "url": "git@github.com:spatie/pdf-to-image.git",
-                "reference": "d992e85202338dcc67da06e4f0f70b0398706e2d"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/spatie/pdf-to-image/zipball/d992e85202338dcc67da06e4f0f70b0398706e2d",
-                "reference": "d992e85202338dcc67da06e4f0f70b0398706e2d",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.5.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "4.*",
-                "scrutinizer/ocular": "~1.1"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Spatie\\PdfToImage\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Freek Van der Herten",
-                    "email": "freek@spatie.be",
-                    "homepage": "https://spatie.be",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Convert a pdf to an image",
-            "homepage": "https://github.com/spatie/pdf-to-image",
-            "keywords": [
-                "convert",
-                "image",
-                "pdf",
-                "pdf-to-image",
-                "spatie"
-            ],
-            "time": "2016-01-22 08:45:28"
-        },
-        {
-            "name": "spatie/string",
-            "version": "2.1.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/spatie/string.git",
-                "reference": "1843189c711be4dcf62b655824f2f17120c2dc7d"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/spatie/string/zipball/1843189c711be4dcf62b655824f2f17120c2dc7d",
-                "reference": "1843189c711be4dcf62b655824f2f17120c2dc7d",
-                "shasum": ""
-            },
-            "require": {
-                "anahkiasen/underscore-php": "^2.0",
-                "php": ">=5.5.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "4.*",
-                "scrutinizer/ocular": "~1.1"
-            },
-            "type": "library",
-            "autoload": {
-                "files": [
-                    "src/string_functions.php"
-                ],
-                "psr-4": {
-                    "Spatie\\String\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Freek Van der Herten",
-                    "email": "freek@spatie.be",
-                    "homepage": "https://murze.be",
-                    "role": "Developer"
-                }
-            ],
-            "description": "String handling evolved",
-            "homepage": "https://github.com/spatie/string",
-            "keywords": [
-                "handling",
-                "handy",
-                "spatie",
-                "string"
-            ],
-            "time": "2015-11-02 13:00:37"
         },
         {
             "name": "symfony/yaml",
