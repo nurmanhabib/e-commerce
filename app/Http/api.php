@@ -81,6 +81,10 @@ resource('configs',     'ConfigController', $api);
 $api->get('categories/{id}/childs', 'CategoryController@childs');
 resource('categories',  'CategoryController', $api);
 
+resource('ticket-departments',              'TicketDepartmentController', $api);
+resource('tickets/{ticket_id}/replies',     'TicketReplyController', $api);
+resource('tickets',                         'TicketController', $api);
+
 // resource('discounts',   'DiscountController', $api);
 
 /*******************************
