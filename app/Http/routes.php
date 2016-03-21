@@ -13,6 +13,8 @@
 
 $app->get('/', 'HomeController@index');
 
+$app->get('supplier/{supplier_slug}/product/{id}', 'ProductController@show');
+
 $app->group(['namespace' => 'App\Http\Controllers\Frontend\Auth'], function () use ($app) {
     // Login
     $app->get('login', 'LoginController@user');
