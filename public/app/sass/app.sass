@@ -18,9 +18,9 @@ $grey: #F8F8F8
 $grey-black: #DDDDDD
 $shadow: #D2C2C2
 $dark: #E7E7E7
-$aspalt: #243143
+$aspalt: #263238
+$aspalt-light: #37474f
 $aspalt-dark: #1B2A3F
-$aspalt-light: #293648
 $blue: #1489AC
 $orange: #FF4415
 $orange-light: #FF7D5D
@@ -61,7 +61,8 @@ $padding-left: 5px
 
 /* #1.GENERAL */
 body
-	background-color: $grey
+	background-color: $white
+	font-family: roboto
 
 .container
 	max-width: 980px
@@ -70,10 +71,16 @@ body
 	a
 		color: $aspalt-light
 
+.btn-primary
+	font-weight: 600
+	background-color: #446592
+
+.btn-default
+	font-weight: 600
+
 .btn-basic
 	background-color: $orange-light
 	color: $white
-	height: 40px
 	font-weight: 600
 	margin-top: $margin-top + 15
 	+transition(0.3s)
@@ -270,7 +277,7 @@ a
 
 .breadcrumb
 	list-style: none
-	background-color: #ECE3E3
+	background-color: $grey
 	a
 		color: $aspalt-light
 
@@ -584,6 +591,20 @@ header
 				.item-product
 					width: 100%
 
+		.content-detail
+			.heading-detail-product
+				border-bottom: 1px solid $grey-black
+				margin-bottom: $margin-bottom + 15
+
+			img
+				max-width: 300px
+				object-fit: cover
+				margin: 0 auto
+
+			.content-detail-product
+				.detail-comment
+					margin-top: $margin-top + 55
+
 	.popular-supplier
 		padding-top: $padding-top + 20
 		padding-bottom: $padding-bottom + 35
@@ -891,6 +912,62 @@ header
 						a
 							display: block
 							margin-left: $margin-left + 5
+
+			.widget-detail-product
+				margin-bottom: $margin-bottom + 15
+				padding: $padding + 15
+				+border-radius(4px)
+				background-color: $grey
+
+				.price
+					h4
+						font-weight: 600
+				.stock
+					display: block
+					h5
+						margin-right: $margin-right + 5
+						font-weight: 600
+				.count
+					display: block
+					margin-bottom: $margin-bottom + 5
+					h5
+						font-weight: 600
+						margin-right: $margin-right + 5
+
+					.form-control
+						height: 30px
+						width: 50px
+						text-align: center
+
+					.input-group
+						margin-top: $margin-top + 5
+
+					.input-group-btn
+						width: 0px
+
+			.widget-supplier
+				margin-top: $margin-top + 15
+				margin-bottom: $margin-bottom + 15
+
+				.widget-supplier-heading
+					padding: $padding + 5
+					background-color: $grey
+					+border-radius(4px)
+					h4
+						margin: $margin - 5
+
+				.widget-supplier-content
+					display: inline-flex
+					padding: $padding
+					img
+						width: 80px
+						height: 80px
+						object-fit: cover
+						margin-right: $margin-right + 5 !important
+						+border-radius(100%)
+
+					h5
+						margin: $margin -5
 
 /* #5.FOOTER */
 .footer
