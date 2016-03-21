@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<title>AmetkCommerce</title>
+		<!-- start:stylesheet -->
+		<link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../node_modules/font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="../node_modules/slick-carousel/slick/slick.css">
+		<link rel="stylesheet" href="../node_modules/slick-carousel/slick/slick-theme.css">
+		<link rel="stylesheet" href="../plugin/bootstrap-star-rating/css/star-rating.css">
+		<link rel="stylesheet" href="../stylesheets/app.css">
+		<link rel="stylesheet" href="../stylesheets/responsive.css">
+		<link rel="stylesheet" href="../stylesheets/slick-custom.css">
+		<!-- end:/stylesheet -->
+	</head>
+	<body>
+		<!-- start:header -->
+		<header id="header">
+			<!-- start:navbar-main -->
+			<section id="navbar-main">
+				<nav class="navbar">
+					<div class="container">
+						<div class="navbar-header">
+							<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+								<i class="fa fa-bars"></i>
+							</button>
+							<a class="navbar-brand" href="#">
+								<img src="../assets/images/icon/logo.png" alt="">
+							</a>
+						</div>
+						<div class="collapse navbar-collapse" id="myNavbar">
+							<div class="navbar-right">
+								<div class="dropdown avatar pull-right">
+                                    <a class="dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <img src="../assets/images/avatar.png" alt="">
+                                    </a>
+                                </div>
+                                <div class="cart pull-right">
+									<a href="#collapseChart" data-toggle="collapse">
+										<img src="../assets/images/icon/chart.svg" alt="">
+										<p>3</p>
+									</a>
+									
+								</div>
+							</div>
+						</div>
+					</div>
+				</nav>
+				<nav class="navbar navbar-cart">
+					<div class="container">
+						<div class="collapse" id="collapseChart">
+							<div class="well">
+								<div class="cart-content">
+									<div class="row">
+										<div class="col-lg-12">
+											<div class="col-sm-2">
+												<div class="cart-img">
+													<img src="../assets/images/popular.jpg" alt="">
+												</div>
+											</div>
+											<div class="col-sm-3">
+												<div class="cart-title">
+													<a href="#">
+														<h4>Popular</h4>
+													</a>
+													<p>Batik popular masa kini dan untuk menengah keatas</p>
+												</div>
+											</div>
+											<div class="col-sm-3">
+												<div class="cart-item">
+													<a href="#" class="btn btn-sm">
+														<i class="fa fa-minus"></i>
+													</a>
+													<h4>2</h4>
+													<a href="#" class="btn btn-sm">
+														<i class="fa fa-plus"></i>
+													</a>
+												</div>
+											</div>
+											<div class="col-sm-3">
+												<div class="cart-price">
+													<h4>IDR 300.000,-</h4>
+												</div>
+											</div>
+											<div class="col-sm-1">
+												<div class="cart-action">
+													<a href="#">
+														<i class="fa fa-trash"></i>
+													</a>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="cart-content">
+									<div class="row">
+										<div class="col-lg-12">
+											<div class="col-sm-2">
+												<div class="cart-img">
+													<img src="../assets/images/1.jpg" alt="">
+												</div>
+											</div>
+											<div class="col-sm-3">
+												<div class="cart-title">
+													<a href="#">
+														<h4>Popular</h4>
+													</a>
+													<p>Ini adalah anu</p>
+												</div>
+											</div>
+											<div class="col-sm-3">
+												<div class="cart-item">
+													<a href="#" class="btn btn-sm">
+														<i class="fa fa-minus"></i>
+													</a>
+													<h4>1</h4>
+													<a href="#" class="btn btn-sm">
+														<i class="fa fa-plus"></i>
+													</a>
+												</div>
+											</div>
+											<div class="col-sm-3">
+												<div class="cart-price">
+													<h4>IDR 300.000,-</h4>
+												</div>
+											</div>
+											<div class="col-sm-1">
+												<div class="cart-action">
+													<a href="#">
+														<i class="fa fa-trash"></i>
+													</a>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="content-checkout">
+									<div class="row">
+										<div class="col-lg-12">
+											<div class="col-sm-4">
+												<a href="#" class="btn btn-cart btn-block">
+													<i class="fa fa-arrow-circle-left"></i> Continue Shopping
+												</a>
+											</div>
+											<div class="col-sm-5">
+												<div class="cart-total">
+													<h4>TOTAL</h4>
+													<h3>IDR 600,000,-</h3>
+												</div>
+											</div>
+											<div class="col-sm-3">
+												<a href="#" class="btn btn-checkout btn-block">
+													Checkout
+												</a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</nav>
+			</section>
+			<!-- end:/navbar-main -->
+
+			<!-- start:navbar-content -->
+			<section id="navbar-content">
+				<nav id="navbar" class="navbar">
+					<div class="container">
+						<div class="row">
+							<form class="form-horizontal">
+								<div class="form-group">
+									<div class="col-sm-8">
+										<input type="email" class="form-control form-search" id="inputEmail3" placeholder="Type Something ...">
+									</div>
+									<div class="col-sm-2">
+										<div class="select">
+											<select class="form-control form-search" name="" id="">
+												<option value="">All Category</option>
+												<option value="">All Category</option>
+												<option value="">All Category</option>
+											</select>
+										</div>
+									</div>
+									<div class="col-sm-2">
+										<button type="submit" class="btn btn-search btn-block">Search</button>
+									</div>
+								</div>
+							</form>	
+						</div>
+					</div>
+				</nav>
+			</section>
+			<!-- end:/navbar-content -->
+
+			<!-- start:header-content -->
+            <section id="header-content" data-spy="affix" data-offset-top="146">
+            	<div class="container">
+            		<ul class="nav navbar-nav">
+                        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Clothing & Accessories</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Link</a></li>
+                                <li><a href="#opening">Link</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                        	<a href="#">Electronics</a>
+                        </li>
+                        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Gadget</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Link</a></li>
+                                <li><a href="#opening">Link</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">T-Shirt</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Link</a></li>
+                                <li><a href="#opening">Link</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Teknologi</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Robot</a></li>
+                                <li><a href="#">Camera</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+            	</div>
+            </section>
+            <!-- end:/header-content -->
+		</header>
+		<!-- end:/header -->
+
+		<!-- start:content -->
+		<section id="content">
+			<div class="container">
+				<ol class="breadcrumb">
+					<li><a href="#">Home</a></li>
+					<li><a href="#">Library</a></li>
+					<li class="active">Data</li>
+				</ol>
+				<!-- start:main-content -->
+				<div class="main-content">
+					<div class="row">
+						<div class="content-detail">
+							<div class="col-lg-12">
+								<div class="heading-detail-product">
+									<h3>Busana Wanita</h3>
+									<input id="input-1-ltr-star-xs" class="kv-ltr-theme-fa-star rating-loading" value="0" dir="ltr" data-size="xs">
+								</div>
+							</div>
+							<div class="col-sm-8">
+								<div class="content-detail-product">
+									<!-- start:detail image -->
+									<div class="slider slider-for">
+										<div>
+											<img src="../assets/images/hijab.jpg" alt="">
+									    </div>
+									    <div>
+											<img src="../assets/images/hijab.jpg" alt="">
+									    </div>
+									    <div>
+											<img src="../assets/images/1.jpg" alt="">
+									    </div>
+									    <div>
+											<img src="../assets/images/hijab.jpg" alt="">
+									    </div>
+									</div>
+									<div class="slider center">
+										<div>
+										    <img src="../assets/images/hijab.jpg" alt="">
+									    </div>
+									    <div>
+											<img src="../assets/images/hijab.jpg" alt="">
+									    </div>
+									    <div>
+											<img src="../assets/images/1.jpg" alt="">
+									    </div>
+									    <div>
+											<img src="../assets/images/hijab.jpg" alt="">
+									    </div>
+									</div>
+									<!-- end:/detail image -->
+
+									<!-- start:detail item and comment -->
+									<div class="detail-comment">
+										<ul class="nav nav-tabs">
+											<li class="active">
+												<a href="#detail" aria-controls="Detail Item" role="tab" data-toggle="tab">About Item</a>
+											</li>
+											<li>
+												<a href="#comment" aria-controls="Detail Item" role="tab" data-toggle="tab">Comment</a>
+											</li>
+										</ul>
+										<div class="tab-content">
+											<div role="tabpanel" class="tab-pane active" id="detail">...</div>
+											<div role="tabpanel" class="tab-pane" id="coment">...</div>
+										</div>
+									</div>
+									<!-- end:/detail item and comment -->
+								</div>
+							</div>
+							<div class="col-sm-4">
+								<!-- start:sidebar -->
+								<div class="sidebar">
+									<div class="widget">
+										<!-- start:widget-detail-product -->
+										<div class="widget-detail-product">
+											<div class="price">
+												<h4>Price: </h4>
+												<h3>IDR 3.000.000,-</h3>
+												<h5><small>Last updated Price 21 March 2016, 12:30PM</small></h5>
+											</div>
+											<div class="stock">
+												<h5>Stock : </h5>
+												<h4><span class="label label-default">300 Pcs</span></h4>
+											</div>
+											<div class="count">
+												<h5>Count :</h5>
+												<div class="input-group">
+													<span class="input-group-btn">
+														<button class="btn btn-primary btn-sm"><i class="fa fa-minus"></i></button>
+													</span>
+													<input type="text" class="form-control" value="1">
+													<span class="input-group-btn">
+														<button class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></button>
+													</span>
+												</div>
+											</div>
+										</div>
+										<!-- end:/widget-detail-product -->
+										<a href="#" class="btn btn-basic btn-block">Buy</a>
+										<a href="#" class="btn btn-primary btn-block"><i class="fa fa-cart-arrow-down"></i> Add to cart</a>
+
+										<!-- start:widget-supplier -->
+										<div class="widget-supplier">
+											<div class="widget-supplier-heading">
+												<h4>Porfile Supplier</h4>
+											</div>
+											<div class="widget-supplier-content">
+												<img src="../assets/images/hijab2.jpg" alt="">
+												<div class="supplier-profile">
+													<h5><a href="#">Ammteklab Supplier</a></h5>
+													<h5><i class="fa fa-map-marker"></i> Yogyakarta</h5>
+													<a href="#" class="btn btn-primary btn-block"><i class="fa fa-heart"></i> Favorite</a>
+												</div>
+											</div>
+										</div>
+										<!-- end:/widget-supplier -->
+									</div>
+								</div>
+								<!-- end:/sidebar -->
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- end:/main-content -->
+			</div>
+		</section>
+		<!-- end:/content -->
+
+		<!-- start:footer -->
+		<footer class="footer">
+			<div class="container">
+					<!-- start:footer-top -->
+					<div class="footer-top">
+						<div class="row">
+							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+								<h4>We Payment Suported :</h4>
+								<div class="payment-card">
+									<img src="../assets/images/icon/Visa-Dark.svg" alt="visa">
+									<img src="../assets/images/icon/MasterCard-dark.svg" alt="master">
+									<img src="../assets/images/icon/Maestro-dark.svg" alt="maestro">
+									<img src="../assets/images/icon/Cirrus-dark.svg" alt="cirrus">
+									<img src="../assets/images/icon/AmericanExpress-dark.svg" alt="americanex">
+									<img src="../assets/images/icon/DinersClub-dark.svg" alt="dinerdclub">
+									<img src="../assets/images/icon/JCB-dark.svg" alt="jbc">
+									<img src="../assets/images/icon/UnionPay-dark.svg" alt="unionpay">
+									<img src="../assets/images/icon/Discover-dark.svg" alt="discover">
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- end:/footer-top -->
+					<!-- start:footer-content -->
+					<div class="footer-content">
+						<div class="row">
+							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+								<div class="col-sm-3">
+									<h4>About Us</h4>
+									<ul>
+										<li><a href="#">About AmtekCommerce</a></li>
+										<li><a href="#">Sitemap</a></li>
+									</ul>
+								</div>
+								<div class="col-sm-3">
+									<h4>Customer Service</h4>
+									<ul>
+										<li><a href="#">Help center</a></li>
+										<li><a href="#">Contact Us</a></li>
+										<li><a href="#">Submit & Complaint</a></li>
+										<li><a href="#">Policies & Rules</a></li>
+									</ul>
+								</div>
+								<div class="col-sm-3">
+									<h4>Buy on AmtekCommerce</h4>
+									<ul>
+										<li><a href="#">By Category</a></li>
+										<li><a href="#">Get Quotations</a></li>
+										<li><a href="#">Wholesaler</a></li>
+										<li><a href="#">Popular Products Trends</a></li>
+									</ul>
+								</div>
+								<div class="col-sm-3">
+									<h4>Sell on AmtekCommerce</h4>
+									<ul>
+										<li><a href="#">Supplier Memberships</a></li>
+										<li><a href="#">Learning Center</a></li>
+										<li><a href="#">Training Center</a></li>
+										<li><a href="#">AmtekCommerce Source</a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- end:/footer-content -->
+					<!-- start:footer-bottom -->
+					<div class="footer-bottom">					
+						<p><i class="fa fa-copyright"></i> Copyright 2016 - <a href="#">Amteklab</a> E-Commerce System.</p>
+					</div>
+					<!-- end:/footer-bottom -->
+			</div>
+		</footer>
+		<!-- end:/footer -->
+
+		<!-- start:javascript -->
+		<script src="../node_modules/jquery/dist/jquery.min.js"></script>
+		<script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+		<script src="../node_modules/slick-carousel/slick/slick.min.js"></script>
+		<script src="../plugin/bootstrap-star-rating/js/star-rating.js"></script>
+		<script>
+		$(document).on('ready', function(){
+		    $('.kv-ltr-theme-fa-star').rating({
+		        hoverOnClear: false,
+		        theme: 'krajee-fa',
+		        filledStar: '<i class="fa fa-star"></i>',
+		        emptyStar: '<i class="fa fa-star-o"></i>'
+		    });
+		});
+		</script>
+		<script>
+		$('.slider-for').slick({
+			slidesToShow: 1,
+			slidesToScroll: 1,
+			arrows: false,
+			fade: true,
+			asNavFor: '.center'
+		});
+		$('.center').slick({
+			slidesToShow: 3,
+			slidesToScroll: 1,
+			arrows: false,
+			asNavFor: '.slider-for',
+			dots: true,
+			centerMode: true,
+			focusOnSelect: true
+		});
+		</script>
+		<!-- end:/javascript -->
+	</body>
+</html>
