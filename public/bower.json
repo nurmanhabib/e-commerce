@@ -1,0 +1,25 @@
+{
+  "name": "e-commerce",
+  "description": "E-Commerce",
+  "main": "index.js",
+  "authors": [
+    "Singgih Saputro"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/nurmanhabib/e-commerce",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.6",
+    "chained": "~1.0.0",
+    "font-awesome": "~4.5.0",
+    "slick-carousel": "~1.5.9",
+    "owl.carousel": "OwlCarousel2#~2.0.0-beta.3"
+  }
+}
