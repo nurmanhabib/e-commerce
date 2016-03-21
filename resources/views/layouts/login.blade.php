@@ -94,28 +94,8 @@
 	<script type="text/javascript" src="{{ asset('assets/js/plugins/velocity/velocity.ui.min.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('assets/js/plugins/buttons/spin.min.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('assets/js/plugins/buttons/ladda.min.js') }}"></script>
-
-	<script type="text/javascript" src="{{ asset('assets/js/core/app.js') }}"></script>
-	<script type="text/javascript" src="{{ asset('assets/js/pages/login.js') }}"></script>
-	<script type="text/javascript" src="{{ asset('assets/js/pages/components_buttons.js') }}"></script>
 	<!-- /theme JS files -->
 	
-    <!-- Build Core -->
-    <!-- <script src="{{ asset('app/admin/build.js') }}"></script>
-    <script src="{{ asset('app/supplier/build.js') }}"></script> -->
-    @yield('build_core')
-    <!-- /Build Core -->
-
-	<!-- Vue JS -->
-	<script src="{{ asset('node_modules/vue/dist/vue.min.js') }}"></script>
-	<script src="{{ asset('node_modules/vue-resource/dist/vue-resource.min.js') }}" ></script>
-	<script src="{{ asset('node_modules/vue-validator/dist/vue-validator.min.js') }}" ></script>
-    <script type="text/javascript" src="{{ asset('vue/cookies.js') }}"></script>
-	<script src="{{ asset('vue/http.js') }}"></script>
-	<!-- /Vue JS -->
-	
-	@yield('script')
-
-
+	@yield('scripts')
 </body>
 </html>

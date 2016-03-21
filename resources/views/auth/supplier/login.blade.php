@@ -4,6 +4,6 @@
 	<login></login>
 @stop
 
-@section('build_core')
+@section('scripts')
     <script src="{{ asset('app/supplier/build.js') }}"></script>
 @stop
