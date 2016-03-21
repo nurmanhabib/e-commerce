@@ -36,6 +36,7 @@ $app->group(['namespace' => 'App\Http\Controllers\Frontend\Admin', 'prefix' => '
     $app->get('category', 'CategoryController@index');
     $app->get('product', 'ProductController@index');
     $app->get('supplier', 'SupplierController@index');
+    $app->get('config', 'ConfigController@index');
 });
 
 $app->group(['namespace' => 'App\Http\Controllers\Frontend\Supplier', 'prefix' => 'supplier'], function () use ($app) {
