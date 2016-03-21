@@ -10,6 +10,7 @@ use App\Repositories\ProductRepository;
 use App\Models\Product;
 use App\Supports\Contracts\Supplierable;
 use Illuminate\Http\Request;
+use Auth;
 
 class ProductController extends Controller
 {
@@ -46,6 +47,7 @@ class ProductController extends Controller
             'name'          => 'required',
             'description'   => 'required',
             'price'         => 'required',
+            'stock'         => 'required',
             'category_id'   => 'required'
         ]);
 
@@ -54,6 +56,7 @@ class ProductController extends Controller
             'name',
             'description',
             'price',
+            'stock',
             'category_id'
         );
 
@@ -74,7 +77,7 @@ class ProductController extends Controller
             return [
                 'status'    => 'success',
                 'message'   => 'Product has successfully added.',
-                'product'   => $product
+                'product'   => $product->load('tags')
             ];
         } else {
             return [
@@ -107,6 +110,27 @@ class ProductController extends Controller
         }
     }
 
+    public function showBySupplier()
+    {
+        $user           = Auth::user();
+        $supplier_id    = $user->supplier->first()->id;
+        $products   = Product::where('supplier_id', $supplier_id)->get();
+
+        if ($products) {
+            return [
+                'status'    => 'success',
+                'message'   => 'Produk tersedia.',
+                'products'  => $products
+            ];
+        } else {
+            return [
+                'status'    => 'failed',
+                'message'   => 'Produk tidak tersedia.',
+                'products'  => null
+            ];
+        }
+    }
+
     /**
      * Untuk update data product
      * 
@@ -131,10 +155,18 @@ class ProductController extends Controller
             $product->name          = $request->input('name');
             $product->description   = $request->input('description');
             $product->price         = $request->input('price');
-            $product->tags          = $request->input('tags');
+            $product->stock         = $request->input('stock');
             $product->category_id   = $request->input('category_id');
 
             if($product->save()){
+
+                if (is_string($request->get('tags'))) {
+                    $tags = explode(',', $request->get('tags'));
+                } else {
+                    $tags = $request->get('tags', []);
+                }
+
+                $this->productRepository->saveTags($product, $tags);
                 return [
                     'status'    => 'success',
                     'message'   => 'Product has been updated.',
@@ -163,6 +195,8 @@ class ProductController extends Controller
     public function destroy($id)
     {
         $product    = Product::find($id);
+
+        $clearTags = $this->productRepository->clearTags($product);
 
         if($product){
             if($product->delete()){

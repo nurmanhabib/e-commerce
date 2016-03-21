@@ -4,6 +4,7 @@
     "vue": "browserify -t vueify -e resources/assets/js/main.js -o public/build.js --presets es2015",
     "dev": "watchify -vd -p browserify-hmr -e resources/assets/js/frontend/main.js -o public/build.js",
     "dev-admin": "watchify -vd -p browserify-hmr -e resources/assets/js/admin/main.js -o public/app/admin/build.js",
+    "dev-supplier": "watchify -vd -p browserify-hmr -e resources/assets/js/supplier/main.js -o public/app/supplier/build.js",
     "build": "cross-env NODE_ENV=production browserify -e resources/assets/js/main.js | uglifyjs -c warnings=false -m > public/build.js",
     "build-admin": "cross-env NODE_ENV=production browserify -e resources/assets/js/admin/main.js -o public/app/admin/build.js",
     "lint": "eslint --ext .js,.vue src",

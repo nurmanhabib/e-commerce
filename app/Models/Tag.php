@@ -25,9 +25,14 @@ class Tag extends Model
 		return $this;
 	}
 
-	public function createSlug($name)
+	public function createSlug($name, $numb = 0)
 	{
-		return str_slug($name);
+		$slug       = str_slug($name, '-') . ($numb ? '-' . $numb : '');
+        $already    = Tag::where('slug', $slug)->first();
+
+        if (count($already) > 0)
+            return $this->createSlug($name, $numb+1);
+            return $slug;
 	}
 
 	public function products()

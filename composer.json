@@ -15,7 +15,7 @@
         "dingo/api": "1.0.x@dev",
         "doctrine/dbal": "^2.5",
         "intervention/image": "^2.3",
-        "nurmanhabib/kewilayahan": "^1.0"
+        "nurmanhabib/kewilayahan": "^1.1"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

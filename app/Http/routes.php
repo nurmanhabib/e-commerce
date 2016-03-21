@@ -40,5 +40,6 @@ $app->group(['namespace' => 'App\Http\Controllers\Frontend\Admin', 'prefix' => '
 });
 
 $app->group(['namespace' => 'App\Http\Controllers\Frontend\Supplier', 'prefix' => 'supplier'], function () use ($app) {
+    $app->get('/', 'DashboardController@index');
     $app->get('products', 'SupplierController@index');
 });
