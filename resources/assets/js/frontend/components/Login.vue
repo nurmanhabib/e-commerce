@@ -1,7 +1,3 @@
-<style>
-    
-</style>
-
 <template>
     <div v-if="error" class="alert alert-danger alert-styled-left alert-bordered">
         <button v-on:click="clearError()" type="button" class="close"><span>&times;</span><span class="sr-only">Close</span></button>

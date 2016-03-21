@@ -1,83 +1,10 @@
 <style>
-    .loading {
-        position: absolute;
-        left: 0;
-        top: 0;
-        bottom: 0;
-        right: 0;
-        background: #fff;
-    }
-    .loader,
-    .loader:before,
-    .loader:after {
-        border-radius: 50%;
-    }
-    .loader:before,
-    .loader:after {
-        position: absolute;
-        content: '';
-    }
-    .loader:before {
-        width: 5.2em;
-        height: 10.2em;
-        background: #0dc5c1;
-        border-radius: 10.2em 0 0 10.2em;
-        top: -0.1em;
-        left: -0.1em;
-        -webkit-transform-origin: 5.2em 5.1em;
-        transform-origin: 5.2em 5.1em;
-        -webkit-animation: load2 2s infinite ease 1.5s;
-        animation: load2 2s infinite ease 1.5s;
-    }
-    .loader {
-        font-size: 11px;
-        text-indent: -99999em;
-        margin: 55px auto;
-        position: relative;
-        width: 10em;
-        height: 10em;
-        box-shadow: inset 0 0 0 1em #ffffff;
-        -webkit-transform: translateZ(0);
-        -ms-transform: translateZ(0);
-        transform: translateZ(0);
-    }
-    .loader:after {
-        width: 5.2em;
-        height: 10.2em;
-        background: #0dc5c1;
-        border-radius: 0 10.2em 10.2em 0;
-        top: -0.1em;
-        left: 5.1em;
-        -webkit-transform-origin: 0px 5.1em;
-        transform-origin: 0px 5.1em;
-        -webkit-animation: load2 2s infinite ease;
-        animation: load2 2s infinite ease;
-    }
-    @-webkit-keyframes load2 {
-        0% {
-            -webkit-transform: rotate(0deg);
-            transform: rotate(0deg);
-        }
-        100% {
-            -webkit-transform: rotate(360deg);
-            transform: rotate(360deg);
-        }
-    }
-    @keyframes load2 {
-        0% {
-            -webkit-transform: rotate(0deg);
-            transform: rotate(0deg);
-        }
-        100% {
-            -webkit-transform: rotate(360deg);
-            transform: rotate(360deg);
-        }
-    }
+
 </style>
 
 <template>
-    <div class="loading" v-show="show">
-        <div class="loader">Loading...</div>
+    <div v-show="loading">
+        <slot>Loading ...</slot>
     </div>
 </template>
 
@@ -85,45 +12,41 @@
     module.exports = {
         data() {
             return {
-                show: true
+                loading: true
             }
         },
 
         methods: {
-            showing(data) {
-                var timeout = data.timeout;
+            show(timeout) {
+                var timeout = timeout || 0;
 
-                this.show = true;
-                this.$parent.$broadcast('loading');
+                this.$parent.$broadcast('loading.showing');
 
-                if (typeof timeout !== 'undefined') {
-                    var that = this;
+                this.loading = true;
 
-                    alert('ada timeout ' + timeout);
-
+                if (timeout > 0) {
                     setTimeout(function() {
                         that.hide();
                     }, timeout);
                 }
             },
+
             hide() {
-                this.show = false;
-                this.$parent.$broadcast('loaded');
+                this.loading = false;
+
+                this.$parent.$broadcast('loading.hidden');
             }
         },
 
         ready() {
-            var that = this;
-
-            setTimeout(function () {
-                that.hide();
-            }, 2000);
+            // 
         },
 
         events: {
             'loading.show': function (timeout) {
-                this.showing(timeout);
+                this.show(timeout);
             },
+
             'loading.hide': function () {
                 this.hide();
             }
