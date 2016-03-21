@@ -11,18 +11,25 @@
 @import url("../../fonts/opensans/style.css");
 /* #1.GENERAL */
 body {
-  background-color: #F8F8F8; }
+  background-color: #FFF;
+  font-family: roboto; }
 
 .container {
   max-width: 980px; }
 
 * a {
-  color: #293648; }
+  color: #37474f; }
+
+.btn-primary {
+  font-weight: 600;
+  background-color: #446592; }
+
+.btn-default {
+  font-weight: 600; }
 
 .btn-basic {
   background-color: #FF7D5D;
   color: #FFF;
-  height: 40px;
   font-weight: 600;
   margin-top: 20px;
   -webkit-transition: all 0.3s ease-in-out;
@@ -107,9 +114,9 @@ a {
   -o-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out; }
   .btn-see-all:hover, .btn-see-all:focus, .btn-see-all:active {
-    border-bottom: 2px solid #243143;
+    border-bottom: 2px solid #263238;
     font-size: 20px;
-    color: #243143;
+    color: #263238;
     text-decoration: none;
     box-shadow: 0 2px 4px #D2C2C2;
     -webkit-transition: all 0.3s ease-in-out;
@@ -149,7 +156,7 @@ a {
     height: 250px;
     object-fit: cover; }
   #overlay-box #content-overlay {
-    background: #293648;
+    background: #37474f;
     height: 100%;
     width: 100%;
     opacity: 0;
@@ -201,7 +208,7 @@ a {
     -moz-transition: all 0.3s ease-in-out;
     -o-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
-    border: 1px solid #293648 !important; }
+    border: 1px solid #37474f !important; }
   .thumbnail img {
     height: auto;
     max-width: 100%;
@@ -226,7 +233,7 @@ a {
     font-size: 14px;
     margin-top: 5px;
     margin-bottom: 5px;
-    color: #293648;
+    color: #37474f;
     line-height: 1.5em; }
 
 .affix {
@@ -240,9 +247,9 @@ a {
 
 .breadcrumb {
   list-style: none;
-  background-color: #ECE3E3; }
+  background-color: #F8F8F8; }
   .breadcrumb a {
-    color: #293648; }
+    color: #37474f; }
 
 /* #2.HEADER */
 header {
@@ -301,7 +308,7 @@ header {
       border-radius: 100%; }
   header #navbar-main .navbar-cart {
     min-height: 0px;
-    background-color: #243143;
+    background-color: #263238;
     -webkit-border-radius: 0px;
     -moz-border-radius: 0px;
     -o-border-radius: 0px;
@@ -314,7 +321,7 @@ header {
       margin-top: 20px; }
       header #navbar-main .navbar-cart .well .cart-content {
         border: 4px solid #1B2A3F;
-        background-color: #293648;
+        background-color: #37474f;
         margin-bottom: 20px;
         padding: 8px;
         text-align: center; }
@@ -357,7 +364,7 @@ header {
             -moz-border-radius: 100%;
             -o-border-radius: 100%;
             border-radius: 100%;
-            background-color: #243143;
+            background-color: #263238;
             border: 2px solid #1B2A3F;
             color: #F8F8F8;
             font-size: 14px;
@@ -420,7 +427,7 @@ header {
           -moz-border-radius: 0px;
           -o-border-radius: 0px;
           border-radius: 0px;
-          background-color: #293648;
+          background-color: #37474f;
           height: 50px;
           color: #FFF;
           padding: 10px;
@@ -457,11 +464,11 @@ header {
             transition: all 0.3s ease-in-out;
             background-color: #FF4415; }
   header #navbar-content {
-    background-color: #243143;
+    background-color: #263238;
     color: #FFF; }
     header #navbar-content .navbar {
       margin-bottom: 0px;
-      background-color: #243143;
+      background-color: #263238;
       -webkit-border-radius: 0px;
       -moz-border-radius: 0px;
       -o-border-radius: 0px;
@@ -486,7 +493,7 @@ header {
     header #header-main .carousel .carousel-caption .content-caption {
       padding-bottom: 55px; }
       header #header-main .carousel .carousel-caption .content-caption h1 {
-        color: #243143;
+        color: #263238;
         text-shadow: none;
         font-weight: 600;
         line-height: 50px; }
@@ -502,10 +509,10 @@ header {
       width: 16px;
       height: 16px;
       margin: 1px;
-      border: 1px solid #243143;
+      border: 1px solid #263238;
       background-color: #FFF; }
     header #header-main .carousel .carousel-indicators .active {
-      background-color: #243143; }
+      background-color: #263238; }
   header #header-main .carousel .carousel-control {
     text-shadow: none;
     opacity: 1;
@@ -517,7 +524,7 @@ header {
       top: 40%;
       margin-top: -10px;
       font-size: 80px;
-      color: #243143;
+      color: #263238;
       margin-left: -20px; }
     header #header-main .carousel .carousel-control .fa-angle-right {
       width: 80px;
@@ -526,7 +533,7 @@ header {
       top: 40%;
       margin-top: -10px;
       font-size: 80px;
-      color: #243143;
+      color: #263238;
       margin-left: -60px; }
   header #header-content {
     background-color: #FFF;
@@ -551,6 +558,15 @@ header {
       padding: 5px; }
     #content .main-content .list-product .list-content .item-product {
       width: 100%; }
+    #content .main-content .content-detail .heading-detail-product {
+      border-bottom: 1px solid #DDDDDD;
+      margin-bottom: 20px; }
+    #content .main-content .content-detail img {
+      max-width: 300px;
+      object-fit: cover;
+      margin: 0 auto; }
+    #content .main-content .content-detail .content-detail-product .detail-comment {
+      margin-top: 60px; }
   #content .popular-supplier {
     padding-top: 25px;
     padding-bottom: 40px;
@@ -849,7 +865,7 @@ header {
         transition: all 0.3s ease-in-out; }
         .main-content .sidebar .widget .widget-content ul li:hover {
           background-color: #F8F8F8;
-          border-left: 4px solid #293648;
+          border-left: 4px solid #37474f;
           -webkit-transition: all 0.3s ease-in-out;
           -moz-transition: all 0.3s ease-in-out;
           -o-transition: all 0.3s ease-in-out;
@@ -857,6 +873,61 @@ header {
         .main-content .sidebar .widget .widget-content ul li a {
           display: block;
           margin-left: 10px; }
+    .main-content .sidebar .widget .widget-detail-product {
+      margin-bottom: 20px;
+      padding: 20px;
+      -webkit-border-radius: 4px;
+      -moz-border-radius: 4px;
+      -o-border-radius: 4px;
+      border-radius: 4px;
+      background-color: #F8F8F8; }
+      .main-content .sidebar .widget .widget-detail-product .price h4 {
+        font-weight: 600; }
+      .main-content .sidebar .widget .widget-detail-product .stock {
+        display: block; }
+        .main-content .sidebar .widget .widget-detail-product .stock h5 {
+          margin-right: 10px;
+          font-weight: 600; }
+      .main-content .sidebar .widget .widget-detail-product .count {
+        display: block;
+        margin-bottom: 10px; }
+        .main-content .sidebar .widget .widget-detail-product .count h5 {
+          font-weight: 600;
+          margin-right: 10px; }
+        .main-content .sidebar .widget .widget-detail-product .count .form-control {
+          height: 30px;
+          width: 50px;
+          text-align: center; }
+        .main-content .sidebar .widget .widget-detail-product .count .input-group {
+          margin-top: 10px; }
+        .main-content .sidebar .widget .widget-detail-product .count .input-group-btn {
+          width: 0px; }
+    .main-content .sidebar .widget .widget-supplier {
+      margin-top: 20px;
+      margin-bottom: 20px; }
+      .main-content .sidebar .widget .widget-supplier .widget-supplier-heading {
+        padding: 10px;
+        background-color: #F8F8F8;
+        -webkit-border-radius: 4px;
+        -moz-border-radius: 4px;
+        -o-border-radius: 4px;
+        border-radius: 4px; }
+        .main-content .sidebar .widget .widget-supplier .widget-supplier-heading h4 {
+          margin: 0px; }
+      .main-content .sidebar .widget .widget-supplier .widget-supplier-content {
+        display: inline-flex;
+        padding: 5px; }
+        .main-content .sidebar .widget .widget-supplier .widget-supplier-content img {
+          width: 80px;
+          height: 80px;
+          object-fit: cover;
+          margin-right: 10px !important;
+          -webkit-border-radius: 100%;
+          -moz-border-radius: 100%;
+          -o-border-radius: 100%;
+          border-radius: 100%; }
+        .main-content .sidebar .widget .widget-supplier .widget-supplier-content h5 {
+          margin: 5px -5; }
 
 /* #5.FOOTER */
 .footer {
@@ -888,7 +959,7 @@ header {
         list-style-type: none; }
         .footer .footer-content ul li a {
           text-decoration: none;
-          color: #243143; }
+          color: #263238; }
   .footer .footer-bottom {
     padding: 10px; }
     .footer .footer-bottom p {
